@@ -1,0 +1,12 @@
+debug: true
+spring :
+  datasource:
+    url: jdbc:postgresql://localhost:5432/covid-db
+    username: postgres
+    password: sudo
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  liquibase:
+    change-log: classpath:db\changelog\dblog.xml
+    enabled: true

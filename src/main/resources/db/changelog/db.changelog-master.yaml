@@ -1,0 +1,34 @@
+databaseChangeLog:  
+  - changeSet:  
+      id:  1  
+      author:  nvoxland  
+      changes:  
+        - createTable:  
+            tableName:  users
+            columns:  
+              - column:  
+                  name:  id  
+                  type:  int  
+                  autoIncrement:  true  
+                  constraints:  
+                    primaryKey:  true  
+                    nullable:  false  
+              - column:  
+                  name:  fname  
+                  type:  varchar(255)
+              - column:  
+                  name:  lname  
+                  type:  varchar(255)
+              - column:  
+                  name:  mail 
+                  type:  varchar(255)
+              - column:  
+                  name:  telephone 
+                  type:  varchar(255)
+              - column:  
+                  name:  center_city 
+                  type:  varchar(255)
+              - column:  
+                  name:  vaccinate 
+                  type:  boolean
+

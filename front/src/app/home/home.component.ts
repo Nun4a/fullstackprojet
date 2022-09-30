@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { centerType } from './home.types';
+import { reserveDataToSend } from './home.types';
 @Component({
   selector: 'app-root',
   templateUrl: './home.component.html'
@@ -10,12 +11,13 @@ export class HomeComponent {
 
   searchText: string = '';
   secondForm: boolean = true;
+  reserveOk: boolean = true;
 
   centerChoosen!: centerType;
-  fname: string | undefined;
-  lname: string | undefined;
-  mail: string | undefined;
-  daterdv: string | undefined;
+  fname!: string;
+  lname!: string;
+  mail!: string;
+  daterdv!: string;
 
   //Charger les données des centres là dedans
   centre: centerType[] = [
@@ -24,7 +26,6 @@ export class HomeComponent {
   ];
 
   onChooseClick(form: centerType) {
-    console.log(form)
     this.secondForm = !this.secondForm
     this.centerChoosen = form  
   }
@@ -44,6 +45,18 @@ export class HomeComponent {
     this.lname = form.value.lname;
     this.mail = form.value.mail;
     this.daterdv = form.value.daterdv;
-    console.log(this)
+    this.reserveOk = !this.reserveOk;
+    this.sendData()
+  }
+
+  sendData(){
+    const bufferData: reserveDataToSend = {
+      centerId: this.centerChoosen.id,
+      fname: this.fname,
+      lname: this.lname,
+      mail: this.mail,
+      daterdv: this.daterdv
+    } 
+    console.log(bufferData)
   }
 }

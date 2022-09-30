@@ -14,13 +14,5 @@ public class CovidApiApplication {
 		SpringApplication.run(CovidApiApplication.class, args);
 	}
 
-	@Bean
-
-    CommandLineRunner runner(UserRepository userRep) {
-
-        return args -> {
-            userRep.save(new Users(1, "Bapt", "Porcu", "b@o.com", "06", "Nancy", true));
-		};
-	}
 
 }

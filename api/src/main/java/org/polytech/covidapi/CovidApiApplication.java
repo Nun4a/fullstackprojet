@@ -22,5 +22,4 @@ public class CovidApiApplication {
             userRep.save(new Users(1, "Bapt", "Porcu", "b@o.com", "06", "Nancy", true));
 		};
 	}
-
 }

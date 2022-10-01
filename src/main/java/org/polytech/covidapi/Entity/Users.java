@@ -62,4 +62,12 @@ public class Users {
     public boolean getVaccinate(){
         return this.vaccinate;
     }
+
+    @Override
+    public String toString() {
+        return "Users [id=" + id + ", fname=" + fname + ", lname=" + lname + ", mail=" + mail + ", telephone="
+                + telephone + ", center_city=" + center_city + ", vaccinate=" + vaccinate + "]";
+    }
+
+    
 }

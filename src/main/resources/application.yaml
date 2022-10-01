@@ -1,3 +1,5 @@
+server:
+  port: 9797
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/covid-db

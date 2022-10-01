@@ -20,4 +20,8 @@ public class UserServices implements IUserServices {
 
         return users;
     }
+    @Override
+    public Users save(Users users){
+        return repository.save(users);
+    }
 }

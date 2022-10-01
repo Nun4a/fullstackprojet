@@ -7,4 +7,5 @@ import org.polytech.covidapi.Entity.Users;
 public interface IUserServices {
 
     List<Users> findAll();
+    Users save(Users users);
 }

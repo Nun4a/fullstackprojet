@@ -3,7 +3,7 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 
 import org.polytech.covidapi.model.User;
-import org.polytech.covidapi.service.IUserServices;
+import org.polytech.covidapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RESTController {
     
     @Autowired
-    private IUserServices userService;
+    private UserService userService;
 
     @GetMapping("/showusers")
     public String findUsers (Model model) {

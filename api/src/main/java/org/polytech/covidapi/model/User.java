@@ -8,13 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.ForeignKey;
+import javax.persistence.CascadeType;
 
 @Entity
-@Table(name = "users")
+//@Table(name = "users")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@DiscriminatorColumn(name="user_type",
-    discriminatorType = DiscriminatorType.INTEGER)
+// @DiscriminatorColumn(name="user_type",
+//     discriminatorType = DiscriminatorType.INTEGER)
 public class User {
 
     @Id
@@ -24,19 +28,22 @@ public class User {
     private String lastName;
     private String mail;
     private String phoneNumber;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_address", 
+        foreignKey = @ForeignKey(name = "user_id_address_fk"), nullable = false)
     private Address address;
 
     public User (){
         
     }
 
-    public User (int id, String firstName, String lastName, String mail, String phoneNumber, Address address){
+    public User (int id, String firstName, String lastName, String mail, String phoneNumber){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
         this.phoneNumber = phoneNumber;
-        this.address = address;
     }
 
 

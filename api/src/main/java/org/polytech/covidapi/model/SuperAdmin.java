@@ -4,6 +4,6 @@ import javax.persistence.Entity;
 
 @Entity
 //@DiscriminatorValue("1")
-public class SuperAdmin {
+public class SuperAdmin extends User{
     
 }

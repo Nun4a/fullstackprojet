@@ -1,8 +1,8 @@
-package org.polytech.covidapi.services;
+package org.polytech.covidapi.service;
 
 import java.util.List;
 
-import org.polytech.covidapi.Entity.Users;
+import org.polytech.covidapi.model.Users;
 
 public interface IUserServices {
 

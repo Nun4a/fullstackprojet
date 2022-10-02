@@ -1,27 +1,34 @@
 package org.polytech.covidapi.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.ForeignKey;
 
 @Entity
-@Table(name = "centers")
+//@Table(name = "centers")
 public class Center {
     
     @Id@GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    private Address address;
     private int capacity;
     private String timetable;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_address", 
+        foreignKey = @ForeignKey(name = "center_id_address_fk"), nullable = false)
+    private Address address;
 
-    public Center(int id, String name, Address address, int capacity, String timetable) {
+
+    public Center(int id, String name, int capacity, String timetable) {
         this.id = id;
         this.name = name;
-        this.address = address;
         this.capacity = capacity;
         this.timetable = timetable;
     }

@@ -1,6 +1,6 @@
 package org.polytech.covidapi;
 
-import org.polytech.covidapi.model.Users;
+import org.polytech.covidapi.model.User;
 import org.polytech.covidapi.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,12 +14,4 @@ public class CovidApiApplication {
 		SpringApplication.run(CovidApiApplication.class, args);
 	}
 
-	@Bean
-
-    CommandLineRunner runner(UserRepository userRep) {
-
-        return args -> {
-            userRep.save(new Users(1, "Bapt", "Porcu", "b@o.com", "06", "Nancy", true));
-		};
-	}
 }

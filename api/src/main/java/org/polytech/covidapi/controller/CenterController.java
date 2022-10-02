@@ -1,4 +1,4 @@
-package org.polytech.covidapi.controler;
+package org.polytech.covidapi.controller;
 
 import java.util.List;
 import java.util.Optional;

@@ -2,7 +2,7 @@ package org.polytech.covidapi.controller;
 
 import java.util.List;
 
-import org.polytech.covidapi.model.Users;
+import org.polytech.covidapi.model.User;
 import org.polytech.covidapi.service.IUserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -22,7 +22,7 @@ public class RESTController {
     @GetMapping("/showusers")
     public String findUsers (Model model) {
 
-        var users = (List<Users>) userService.findAll();
+        var users = (List<User>) userService.findAll();
 
         model.addAttribute("users", users);
 

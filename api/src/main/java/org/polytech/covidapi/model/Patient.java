@@ -1,5 +1,6 @@
 package org.polytech.covidapi.model;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
@@ -21,7 +22,6 @@ public class Patient extends User{
         return super.toString() + "vaccinated=" + vaccinated;
     }
 
-    
     
 }
 

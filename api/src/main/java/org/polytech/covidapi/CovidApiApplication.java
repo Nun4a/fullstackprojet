@@ -11,6 +11,7 @@ public class CovidApiApplication implements CommandLineRunner{
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
 	public static void main(String[] args) {
 		SpringApplication.run(CovidApiApplication.class, args);
 	}

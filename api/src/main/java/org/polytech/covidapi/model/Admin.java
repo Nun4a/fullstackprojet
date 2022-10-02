@@ -12,6 +12,4 @@ public class Admin extends User {
         return super.toString();
     }
 
-    
-    
 }

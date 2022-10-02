@@ -1,6 +1,6 @@
 package org.polytech.covidapi;
 
-import org.polytech.covidapi.Entity.Users;
+import org.polytech.covidapi.model.Users;
 import org.polytech.covidapi.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

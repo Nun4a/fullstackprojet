@@ -1,9 +1,9 @@
-package org.polytech.covidapi.controler;
+package org.polytech.covidapi.controller;
 
 import java.util.List;
 
-import org.polytech.covidapi.Entity.Users;
-import org.polytech.covidapi.services.IUserServices;
+import org.polytech.covidapi.model.Users;
+import org.polytech.covidapi.service.IUserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;

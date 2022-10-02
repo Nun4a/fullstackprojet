@@ -1,8 +1,8 @@
-package org.polytech.covidapi.services;
+package org.polytech.covidapi.service;
 
 import java.util.List;
 
-import org.polytech.covidapi.Entity.Users;
+import org.polytech.covidapi.model.Users;
 import org.polytech.covidapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

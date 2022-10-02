@@ -1,4 +1,4 @@
-package org.polytech.covidapi.Entity;
+package org.polytech.covidapi.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

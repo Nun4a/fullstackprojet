@@ -1,4 +1,4 @@
-package org.polytech.covidapi.services;
+package org.polytech.covidapi.service;
 
 import java.time.LocalDate;
 import java.util.List;

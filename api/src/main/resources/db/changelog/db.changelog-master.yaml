@@ -4,7 +4,7 @@ databaseChangeLog:
       author:  nvoxland  
       changes:  
         - createTable:  
-            tableName:  patient
+            tableName:  users
             columns:  
               - column:  
                   name:  id  
@@ -14,18 +14,20 @@ databaseChangeLog:
                     primaryKey:  true  
                     nullable:  false  
               - column:  
-                  name:  firstName  
+                  name:  fname  
                   type:  varchar(255)
               - column:  
-                  name:  lastName  
+                  name:  lname  
                   type:  varchar(255)
               - column:  
                   name:  mail 
                   type:  varchar(255)
               - column:  
-                  name:  phoneNumber 
+                  name:  telephone 
                   type:  varchar(255)
               - column:  
-                  name:  vaccinated
+                  name:  center_city 
+                  type:  varchar(255)
+              - column:  
+                  name:  vaccinate 
                   type:  boolean
-

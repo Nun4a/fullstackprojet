@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 //@Table(name = "addresses")
 public class Address {
@@ -58,5 +59,10 @@ public class Address {
         this.city = city;
     }
 
+
+    @Override
+    public String toString() {
+        return "Address [id=" + id + ", street=" + street + ", zipcode=" + zipcode + ", city=" + city + "]";
+    }
 
 }

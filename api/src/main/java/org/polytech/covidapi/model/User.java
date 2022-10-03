@@ -2,6 +2,7 @@ package org.polytech.covidapi.model;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -90,6 +91,12 @@ public class User {
     public void setAddress(Address address) {
         this.address = address;
     }
-   
 
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", mail=" + mail
+                + ", phoneNumber=" + phoneNumber + ", address=" + address + "]";
+    }
+
+   
 }

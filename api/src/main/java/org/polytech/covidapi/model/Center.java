@@ -70,4 +70,10 @@ public class Center {
         this.timetable = timetable;
     }
 
+    @Override
+    public String toString() {
+        return "Center [id=" + id + ", name=" + name + ", capacity=" + capacity + ", timetable=" + timetable
+                + ", address=" + address + "]";
+    }
+
 }

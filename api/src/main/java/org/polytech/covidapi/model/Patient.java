@@ -16,6 +16,12 @@ public class Patient extends User{
     public void setVaccinated(boolean vaccinated) {
         this.vaccinated = vaccinated;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "vaccinated=" + vaccinated;
+    }
+
     
 }
 

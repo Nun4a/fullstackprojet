@@ -1,4 +1,4 @@
-package org.polytech.covidapi.services;
+package org.polytech.covidapi.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddressServices {
+public class AddressService {
 
     @Autowired
     private AddressRepository repository;

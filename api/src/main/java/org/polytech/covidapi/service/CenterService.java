@@ -1,24 +1,38 @@
 package org.polytech.covidapi.service;
 
-import java.time.LocalDate;
 import java.util.List;
-
-import org.polytech.covidapi.repository.CenterRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import java.util.Optional;
 
 import org.polytech.covidapi.model.Center;
+import org.polytech.covidapi.repository.CenterRepoitory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
-@Scope("singleton")
 public class CenterService {
-    
-    @Autowired
-    private CenterRepository centerRepository;
 
+    @Autowired
+    private CenterRepoitory repository;
+
+    
+    public List<Center> findAll() {
+
+        var centers = (List<Center>) repository.findAll();
+
+        return centers;
+    }
+    
     public Center save(Center center){
-        return centerRepository.save(center);
+        return repository.save(center);
+    }
+
+     
+    public Optional<Center> findById(int id){
+        return repository.findById(id);
+    }
+
+    
+    public void delete(int id_center){
+        repository.deleteById(id_center);
     }
 }

@@ -1,33 +1,33 @@
-package org.polytech.covidapi.services;
+package org.polytech.covidapi.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import org.polytech.covidapi.model.Admin;
-import org.polytech.covidapi.repository.AdminRepository;
+import org.polytech.covidapi.model.Patient;
+import org.polytech.covidapi.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AdminServices {
+public class PatientService {
 
     @Autowired
-    private AdminRepository repository;
+    private PatientRepository repository;
 
     
-    public List<Admin> findAll() {
+    public List<Patient> findAll() {
 
-        var users = (List<Admin>) repository.findAll();
+        var users = (List<Patient>) repository.findAll();
 
         return users;
     }
     
-    public Admin save(Admin users){
+    public Patient save(Patient users){
         return repository.save(users);
     }
 
      
-    public Optional<Admin> findById(int id){
+    public Optional<Patient> findById(int id){
         return repository.findById(id);
     }
 

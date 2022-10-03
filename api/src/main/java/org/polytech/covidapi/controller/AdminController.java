@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covidapi.model.Admin;
-import org.polytech.covidapi.services.AdminServices;
+import org.polytech.covidapi.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
     
     @Autowired
-    private AdminServices userService;
+    private AdminService userService;
     @GetMapping("/showadmin")
     public String findUsers (Model model) {
 

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covidapi.model.Center;
-import org.polytech.covidapi.services.CenterServices;
+import org.polytech.covidapi.service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CenterController {
     
     @Autowired
-    private CenterServices centerService;
+    private CenterService centerService;
     @GetMapping("/showcenter")
     public String findUsers (Model model) {
 

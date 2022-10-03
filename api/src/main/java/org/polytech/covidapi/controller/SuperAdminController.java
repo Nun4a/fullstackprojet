@@ -3,7 +3,7 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 import org.polytech.covidapi.model.SuperAdmin;
-import org.polytech.covidapi.services.SuperAdminServices;
+import org.polytech.covidapi.service.SuperAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SuperAdminController {
     
     @Autowired
-    private SuperAdminServices userService;
+    private SuperAdminService userService;
     @GetMapping("/showsuperadmin")
     public String findUsers (Model model) {
 

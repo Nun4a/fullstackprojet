@@ -3,7 +3,7 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 import org.polytech.covidapi.model.Doctor;
-import org.polytech.covidapi.services.DoctorServices;
+import org.polytech.covidapi.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DoctorController {
     
     @Autowired
-    private DoctorServices userService;
+    private DoctorService userService;
     @GetMapping("/showdoctor")
     public String findUsers (Model model) {
 

@@ -3,7 +3,7 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 import org.polytech.covidapi.model.Address;
-import org.polytech.covidapi.services.AddressServices;
+import org.polytech.covidapi.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddressController {
     
     @Autowired
-    private AddressServices addressService;
+    private AddressService addressService;
     @GetMapping("/showaddress")
     public String findUsers (Model model) {
 

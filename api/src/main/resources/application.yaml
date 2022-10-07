@@ -1,3 +1,5 @@
+server:
+  port: 9797
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/covid-db
@@ -6,3 +8,4 @@ spring:
   jpa:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
       show-sql : true
+      hibernate.ddl-auto: create-drop

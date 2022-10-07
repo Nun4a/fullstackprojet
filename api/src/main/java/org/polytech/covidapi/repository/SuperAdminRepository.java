@@ -1,11 +1,10 @@
 package org.polytech.covidapi.repository;
 
-import org.polytech.covidapi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.polytech.covidapi.model.SuperAdmin;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface SuperAdminRepository extends JpaRepository<SuperAdmin, Integer>{
     
 }

@@ -31,4 +31,3 @@ databaseChangeLog:
               - column:  
                   name:  vaccinate 
                   type:  boolean
-

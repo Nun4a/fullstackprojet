@@ -1,29 +1,32 @@
-<div class="h-full w-full flex justify-center items-center bg-slate-600">
-  <mat-card>
-    <mat-card-title>Login</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="connect()">
-          <p>
-            <mat-form-field>
-              <input type="text" matInput placeholder="Username" formControlName="username">
-            </mat-form-field>
-          </p>
+<div class="h-full w-full flex bg-slate-600 flex-row">
+  <app-menu class="h-full bg-zinc-700"></app-menu>
+  <div class="flex w-full items-center justify-center bg-slate-600">
+    <mat-card>
+      <mat-card-title>Login</mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="form" (ngSubmit)="connect()">
+            <p>
+              <mat-form-field>
+                <input type="text" matInput placeholder="Username" formControlName="username">
+              </mat-form-field>
+            </p>
 
-          <p>
-            <mat-form-field>
-              <input type="password" matInput placeholder="Password" formControlName="password">
-            </mat-form-field>
-          </p>
+            <p>
+              <mat-form-field>
+                <input type="password" matInput placeholder="Password" formControlName="password">
+              </mat-form-field>
+            </p>
 
-          <p *ngIf="error" class="error">
-            {{ error }}
-          </p>
+            <p *ngIf="error" class="error">
+              {{ error }}
+            </p>
 
-          <div class="button">
-            <button type="submit" mat-button>Login</button>
-          </div>
+            <div class="button">
+              <button type="submit" mat-button>Login</button>
+            </div>
 
-        </form>
-      </mat-card-content>
-  </mat-card>
-</div> 
+          </form>
+        </mat-card-content>
+    </mat-card>
+  </div> 
+</div>

@@ -10,12 +10,14 @@ import { MaterialModule } from './material.module';
 
 import { LoginComponent } from './component/login';
 import { HomeComponent } from './component/home';
+import { MenuComponent } from './component/menu';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

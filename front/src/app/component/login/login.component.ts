@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
 
 
   connect(): void {
-    console.log(this.form.value.username)
     // this.loginService.connect(this.form.value.username, this.form.value.password).subscribe(value => {
     //   this.router.navigate(["AdminComponent"])
     // });

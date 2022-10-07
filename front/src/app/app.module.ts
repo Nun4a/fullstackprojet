@@ -1,26 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
-import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home';
-import { RegisterComponent } from './register';
-import { LoginComponent } from './login';
 import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login';
+import { HomeComponent } from './home';
 
 @NgModule({
   declarations: [
-    HomeComponent,
-    RegisterComponent,
-    LoginComponent
+    AppComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FormsModule,
     Ng2SearchPipeModule
   ],
   providers: [],
-  bootstrap: [HomeComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

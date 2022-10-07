@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { centerType } from './home.types';
 import { reserveDataToSend } from './home.types';
 @Component({
-  selector: 'app-root',
+  selector: 'app-home',
   templateUrl: './home.component.html'
 })
 

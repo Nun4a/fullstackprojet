@@ -21,10 +21,9 @@ public class Center {
     private String timetable;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_address", 
+    @JoinColumn(name = "address_id", 
         foreignKey = @ForeignKey(name = "center_id_address_fk"), nullable = false)
     private Address address;
-
 
     public Center(int id, String name, int capacity, String timetable) {
         this.id = id;

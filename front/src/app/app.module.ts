@@ -11,13 +11,17 @@ import { MaterialModule } from './material.module';
 import { LoginComponent } from './component/login';
 import { HomeComponent } from './component/home';
 import { MenuComponent } from './component/menu';
+import { FormEditComponent } from './component/form-edit';
+import { AdminComponent } from './component/admin';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    FormEditComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -5,13 +5,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select'
 
 const modules = [
   MatCardModule,
   MatInputModule,
   MatButtonModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatFormFieldModule,
+  MatSelectModule
 ];
 
 @NgModule({

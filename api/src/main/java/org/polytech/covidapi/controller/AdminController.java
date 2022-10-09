@@ -23,7 +23,7 @@ public class AdminController {
     
     @Autowired
     private AdminService userService;
-    @GetMapping("/showadmin")
+    @GetMapping("/showadminpretty")
     public String findUsers (Model model) {
 
         List<Admin> users = userService.findAll();
@@ -36,7 +36,7 @@ public class AdminController {
         return str;
     }
 
-    @GetMapping(value="/admins")
+    @GetMapping(value="/showadmin")
     public Iterable<Admin> getAllUser(){
         Iterable<Admin> adminCollections = userService.findAll();
         return adminCollections;

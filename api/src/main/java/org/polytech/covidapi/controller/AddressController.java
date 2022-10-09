@@ -22,7 +22,7 @@ public class AddressController {
     
     @Autowired
     private AddressService addressService;
-    @GetMapping("/showaddress")
+    @GetMapping("/showaddresspretty")
     public String findUsers (Model model) {
 
         List<Address> address = addressService.findAll();
@@ -35,7 +35,7 @@ public class AddressController {
         return str;
     }
 
-    @GetMapping(value="/address")
+    @GetMapping(value="/showaddress")
     public Iterable<Address> getAllUser(){
         Iterable<Address> addressCollections = addressService.findAll();
         return addressCollections;

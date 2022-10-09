@@ -35,6 +35,12 @@ public class AddressController {
         return str;
     }
 
+    @GetMapping(value="/address")
+    public Iterable<Address> getAllUser(){
+        Iterable<Address> addressCollections = addressService.findAll();
+        return addressCollections;
+    }
+
     @GetMapping("/showaddress/{id}")
     public Optional<Address> getOneacteur(@PathVariable int id){
             Optional<Address> address = addressService.findById(id);

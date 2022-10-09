@@ -23,7 +23,7 @@ public class PatientController {
     
     @Autowired
     private PatientService userService;
-    @GetMapping("/showpatient")
+    @GetMapping("/showpatientpretty")
     public String findUsers (Model model) {
 
         List<Patient> users = userService.findAll();
@@ -34,6 +34,12 @@ public class PatientController {
         }
 
         return str;
+    }
+
+    @GetMapping(value="/showpatient")
+    public Iterable<Patient> getAllUser(){
+        Iterable<Patient> adminCollections = userService.findAll();
+        return adminCollections;
     }
 
     @GetMapping("/showpatient/{id}")

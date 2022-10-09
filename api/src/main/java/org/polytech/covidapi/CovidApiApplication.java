@@ -27,6 +27,13 @@ public class CovidApiApplication implements CommandLineRunner{
 			
 		}
 
+		sql = "INSERT INTO address (id, city, street, zipcode) VALUES ('1','Nancy', 'la', '54000')";
+		rows = jdbcTemplate.update(sql);
+		if (rows > 0){
+			System.out.println("une colone a été ajouté");
+			
+		}
+
 		sql = "INSERT INTO patient (id, first_name, last_name, mail, phone_number, id_address, vaccinated) VALUES ('0','toto', 'tata', 'titi','1234567', '0' , true)";
 		rows = jdbcTemplate.update(sql);
 		if (rows > 0){
@@ -35,6 +42,13 @@ public class CovidApiApplication implements CommandLineRunner{
 		}
 
 		sql = "INSERT INTO admin (id, first_name, last_name, mail, phone_number, id_address) VALUES ('0','admin', 'admin', 'admin','1234567', '0' )";
+		rows = jdbcTemplate.update(sql);
+		if (rows > 0){
+			System.out.println("une colone a été ajouté");
+			
+		}
+
+		sql = "INSERT INTO admin (id, first_name, last_name, mail, phone_number, id_address) VALUES ('1','admin1', 'admin1', 'admin1','1234567', '0' )";
 		rows = jdbcTemplate.update(sql);
 		if (rows > 0){
 			System.out.println("une colone a été ajouté");

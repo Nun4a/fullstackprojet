@@ -22,7 +22,7 @@ public class DoctorController {
     
     @Autowired
     private DoctorService userService;
-    @GetMapping("/showdoctor")
+    @GetMapping("/showdoctorpretty")
     public String findUsers (Model model) {
 
         List<Doctor> users = userService.findAll();
@@ -33,6 +33,12 @@ public class DoctorController {
         }
 
         return str;
+    }
+
+    @GetMapping(value="/showdoctor")
+    public Iterable<Doctor> getAllUser(){
+        Iterable<Doctor> adminCollections = userService.findAll();
+        return adminCollections;
     }
 
     @GetMapping("/showdoctor/{id}")

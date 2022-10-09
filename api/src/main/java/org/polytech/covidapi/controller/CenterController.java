@@ -23,7 +23,7 @@ public class CenterController {
     
     @Autowired
     private CenterService centerService;
-    @GetMapping("/showcenter")
+    @GetMapping("/showcenterpretty")
     public String findUsers (Model model) {
 
         List<Center> centers = centerService.findAll();
@@ -34,6 +34,12 @@ public class CenterController {
         }
 
         return str;
+    }
+
+    @GetMapping(value="/showcenter")
+    public Iterable<Center> getAllUser(){
+        Iterable<Center> adminCollections = centerService.findAll();
+        return adminCollections;
     }
 
     @GetMapping("/showcenter/{id}")

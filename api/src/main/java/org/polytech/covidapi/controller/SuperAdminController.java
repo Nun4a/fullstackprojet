@@ -22,7 +22,7 @@ public class SuperAdminController {
     
     @Autowired
     private SuperAdminService userService;
-    @GetMapping("/showsuperadmin")
+    @GetMapping("/showsuperadminpretty")
     public String findUsers (Model model) {
 
         List<SuperAdmin> users = userService.findAll();
@@ -33,6 +33,12 @@ public class SuperAdminController {
         }
 
         return str;
+    }
+
+    @GetMapping(value="/showsuperadmin")
+    public Iterable<SuperAdmin> getAllUser(){
+        Iterable<SuperAdmin> adminCollections = userService.findAll();
+        return adminCollections;
     }
 
     @GetMapping("/showsuperadmin/{id}")

@@ -36,6 +36,12 @@ public class AdminController {
         return str;
     }
 
+    @GetMapping(value="/admins")
+    public Iterable<Admin> getAllUser(){
+        Iterable<Admin> adminCollections = userService.findAll();
+        return adminCollections;
+    }
+
     @GetMapping("/showadmin/{id}")
     public Optional<Admin> getOneacteur(@PathVariable int id){
             Optional<Admin> user = userService.findById(id);

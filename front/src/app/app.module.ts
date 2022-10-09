@@ -7,12 +7,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login';
 import { HomeComponent } from './home';
+import { AdminServices } from './Service/Admin.Service';
+import { GestionAdminComponent } from './gestion-admin/gestion-admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    GestionAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,7 @@ import { HomeComponent } from './home';
     FormsModule,
     Ng2SearchPipeModule
   ],
-  providers: [],
+  providers: [AdminServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

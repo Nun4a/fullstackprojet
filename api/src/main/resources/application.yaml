@@ -5,8 +5,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/covid-db
     username: postgres
     password: sudo
-    # initialization-mode: always
   jpa:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
       show-sql : true
-      hibernate.ddl-auto: create
+      hibernate.ddl-auto: create-drop

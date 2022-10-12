@@ -11,27 +11,27 @@ import org.springframework.stereotype.Service;
 public class DoctorService {
 
     @Autowired
-    private DoctorRepository repository;
+    private DoctorRepository doctorRepository;
 
     
     public List<Doctor> findAll() {
 
-        var users = (List<Doctor>) repository.findAll();
+        var doctors = (List<Doctor>) doctorRepository.findAll();
 
-        return users;
+        return doctors;
     }
     
-    public Doctor save(Doctor users){
-        return repository.save(users);
+    public Doctor save(Doctor doctors){
+        return doctorRepository.save(doctors);
     }
 
      
     public Optional<Doctor> findById(int id){
-        return repository.findById(id);
+        return doctorRepository.findById(id);
     }
 
     
     public void delete(int id_user){
-        repository.deleteById(id_user);
+        doctorRepository.deleteById(id_user);
     }
 }

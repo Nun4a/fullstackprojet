@@ -27,7 +27,14 @@ public class CovidApiApplication implements CommandLineRunner{
 			
 		}
 
-		sql = "INSERT INTO patient (id, first_name, last_name, mail, phone_number, id_address, vaccinated) VALUES ('0','toto', 'tata', 'titi','1234567', '0' , true)";
+		sql = "INSERT INTO address (city, street, zipcode) VALUES ('Nancy', 'Place Stanislat', '54000')";
+		rows = jdbcTemplate.update(sql);
+		if (rows > 0){
+			System.out.println("une colone a été ajouté");
+			
+		}
+
+		sql = "INSERT INTO patient (id, first_name, last_name, mail, phone_number, id_address, vaccinated) VALUES ('0','Jean', 'Dupond', 'Jean.Dupond@mail.com','0606060606', '1' , true)";
 		rows = jdbcTemplate.update(sql);
 		if (rows > 0){
 			System.out.println("une colone a été ajouté");

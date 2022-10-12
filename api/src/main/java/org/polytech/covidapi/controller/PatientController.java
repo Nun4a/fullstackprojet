@@ -24,10 +24,9 @@ public class PatientController {
     
     @Autowired
     private PatientService patientService;
-    private PatientService addressService;
 
-    @GetMapping("/showpatient")
-    public String findUsers (Model model) {
+    @GetMapping("/patients")
+    public String getPatients (Model model) {
 
         List<Patient> users = patientService.findAll();
         String str = "";
@@ -39,18 +38,18 @@ public class PatientController {
         return str;
     }
 
-    @GetMapping("/showpatient/{id}")
-    public Optional<Patient> getOneacteur(@PathVariable int id){
+    @GetMapping("/patient/{id}")
+    public Optional<Patient> getOnePatient(@PathVariable int id){
             Optional<Patient> user = patientService.findById(id);
             return user;
     }
 
-    @PostMapping(path = "/addpatient")
+    @PostMapping(path = "/patient")
     public Patient save(@RequestBody Patient newuser) {
         return patientService.save(newuser);
     }
 
-    @DeleteMapping("/deletepatient/{id}")
+    @DeleteMapping("/patient/{id}")
     public void delete(@PathVariable int id){
         patientService.delete(id);
     }

@@ -22,7 +22,8 @@ public class AddressController {
     
     @Autowired
     private AddressService addressService;
-    @GetMapping("/showaddress")
+    
+    @GetMapping("/addresses")
     public String findUsers (Model model) {
 
         List<Address> address = addressService.findAll();
@@ -35,18 +36,17 @@ public class AddressController {
         return str;
     }
 
-    @GetMapping("/showaddress/{id}")
+    @GetMapping("/address/{id}")
     public Optional<Address> getOneacteur(@PathVariable int id){
-            Optional<Address> address = addressService.findById(id);
-            return address;
+            return addressService.findById(id);
     }
 
-    @PostMapping(path = "/addaddress")
+    @PostMapping(path = "/address")
     public Address save(@RequestBody Address newaddress) {
         return addressService.save(newaddress);
     }
 
-    @DeleteMapping("/deleteaddress/{id}")
+    @DeleteMapping("/address/{id}")
     public void delete(@PathVariable int id){
         addressService.delete(id);
     }

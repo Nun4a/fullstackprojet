@@ -21,34 +21,35 @@ import org.springframework.web.bind.annotation.RestController;
 public class DoctorController {
     
     @Autowired
-    private DoctorService userService;
-    @GetMapping("/showdoctor")
-    public String findUsers (Model model) {
+    private DoctorService doctorService;
+    
+    @GetMapping("/doctors")
+    public String getDoctors (Model model) {
 
-        List<Doctor> users = userService.findAll();
+        List<Doctor> doctors = doctorService.findAll();
         String str = "";
-        for (int i=0; i<users.size(); i++){
-            Doctor currentuser = users.get(i);
+        for (int i=0; i<doctors.size(); i++){
+            Doctor currentuser = doctors.get(i);
             str = str + "\n" + currentuser;
         }
 
         return str;
     }
 
-    @GetMapping("/showdoctor/{id}")
-    public Optional<Doctor> getOneacteur(@PathVariable int id){
-            Optional<Doctor> user = userService.findById(id);
-            return user;
+    @GetMapping("/doctor/{id}")
+    public Optional<Doctor> getOneDoctor(@PathVariable int id){
+            Optional<Doctor> doctor = doctorService.findById(id);
+            return doctor;
     }
 
-    @PostMapping(path = "/adddoctor")
-    public Doctor save(@RequestBody Doctor newuser) {
-        return userService.save(newuser);
+    @PostMapping(path = "/doctor")
+    public Doctor save(@RequestBody Doctor newDoctor) {
+        return doctorService.save(newDoctor);
     }
 
-    @DeleteMapping("/deletedoctor/{id}")
+    @DeleteMapping("/doctor/{id}")
     public void delete(@PathVariable int id){
-        userService.delete(id);
+        doctorService.delete(id);
     }
 
 

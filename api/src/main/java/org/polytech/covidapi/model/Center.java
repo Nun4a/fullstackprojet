@@ -14,15 +14,15 @@ import javax.persistence.ForeignKey;
 //@Table(name = "centers")
 public class Center {
     
-    @Id@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private int capacity;
     private String timetable;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", 
-        foreignKey = @ForeignKey(name = "center_id_address_fk"), nullable = false)
+    @JoinColumn(name = "id_address", 
+        foreignKey = @ForeignKey(name = "user_id_address_fk"), nullable = true)
     private Address address;
 
     public Center(int id, String name, int capacity, String timetable) {

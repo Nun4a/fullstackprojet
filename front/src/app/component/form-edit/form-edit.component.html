@@ -17,18 +17,18 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Mot de passe</mat-label>
-        <input matInput formControlName="password" placeholder="Mot de passe">
+        <input matInput [type]="'password'" formControlName="password" placeholder="Mot de passe">
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Rôle</mat-label>
-        <mat-select>
+        <mat-select formControlName="role">
           <mat-option value="one">First option</mat-option>
           <mat-option value="two">Second option</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Centre de rattachement</mat-label>
-        <mat-select>
+        <mat-select formControlName="centre">
           <mat-option value="one">First option</mat-option>
           <mat-option value="two">Second option</mat-option>
         </mat-select>
@@ -36,7 +36,7 @@
       <div class="flex justify-evenly">
         <button mat-raised-button color="primary">Annuler</button>
         <button mat-raised-button color="primary">Désactiver</button>
-        <button mat-raised-button color="primary">Enregistrer</button>
+        <button (click)="onSubmit(form)" mat-raised-button color="primary">Enregistrer</button>
       </div>
     </div>
   </form>

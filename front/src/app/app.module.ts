@@ -13,6 +13,7 @@ import { HomeComponent } from './component/home';
 import { MenuComponent } from './component/menu';
 import { FormEditComponent } from './component/form-edit';
 import { AdminComponent } from './component/admin';
+import { CentresComponent } from './component/centres';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AdminComponent } from './component/admin';
     HomeComponent,
     MenuComponent,
     FormEditComponent,
-    AdminComponent
+    AdminComponent,
+    CentresComponent
   ],
   imports: [
     BrowserModule,

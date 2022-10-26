@@ -3,7 +3,6 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.polytech.covidapi.model.Address;
 import org.polytech.covidapi.model.Patient;
 import org.polytech.covidapi.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins="http://localhost:5432/")
+@CrossOrigin(origins="http://localhost:4200/")
 @RequestMapping("/api")
 public class PatientController {
     

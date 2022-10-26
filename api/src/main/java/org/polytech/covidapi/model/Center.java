@@ -31,7 +31,15 @@ public class Center {
         this.capacity = capacity;
         this.timetable = timetable;
     }
+
     
+    
+
+    public Center() {
+    }
+
+
+
 
     public int getId() {
         return this.id;

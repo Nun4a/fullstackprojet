@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covidapi.model.Admin;
+import org.polytech.covidapi.model.Center;
 import org.polytech.covidapi.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,11 +44,17 @@ public class AdminController {
         List<Admin> admins = userService.findAll();
         return new ResponseEntity<>(admins, HttpStatus.OK);
     }
+    
 
     @GetMapping("/showadmin/{id}")
-    public Optional<Admin> getOneacteur(@PathVariable int id){
+    public Optional<Admin> getOneadmin(@PathVariable int id){
             Optional<Admin> user = userService.findById(id);
             return user;
+    }
+
+    @GetMapping("/showcenteradmin/{id}")
+    public Center getOnecenteradmin(@PathVariable int id){
+            return  userService.findById(id).get().getCenter();
     }
 
     @PostMapping(path = "/addadmin")

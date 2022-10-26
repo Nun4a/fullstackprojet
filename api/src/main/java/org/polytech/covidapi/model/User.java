@@ -29,22 +29,19 @@ public class User {
     private String lastName;
     private String mail;
     private String phoneNumber;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_address", 
-        foreignKey = @ForeignKey(name = "user_id_address_fk"), nullable = false)
-    private Address address;
+    private String address;
 
     public User (){
         
     }
 
-    public User (int id, String firstName, String lastName, String mail, String phoneNumber){
+    public User (int id, String firstName, String lastName, String mail, String phoneNumber, String address){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
         this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
 
@@ -84,11 +81,13 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Address getAddress() {
-        return this.address;
+    
+
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

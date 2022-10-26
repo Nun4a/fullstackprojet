@@ -19,17 +19,14 @@ public class Center {
     private String name;
     private int capacity;
     private String timetable;
+    private String address;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", 
-        foreignKey = @ForeignKey(name = "center_id_address_fk"), nullable = false)
-    private Address address;
-
-    public Center(int id, String name, int capacity, String timetable) {
+    public Center(int id, String name, int capacity, String timetable, String address) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
         this.timetable = timetable;
+        this.address = address;
     }
     
 
@@ -43,14 +40,6 @@ public class Center {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Address getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public int getCapacity() {
@@ -68,6 +57,18 @@ public class Center {
     public void setTimetable(String timetable) {
         this.timetable = timetable;
     }
+
+    
+
+    public String getAddress() {
+        return address;
+    }
+
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 
     @Override
     public String toString() {

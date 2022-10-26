@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.polytech.covidapi.model.Admin;
 import org.polytech.covidapi.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins="http://localhost:5432/")
+@CrossOrigin(origins="http://localhost:4200/")
 @RequestMapping("/api")
 public class AdminController {
     
@@ -37,9 +39,9 @@ public class AdminController {
     }
 
     @GetMapping(value="/showadmin")
-    public Iterable<Admin> getAllUser(){
-        Iterable<Admin> adminCollections = userService.findAll();
-        return adminCollections;
+    public ResponseEntity<List<Admin>> getAllUser(){
+        List<Admin> admins = userService.findAll();
+        return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 
     @GetMapping("/showadmin/{id}")

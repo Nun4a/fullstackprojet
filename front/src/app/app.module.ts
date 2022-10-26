@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login';
 import { HomeComponent } from './home';
-import { AdminServices } from './Service/Admin.Service';
 import { GestionAdminComponent } from './gestion-admin/gestion-admin.component';
+import { AdminService } from './admin.service';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import { GestionAdminComponent } from './gestion-admin/gestion-admin.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    HttpClientModule
   ],
-  providers: [AdminServices],
+  providers: [AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

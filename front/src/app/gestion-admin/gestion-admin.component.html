@@ -4,7 +4,7 @@
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let admin of admins">
     <h3> Administrateur {{ admin.id}}</h3>
-    <p>Nom d'administrateur: {{ admin.fname }} <br/> Mot de pass: {{ admin.lname }}</p>
+    <p>Nom d'administrateur: {{ admin.firstName }} <br/> Mot de pass: {{ admin.lastName }}</p>
     <h5> Contact </h5>
     <p> email : {{ admin.mail }}; Telephone : 0{{ admin.phoneNumber}}</p>
   </li>

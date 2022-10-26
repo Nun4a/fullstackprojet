@@ -26,11 +26,9 @@ public class PatientService {
         return repository.save(users);
     }
 
-     
     public Optional<Patient> findById(int id){
         return repository.findById(id);
     }
-
     
     public void delete(int id_user){
         repository.deleteById(id_user);

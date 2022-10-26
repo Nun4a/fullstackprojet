@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins="http://localhost:5432/")
+@CrossOrigin(origins="http://localhost:4200/")
 @RequestMapping("/api")
 public class DoctorController {
     
@@ -25,10 +25,10 @@ public class DoctorController {
     @GetMapping("/showdoctorpretty")
     public String findUsers (Model model) {
 
-        List<Doctor> users = userService.findAll();
+        List<Doctor> doctors = userService.findAll();
         String str = "";
-        for (int i=0; i<users.size(); i++){
-            Doctor currentuser = users.get(i);
+        for (int i=0; i<doctors.size(); i++){
+            Doctor currentuser = doctors.get(i);
             str = str + "\n" + currentuser;
         }
 
@@ -37,8 +37,8 @@ public class DoctorController {
 
     @GetMapping(value="/showdoctor")
     public Iterable<Doctor> getAllUser(){
-        Iterable<Doctor> adminCollections = userService.findAll();
-        return adminCollections;
+        Iterable<Doctor> doctorCollections = userService.findAll();
+        return doctorCollections;
     }
 
     @GetMapping("/showdoctor/{id}")
@@ -47,12 +47,12 @@ public class DoctorController {
             return user;
     }
 
-    @PostMapping(path = "/adddoctor")
-    public Doctor save(@RequestBody Doctor newuser) {
-        return userService.save(newuser);
+    @PostMapping(path = "/doctor")
+    public Doctor save(@RequestBody Doctor newDoctor) {
+        return userService.save(newDoctor);
     }
 
-    @DeleteMapping("/deletedoctor/{id}")
+    @DeleteMapping("/doctor/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
     }

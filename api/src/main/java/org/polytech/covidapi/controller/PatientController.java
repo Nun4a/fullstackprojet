@@ -3,6 +3,7 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.polytech.covidapi.model.Address;
 import org.polytech.covidapi.model.Patient;
 import org.polytech.covidapi.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class PatientController {
     
     @Autowired
-    private PatientService userService;
+    private PatientService patientService;
     @GetMapping("/showpatientpretty")
     public String findUsers (Model model) {
 
-        List<Patient> users = userService.findAll();
+        List<Patient> users = patientService.findAll();
         String str = "";
         for (int i=0; i<users.size(); i++){
             Patient currentuser = users.get(i);
@@ -38,25 +39,29 @@ public class PatientController {
 
     @GetMapping(value="/showpatient")
     public Iterable<Patient> getAllUser(){
-        Iterable<Patient> adminCollections = userService.findAll();
+        Iterable<Patient> adminCollections = patientService.findAll();
         return adminCollections;
     }
 
-    @GetMapping("/showpatient/{id}")
-    public Optional<Patient> getOneacteur(@PathVariable int id){
-            Optional<Patient> user = userService.findById(id);
+    @GetMapping("/patient/{id}")
+    public Optional<Patient> getOnePatient(@PathVariable int id){
+            Optional<Patient> user = patientService.findById(id);
             return user;
     }
 
-    @PostMapping(path = "/addpatient")
+    @PostMapping(path = "/patient")
     public Patient save(@RequestBody Patient newuser) {
-        return userService.save(newuser);
+        return patientService.save(newuser);
     }
 
-    @DeleteMapping("/deletepatient/{id}")
+    @DeleteMapping("/patient/{id}")
     public void delete(@PathVariable int id){
-        userService.delete(id);
+        patientService.delete(id);
     }
 
-
+    /*@GetMapping(path = "/patient/{id}/address")
+    public Address getOnePatientAddress(
+        @PathVariable Integer id) {
+        return  patientService.findById(id).get().getAddress();
+    }*/
 }

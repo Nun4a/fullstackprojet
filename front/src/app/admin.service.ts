@@ -16,4 +16,21 @@ export class AdminService {
   public getAdmins(): Observable<Admin[]> {
     return this.http.get<Admin[]>('http://localhost:9797/api/showadmin');
   }
+
+  public saveAdminToServer(admin: Admin) {
+    this.http.post('http://localhost:9797/admins' , { id:admin.id,
+      firstName:admin.firstName,
+      lastName:admin.lastName,
+      mail:admin.mail,
+      phoneNumber:admin.phoneNumber,
+    })
+      .subscribe(
+        () => {
+          console.log('Ok');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
 }

@@ -1,6 +1,4 @@
-import { Center } from "./Center.Model";
-
-export class Admin {
+export class SuperAdmin {
 
     constructor(
         public id:number,
@@ -8,7 +6,6 @@ export class Admin {
         public lastName:string,
         public mail:string,
         public phoneNumber:string,
-        public center:Center
     ) {}
 
 

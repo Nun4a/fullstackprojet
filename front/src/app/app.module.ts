@@ -9,14 +9,17 @@ import { LoginComponent } from './login';
 import { HomeComponent } from './home';
 import { GestionAdminComponent } from './gestion-admin/gestion-admin.component';
 import { AdminService } from './admin.service';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { ConnexionComponent } from './connexion/connexion.component'
+import { SuperAdminService } from './super-admin.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    GestionAdminComponent
+    GestionAdminComponent,
+    ConnexionComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http'
     Ng2SearchPipeModule,
     HttpClientModule
   ],
-  providers: [AdminService],
+  providers: [AdminService, SuperAdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

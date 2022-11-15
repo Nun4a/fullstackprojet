@@ -36,5 +36,9 @@ export class GestionAdminComponent implements OnInit {
     );
   }
 
+  deleteAdmin(id:number){
+    this.adminService.confDeleteAdmin(id);
+  }
+
 
 }

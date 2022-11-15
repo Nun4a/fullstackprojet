@@ -7,5 +7,8 @@
     <p>Nom d'administrateur: {{ admin.firstName }} <br/> Mot de pass: {{ admin.lastName }}</p>
     <h5> Contact </h5>
     <p> email : {{ admin.mail }}; Telephone : 0{{ admin.phoneNumber}}, Adress : {{ admin.center.name}}</p>
+    <button (click)="deleteAdmin(admin.id)">Delete</button>
   </li>
 </ul>
+
+<button routerLink="/addadmin"> ajouter un administrateur</button>

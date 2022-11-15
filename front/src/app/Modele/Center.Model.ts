@@ -2,7 +2,7 @@ export interface Center {
 
     id:number,
     name:string,
-    lastName:string,
+    timetable: string,
     capacity:number
     
 }

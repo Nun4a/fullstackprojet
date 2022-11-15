@@ -18,11 +18,12 @@ export class AdminService {
   }
 
   public saveAdminToServer(admin: Admin) {
-    this.http.post('http://localhost:9797/admins' , { id:admin.id,
+    this.http.post('http://localhost:9797/api/addadmin' , { id:admin.id,
       firstName:admin.firstName,
       lastName:admin.lastName,
       mail:admin.mail,
       phoneNumber:admin.phoneNumber,
+      center:admin.center
     })
       .subscribe(
         () => {
@@ -32,5 +33,22 @@ export class AdminService {
           console.log('Erreur ! : ' + error);
         }
       );
+  }
+
+  deleteAdmin(id_user:any){
+    return this.http.delete('http://localhost:9797/api/deleteadmin/'+id_user);
+  }
+
+
+  confDeleteAdmin(id_user:any) {
+    let conf = confirm("Etes vous sûr?");
+    if (conf) {
+      this.deleteAdmin(id_user)
+        .subscribe(data => {
+          this.getAdmins();
+        }, err => {
+          console.log(err);
+        })
+    }
   }
 }

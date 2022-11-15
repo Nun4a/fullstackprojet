@@ -12,6 +12,7 @@ import { AdminService } from './admin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ConnexionComponent } from './connexion/connexion.component'
 import { SuperAdminService } from './super-admin.service';
+import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SuperAdminService } from './super-admin.service';
     LoginComponent,
     HomeComponent,
     GestionAdminComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    AjoutAdminComponent
   ],
   imports: [
     BrowserModule,

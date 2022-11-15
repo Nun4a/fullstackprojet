@@ -1,5 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { CentreService } from '../centre.service';
+import { Center } from '../Modele/Center.Model';
 import { centerType } from './home.types';
 import { reserveDataToSend } from './home.types';
 @Component({
@@ -19,11 +23,32 @@ export class HomeComponent {
   mail!: string;
   daterdv!: string;
 
+  public centers: Center[] = [];
+  public adminSubscription: Subscription = new Subscription;
+
+  constructor(private centerService: CentreService) { }
+
   //Charger les données des centres là dedans
-  centre: centerType[] = [
-    { id: 1, name: 'CH Narbonne', adress: 'Boulevard Dr Lacroix, 11100 Narbonne' },
-    { id: 2, name: 'Nancy - Tour Marcel Brot' , adress: '1, Rue Joseph Cugnot, 54000 Nancy'}
-  ];
+
+  ngOnInit() {
+    this.adminSubscription = this.centerService.getCenters().subscribe(
+      (center: Center[]) => {
+        this.centers = center;
+      }
+    );
+    this.getCenter();
+  }
+  public getCenter(): void{
+    this.centerService.getCenters().subscribe(
+      (response: Center[]) => {
+        this.centers = response;
+        console.log(this.centers);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 
   onChooseClick(form: centerType) {
     this.secondForm = !this.secondForm

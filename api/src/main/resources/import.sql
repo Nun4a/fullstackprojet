@@ -5,6 +5,9 @@ INSERT INTO address (city, street, zipcode) VALUES ('Paris', 'rue de la Paix', '
 INSERT INTO address (city, street, zipcode) VALUES ('Nancy', 'Bd de Strasbourg', '54000');
 
 INSERT INTO center (name, capacity, timetable, id_address) VALUES ('Centre de Nancy', '40', 'timetable', '5');
+INSERT INTO center (name, capacity, timetable, id_address) VALUES ('Saint jack', '40', 'timetable', '1');
+INSERT INTO center (name, capacity, timetable, id_address) VALUES ('Saint seb', '40', 'timetable', '5');
+INSERT INTO center (name, capacity, timetable, id_address) VALUES ('Stan', '40', 'timetable', '2');
 
 INSERT INTO doctor (firstname, lastname, mail, phone_number, id_address, id_center) VALUES ('Jean', 'Dupond', 'jean.dupond@mail.com','0606060606', '1' , '1');
 INSERT INTO patient (firstname, lastname, mail, phone_number, id_address, vaccinated) VALUES ('Pierre', 'Moulin', 'pierre.moulin@mail.com','0606060607', '2' , true);

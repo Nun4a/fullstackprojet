@@ -16,11 +16,10 @@ pipeline{
                 // On génère le dockerfile à la volé pour le test, il faudrait qu'il soit dans le dépôt
               sh '''
                 echo 'FROM node:12.18.1
-                ENV NODE_ENV=production
                 WORKDIR /app
-                COPY front/package.json /app/
+                COPY front/package*.json ./
                 RUN ls -al
-                RUN npm install --production' > Dockerfile
+                RUN npm install' > Dockerfile
                 echo '---'
                 cat Dockerfile
                 echo '---'

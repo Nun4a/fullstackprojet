@@ -17,10 +17,12 @@ pipeline{
               sh '''
                 echo 'FROM node:12.18.1
                 ENV NODE_ENV=production
-                COPY /front /app/front
-                WORKDIR /app/front
+                WORKDIR /app
+                COPY ["package.json", "package-lock.json*", "./"]
                 RUN ls -al
-                RUN npm install --production' > Dockerfile
+                RUN npm install --production
+                COPY . .
+                CMD [ "node", "server.js" ]' > Dockerfile
                 echo '---'
                 cat Dockerfile
                 echo '---'

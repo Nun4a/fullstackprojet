@@ -18,7 +18,7 @@ pipeline{
                 echo 'FROM node:12.18.1
                 WORKDIR /app
                 COPY . /app
-                RUN ls -al
+                RUN ls .git -la
                 RUN npm install
                 RUN ls -al' > Dockerfile
                 echo '---'

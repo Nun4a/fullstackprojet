@@ -18,8 +18,7 @@ pipeline{
                 echo 'FROM eclipse-temurin:17-jdk
                 COPY . /app
                 WORKDIR /app
-                RUN javac src/main/java/org/polytech/covidapi/CovidApiApplication.java
-                CMD ["java", "Main"]' > Dockerfile
+                RUN javac src/main/java/org/polytech/covidapi/CovidApiApplication.java > Dockerfile
                 echo '---'
                 cat Dockerfile
                 echo '---'

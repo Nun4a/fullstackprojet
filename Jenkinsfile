@@ -10,7 +10,7 @@ pipeline{
             steps {
                 // On génère le dockerfile à la volé pour le test, il faudrait qu'il soit dans le dépôt
               sh '''
-                echo 'FROM node:12.18.1
+                echo 'FROM node:16.17
                 COPY . /app
                 WORKDIR /app/front
                 RUN ls -al

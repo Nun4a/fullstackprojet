@@ -1,4 +1,9 @@
 pipeline{
+    environment {
+        dockerImage = ''
+        imageName = "test"
+    }
+    
     agent any
     stages{
         stage('pull'){
@@ -6,7 +11,7 @@ pipeline{
               git poll: false, url: 'https://github.com/Peeppers/fullstackprojet'
             }
         }
-        stage('build'){
+        stage('dockerfile'){
             steps {
                 // On génère le dockerfile à la volé pour le test, il faudrait qu'il soit dans le dépôt
               sh '''
@@ -17,10 +22,18 @@ pipeline{
                 echo '---'
                 cat Dockerfile
                 echo '---'
-                docker build -t test .
             '''
             }
         }
+        
+        stage('build'){
+            steps {
+                script {
+                    dockerImage = docker.build imageName
+                }
+            }
+        }
+        
         stage('run'){
             steps {
                 sh 'docker run test'

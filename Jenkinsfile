@@ -18,7 +18,7 @@ pipeline{
                 echo 'FROM node:12.18.1
                 ENV NODE_ENV=production
                 WORKDIR /app
-                COPY ["package.json", "package-lock.json*", "./"]
+                COPY ["front/package.json", "package-lock.json*", "./"]
                 RUN ls -al
                 RUN npm install --production
                 COPY . .

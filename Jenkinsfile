@@ -14,7 +14,9 @@ pipeline{
                 COPY . /app
                 WORKDIR /app/front
                 RUN ls -al
-                RUN npm install' > Dockerfile
+                RUN npm install
+                CMD [ "npm", "start"]'
+                > Dockerfile
                 echo '---'
                 cat Dockerfile
                 echo '---'

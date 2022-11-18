@@ -8,10 +8,6 @@ pipeline{
             }
         }
 
-        stage('build'){
-            
-        }
-
         stage('run'){
             steps {
                 sh 'docker run test'

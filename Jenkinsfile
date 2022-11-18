@@ -17,7 +17,7 @@ pipeline{
               sh '''
                 echo 'FROM node:12.18.1
                 ENV NODE_ENV=production
-                COPY . /app/front
+                COPY . /app
                 WORKDIR /app/front
                 RUN npm install --production' > Dockerfile
                 echo '---'

@@ -1,0 +1,25 @@
+pipeline{
+    
+    agent any
+    stages{
+        stage('pull'){
+            steps{
+              git poll: false, url: 'https://github.com/Peeppers/fullstackprojet'
+            }
+        }
+
+        stage('build'){
+            steps {
+                script {
+                    dockerImage = docker.build imageName
+                }
+            }
+        }
+
+        stage('run'){
+            steps {
+                sh 'docker run test'
+            }
+        }
+    }
+}

@@ -16,6 +16,8 @@ pipeline{
                 // On génère le dockerfile à la volé pour le test, il faudrait qu'il soit dans le dépôt
               sh '''
                 echo 'FROM eclipse-temurin:17-jdk
+                COPY . /app
+                WORKDIR /app
                 RUN javac src/main/java/org/polytech/covidapi/CovidApiApplication.java
                 CMD ["java", "Main"]' > Dockerfile
                 echo '---'

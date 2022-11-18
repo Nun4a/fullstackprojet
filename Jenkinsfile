@@ -10,8 +10,8 @@ pipeline{
             steps {
                 // On génère le dockerfile à la volé pour le test, il faudrait qu'il soit dans le dépôt
               sh '''
-                EHCO 'Début dockerfile build'
-                RUN echo $(ls -1 /tmp/dir)
+                ECHO 'Début dockerfile build'
+                COPY /front /front
                 RUN npm install
                 RUN npm start
                 docker build -t test

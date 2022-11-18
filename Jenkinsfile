@@ -16,7 +16,6 @@ pipeline{
                 // On génère le dockerfile à la volé pour le test, il faudrait qu'il soit dans le dépôt
               sh '''
                 echo 'FROM scratch
-                COPY /front /front
                 RUN echo $(ls -1)
                 RUN npm install
                 RUN npm start' > Dockerfile

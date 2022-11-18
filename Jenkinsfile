@@ -6,11 +6,7 @@ pipeline{
     
     agent any
     stages{
-        stage('pull'){
-            steps{
-                git poll: false, url: 'https://github.com/Peeppers/fullstackprojet'
-            }
-        }
+        
         stage('dockerfile'){
             steps {
                 // On génère le dockerfile à la volé pour le test, il faudrait qu'il soit dans le dépôt

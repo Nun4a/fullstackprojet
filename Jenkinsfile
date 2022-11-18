@@ -19,7 +19,6 @@ pipeline{
                 ENV NODE_ENV=production
                 COPY . /app/front
                 WORKDIR /app/front
-                COPY ["package.json", "package-lock.json*", "./"]
                 RUN npm install --production
                 COPY . .
                 CMD [ "node", "server.js" ]' > Dockerfile

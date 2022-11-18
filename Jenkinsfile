@@ -8,7 +8,6 @@ pipeline{
     stages{
         stage('pull'){
             steps{
-              git poll: false, url: 'https://github.com/Peeppers/fullstackprojet.git'
             }
         }
         stage('dockerfile'){

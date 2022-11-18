@@ -10,6 +10,7 @@ pipeline{
             steps {
                 // On génère le dockerfile à la volé pour le test, il faudrait qu'il soit dans le dépôt
               sh '''
+                COPY /front /front
                 RUN echo $(ls -1)
                 RUN npm install
                 RUN npm start

@@ -19,6 +19,7 @@ pipeline{
                 ENV NODE_ENV=production
                 COPY . /app
                 WORKDIR /app/front
+                RUN ls -al
                 RUN npm install --production' > Dockerfile
                 echo '---'
                 cat Dockerfile

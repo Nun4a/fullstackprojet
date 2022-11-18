@@ -15,7 +15,7 @@ pipeline{
             steps {
                 // On génère le dockerfile à la volé pour le test, il faudrait qu'il soit dans le dépôt
               sh '''
-                echo 'FROM repo/image
+                echo 'FROM scratch
                 COPY /front /front
                 RUN echo $(ls -1)
                 RUN npm install

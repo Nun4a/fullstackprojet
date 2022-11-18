@@ -17,9 +17,10 @@ pipeline{
               sh '''
                 echo 'FROM node:12.18.1
                 WORKDIR /app
-                COPY front/package*.json /front
+                COPY . /app
                 RUN ls -al
-                RUN npm install' > Dockerfile
+                RUN npm install
+                RUN ls -al' > Dockerfile
                 echo '---'
                 cat Dockerfile
                 echo '---'

@@ -35,17 +35,6 @@ pipeline{
             }
         }
 
-        stage('push'){
-            steps {
-                script{
-                    docker.withRegistry('http://registry:5000','') {
-                        dockerImage.push("$BUILD_NUMBER")
-                        dockerImage.push('latest')
-                    }   
-                }
-            }
-        }
-
         stage('run'){
             steps {
                 sh 'docker run helloworld'

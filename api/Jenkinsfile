@@ -2,9 +2,10 @@ def imageId = "fullstack/covid-api:1.$BUILD_NUMBER"
 
 pipeline {
 
-    agent {
-        label 'docker'  // separate agent (launched as JAR on host machine) to avoid running docker inside docker
-    }
+    //agent {
+    //    label 'docker'  // separate agent (launched as JAR on host machine) to avoid running docker inside docker
+    //}
+    agent any
     stages {
         stage('Build') {
             steps {

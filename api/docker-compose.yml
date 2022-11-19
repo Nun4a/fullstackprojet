@@ -1,0 +1,17 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  covid-db:
+    image: postgres:14.6-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+
+  covid-adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+

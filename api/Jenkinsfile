@@ -6,6 +6,8 @@ pipeline {
     //    label 'docker'  // separate agent (launched as JAR on host machine) to avoid running docker inside docker
     //}
     agent any
+    dir("api")
+    {
     stages {
         stage('Build') {
             steps {
@@ -21,5 +23,6 @@ pipeline {
                 }
             }
         }
+    }
     }
 }

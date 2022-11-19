@@ -3,8 +3,8 @@ COPY . /app/api
 WORKDIR /app/api
 RUN gradle build -x test --no-daemon #pas de test
 
-FROM openjdk:17 AS covid-api
+FROM openjdk:17
 COPY --from=build /app/api/build/libs/covid-api-0.0.1-SNAPSHOT.jar /app/
 WORKDIR /app
 EXPOSE 9797
-ENTRYPOINT ["java","-jar","*.jar"]
+ENTRYPOINT ["java","-jar","covid-api-0.0.1-SNAPSHOT.jar"]

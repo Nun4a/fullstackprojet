@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+
+  covid-db:
+    image: postgres:14.6-alpine
+    container_name: covid-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sudo
+      POSTGRES_DB: covid-db
+    ports:
+      - 5432:5432
+    network_mode: "host"
+
+  covid-api:
+    image: covid-api
+    container_name: covid-api
+    user: 1000:1000
+    ports:
+      - 9797:9797
+    network_mode: "host"
+

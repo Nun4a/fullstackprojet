@@ -16,7 +16,9 @@ COPY ./ /api/
 RUN gradle clean build -x test --no-daemon #no test, no daemon
 
 FROM openjdk:17 AS final
-COPY --from=build /api/build/libs/covid-api-0.0.1-SNAPSHOT.jar /app/
+COPY --from=build /api/build/libs/covid-api-0.0.1-SNAPSHOT.jar /api/
 WORKDIR /api
 EXPOSE 9797
+# Making sure the files are there
+RUN ls -la
 ENTRYPOINT ["java","-jar","covid-api-0.0.1-SNAPSHOT.jar"]

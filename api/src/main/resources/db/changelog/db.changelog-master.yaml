@@ -1,10 +1,10 @@
 databaseChangeLog:  
   - changeSet:  
-      id:  1  
+      id: '1'
       author:  nvoxland  
       changes:  
         - createTable:  
-            tableName:  users
+            tableName:  test
             columns:  
               - column:  
                   name:  id  
@@ -14,20 +14,5 @@ databaseChangeLog:
                     primaryKey:  true  
                     nullable:  false  
               - column:  
-                  name:  fname  
+                  name:  test  
                   type:  varchar(255)
-              - column:  
-                  name:  lname  
-                  type:  varchar(255)
-              - column:  
-                  name:  mail 
-                  type:  varchar(255)
-              - column:  
-                  name:  telephone 
-                  type:  varchar(255)
-              - column:  
-                  name:  center_city 
-                  type:  varchar(255)
-              - column:  
-                  name:  vaccinate 
-                  type:  boolean

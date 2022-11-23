@@ -7,14 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.ForeignKey;
 
 @Entity
 //@Table(name = "centers")
 public class Center {
     
-    @Id@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private int capacity;
@@ -22,9 +22,8 @@ public class Center {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_address", 
-        foreignKey = @ForeignKey(name = "center_id_address_fk"), nullable = false)
+        foreignKey = @ForeignKey(name = "user_id_address_fk"), nullable = true)
     private Address address;
-
 
     public Center(int id, String name, int capacity, String timetable) {
         this.id = id;
@@ -32,7 +31,15 @@ public class Center {
         this.capacity = capacity;
         this.timetable = timetable;
     }
+
     
+    
+
+    public Center() {
+    }
+
+
+
 
     public int getId() {
         return this.id;
@@ -44,14 +51,6 @@ public class Center {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Address getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public int getCapacity() {
@@ -69,6 +68,8 @@ public class Center {
     public void setTimetable(String timetable) {
         this.timetable = timetable;
     }
+
+
 
     @Override
     public String toString() {

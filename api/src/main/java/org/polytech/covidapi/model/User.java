@@ -1,38 +1,32 @@
 package org.polytech.covidapi.model;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.ForeignKey;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 
-@Entity
-//@Table(name = "users")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-// @DiscriminatorColumn(name="user_type",
-//     discriminatorType = DiscriminatorType.INTEGER)
+
+@MappedSuperclass
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "firstname")
     private String firstName;
+    @Column(name = "lastname")
     private String lastName;
     private String mail;
     private String phoneNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_address", 
-        foreignKey = @ForeignKey(name = "user_id_address_fk"), nullable = false)
+        foreignKey = @ForeignKey(name = "user_id_address_fk"), nullable = true)
     private Address address;
 
     public User (){
@@ -84,13 +78,6 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Address getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     @Override
     public String toString() {

@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins="http://localhost:5432/")
+@CrossOrigin(origins="http://localhost:4200/")
 @RequestMapping("/api")
 public class PatientController {
     
     @Autowired
-    private PatientService userService;
-    @GetMapping("/showpatient")
+    private PatientService patientService;
+    @GetMapping("/showpatientpretty")
     public String findUsers (Model model) {
 
-        List<Patient> users = userService.findAll();
+        List<Patient> users = patientService.findAll();
         String str = "";
         for (int i=0; i<users.size(); i++){
             Patient currentuser = users.get(i);
@@ -36,21 +36,31 @@ public class PatientController {
         return str;
     }
 
-    @GetMapping("/showpatient/{id}")
-    public Optional<Patient> getOneacteur(@PathVariable int id){
-            Optional<Patient> user = userService.findById(id);
+    @GetMapping(value="/showpatient")
+    public Iterable<Patient> getAllUser(){
+        Iterable<Patient> adminCollections = patientService.findAll();
+        return adminCollections;
+    }
+
+    @GetMapping("/patient/{id}")
+    public Optional<Patient> getOnePatient(@PathVariable int id){
+            Optional<Patient> user = patientService.findById(id);
             return user;
     }
 
-    @PostMapping(path = "/addpatient")
+    @PostMapping(path = "/patient")
     public Patient save(@RequestBody Patient newuser) {
-        return userService.save(newuser);
+        return patientService.save(newuser);
     }
 
-    @DeleteMapping("/deletepatient/{id}")
+    @DeleteMapping("/patient/{id}")
     public void delete(@PathVariable int id){
-        userService.delete(id);
+        patientService.delete(id);
     }
 
-
+    /*@GetMapping(path = "/patient/{id}/address")
+    public Address getOnePatientAddress(
+        @PathVariable Integer id) {
+        return  patientService.findById(id).get().getAddress();
+    }*/
 }

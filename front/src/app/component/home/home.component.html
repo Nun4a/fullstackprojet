@@ -5,7 +5,7 @@
     <input class="flex m-auto form-control w-60" type="text" [(ngModel)]="searchText" name="search"  autocomplete="off" placeholder="Entrez un centre de vaccination">
     <table *ngIf="searchText.length>1" class="table table-striped">
       <tbody>
-      <tr *ngFor="let centre of centre | filter:searchText" class="flex flex-col m-2 bg-zinc-400 rounded-md p-1">
+      <tr *ngFor="let centre of centers | filter:searchText" class="flex flex-col m-2 bg-zinc-400 rounded-md p-1">
         <td>{{centre.name}}</td>
         <td>{{centre.adress}}</td>
         <button (click)="onChooseClick(centre)" class='bg-sky-600 rounded-md hover:bg-cyan-800'>Choisir</button>

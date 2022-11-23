@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covidapi.model.Center;
-import org.polytech.covidapi.repository.CenterRepoitory;
+import org.polytech.covidapi.repository.CenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class CenterService {
 
     @Autowired
-    private CenterRepoitory repository;
+    private CenterRepository repository;
 
     
     public List<Center> findAll() {

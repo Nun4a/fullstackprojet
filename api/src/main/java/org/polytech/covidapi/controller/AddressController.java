@@ -16,13 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins="http://localhost:5432/")
+@CrossOrigin(origins="http://localhost:4200/")
 @RequestMapping("/api")
 public class AddressController {
     
     @Autowired
     private AddressService addressService;
-    @GetMapping("/showaddress")
+
+    @GetMapping("/showaddresspretty")
+
     public String findUsers (Model model) {
 
         List<Address> address = addressService.findAll();
@@ -35,18 +37,23 @@ public class AddressController {
         return str;
     }
 
-    @GetMapping("/showaddress/{id}")
-    public Optional<Address> getOneacteur(@PathVariable int id){
-            Optional<Address> address = addressService.findById(id);
-            return address;
+    @GetMapping(value="/showaddress")
+    public Iterable<Address> getAllUser(){
+        Iterable<Address> addressCollections = addressService.findAll();
+        return addressCollections;
     }
 
-    @PostMapping(path = "/addaddress")
+    @GetMapping("/showaddress/{id}")
+    public Optional<Address> getOneacteur(@PathVariable int id){
+            return addressService.findById(id);
+    }
+
+    @PostMapping(path = "/address")
     public Address save(@RequestBody Address newaddress) {
         return addressService.save(newaddress);
     }
 
-    @DeleteMapping("/deleteaddress/{id}")
+    @DeleteMapping("/address/{id}")
     public void delete(@PathVariable int id){
         addressService.delete(id);
     }

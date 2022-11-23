@@ -11,15 +11,12 @@ pipeline{
             steps {
                 // On génère le dockerfile à la volé pour le test, il faudrait qu'il soit dans le dépôt
               sh '''
-                echo 'FROM eclipse-temurin:17-jdk
-                COPY Main.java /app/Main.java
-                WORKDIR /app
-                RUN javac Main.java
-                CMD ["java", "Main"]' > Dockerfile
-                echo '---'
-                cat Dockerfile
-                echo '---'
-                docker build -t helloworld .
+                RUN 'Début dockerfile build'
+                COPY /front /front
+                
+                RUN npm install
+                RUN npm start
+                docker build -t test
             '''
             }
         }
@@ -30,33 +27,3 @@ pipeline{
         }
     }
 }
-
-// pipeline{
-    
-//     agent any
-//     stages{
-//         stage('pull'){
-//             steps{
-//               git poll: false, url: 'https://github.com/Peeppers/fullstackprojet'
-//             }
-//         }
-
-//         stage('build'){
-//             steps{
-//                 sh '''
-//                     RUN 'Début dockerfile build'
-//                     WORKDIR "/front"
-//                     RUN npm install
-//                     RUN npm start
-//                     docker build -t test
-//                 '''
-//             }
-//         }
-
-//         stage('run'){
-//             steps {
-//                 sh 'docker run test'
-//             }
-//         }
-//     }
-// }

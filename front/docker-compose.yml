@@ -4,7 +4,6 @@ services:
   covid-front:
     image: covid-front
     container_name: covid-front
-    #user: 1000:1000
     ports:
       - 4200:4200
     network_mode: "host"

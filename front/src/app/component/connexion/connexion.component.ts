@@ -3,15 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AdminService } from '../../admin.service';
-import { Admin } from '../../Modele/Admin.Model';
-import { SuperAdmin } from '../../Modele/SuperAdmin.Model';
-import { SuperAdminService } from '../../super-admin.service';
+import { SuperAdminService } from 'src/app/service';
+import { SuperAdmin } from 'src/app/Modele'
 
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.component.html',
-  styleUrls: ['./connexion.component.css']
 })
 export class ConnexionComponent implements OnInit {
 

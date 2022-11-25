@@ -1,16 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AdminService } from '../../admin.service';
-import { CentreService } from '../../centre.service';
-import { Admin } from '../../Modele/Admin.Model';
-import { Center } from '../../Modele/Center.Model';
-import { Address } from 'src/app/Modele/Address.Model';
-
+import { AdminService, CentreService } from 'src/app/service';
+import { Address, Admin, Center } from 'src/app/Modele';
 @Component({
   selector: 'app-ajout-admin',
   templateUrl: './ajout-admin.component.html',
-  styleUrls: ['./ajout-admin.component.css']
 })
 export class AjoutAdminComponent implements OnInit {
 

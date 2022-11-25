@@ -4,6 +4,7 @@
     <h2 class="flex justify-center"> Gérer les administrateurs </h2>
     <app-datagrid class="flex w-full justify-center" [title]="'Administrateur'" [dataSourceArg]="data" [callbackFunctionChangeUser]="changeAdmin" [callbackFunctionDeleteUser]="deleteAdmin"></app-datagrid>
     <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un administrateur</button>
+    <button mat-raised-button color="primary" routerLink="/ajout-centre"> Ajouter un centre</button>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let admin of admins">
         <h3> Administrateur {{ admin.id}}</h3>

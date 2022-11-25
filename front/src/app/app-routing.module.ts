@@ -5,7 +5,7 @@ import { HomeComponent } from './component/home';
 import { GestionAdminComponent } from './component/gestion-admin/gestion-admin.component';
 import { ConnexionComponent } from './component/connexion/connexion.component';
 import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.component';
-import { AjoutCentreComponent } from './ajout-centre/ajout-centre.component';
+import { AjoutCentreComponent } from './component/ajout-centre/ajout-centre.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -15,7 +15,6 @@ const routes: Routes = [
   {path: 'addChangeAdmin', component: AjoutAdminComponent},
   {path: 'addadmin', component: AjoutAdminComponent},
   {path: 'addcentre', component: AjoutCentreComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'connexion', component: ConnexionComponent}
 ];
 

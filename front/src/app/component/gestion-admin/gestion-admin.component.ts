@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Admin } from '../../Modele/Admin.Model';
-import { AdminService } from '../../admin.service';
+import { Admin } from 'src/app/Modele';
+import { AdminService } from 'src/app/service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { dataSourceType } from '../datagrid/datagrid.types';
+import { dataSourceType } from 'src/app/component/datagrid';
 
 @Component({
   selector: 'app-gestion-admin',
   templateUrl: './gestion-admin.component.html',
-  styleUrls: ['./gestion-admin.component.css'],
   providers: [ AdminService]
 })
 export class GestionAdminComponent implements OnInit {

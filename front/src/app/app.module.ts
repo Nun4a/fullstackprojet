@@ -14,9 +14,9 @@ import { SuperAdminService } from './super-admin.service';
 import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.component';
 import { MaterialModule } from './material.module';
 import { CentresComponent } from './component/centres/centres.component';
-import { AdminComponent } from './component/admin/admin.component';
 import { FormEditComponent } from './component/form-edit/form-edit.component';
 import { MenuComponent } from './component/menu/menu.component';
+import { DatagridComponent } from './component/datagrid/datagrid.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +24,11 @@ import { MenuComponent } from './component/menu/menu.component';
     HomeComponent,
     MenuComponent,
     FormEditComponent,
-    AdminComponent,
     CentresComponent,
     GestionAdminComponent,
     ConnexionComponent,
-    AjoutAdminComponent
+    AjoutAdminComponent,
+    DatagridComponent
   ],
   imports: [
     BrowserModule,

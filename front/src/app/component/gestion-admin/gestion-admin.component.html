@@ -1,7 +1,9 @@
-<div class="h-full w-full flex bg-slate-600 flex-row">
+<div class="h-full flex bg-slate-600 flex-row">
   <app-menu class="h-full bg-zinc-700"></app-menu>
-  <div class="h-full flex flex-col bg-slate-700">
-    <H2> Administrateur </H2>
+  <div class="h-full w-full flex flex-col bg-slate-700 justify-evenly">
+    <h2 class="flex justify-center"> Gérer les administrateurs </h2>
+    <app-datagrid class="flex w-full justify-center" [title]="'Administrateur'" [dataSourceArg]="data" [callbackFunctionChangeUser]="changeAdmin" [callbackFunctionDeleteUser]="deleteAdmin"></app-datagrid>
+    <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un administrateur</button>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let admin of admins">
         <h3> Administrateur {{ admin.id}}</h3>
@@ -11,7 +13,6 @@
         <button (click)="deleteAdmin(admin.id)">Delete</button>
       </li>
     </ul>
-    <button routerLink="/addadmin"> ajouter un administrateur</button>
   </div>
-  <app-ajout-admin></app-ajout-admin>
 </div>
+

@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Admin } from '../../Modele/Admin.Model';
 import { AdminService } from '../../admin.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { dataSourceType } from '../datagrid/datagrid.types';
 
 @Component({
   selector: 'app-gestion-admin',
@@ -15,6 +16,7 @@ export class GestionAdminComponent implements OnInit {
   public admins: Admin[] = [];
   public adminSubscription: Subscription = new Subscription;
   constructor(private adminService: AdminService) { }
+  data = data;
 
   ngOnInit() {
     this.adminSubscription = this.adminService.getAdmins().subscribe(
@@ -36,9 +38,18 @@ export class GestionAdminComponent implements OnInit {
     );
   }
 
+  changeAdmin(id: number){
+    console.log(id)
+  }
+
   deleteAdmin(id:number){
     this.adminService.confDeleteAdmin(id);
   }
-
-
 }
+
+
+const data: dataSourceType[] = [
+  {id: 1, name:"John Doe"},
+  {id: 2, name:"Jaine Doe"}
+]
+

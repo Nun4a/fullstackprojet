@@ -1,12 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AdminService } from '../admin.service';
-import { Admin } from '../Modele/Admin.Model';
-import { SuperAdmin } from '../Modele/SuperAdmin.Model';
-import { SuperAdminService } from '../super-admin.service';
+import { AdminService } from '../../admin.service';
+import { Admin } from '../../Modele/Admin.Model';
+import { SuperAdmin } from '../../Modele/SuperAdmin.Model';
+import { SuperAdminService } from '../../super-admin.service';
 
 @Component({
   selector: 'app-connexion',
@@ -15,6 +15,10 @@ import { SuperAdminService } from '../super-admin.service';
 })
 export class ConnexionComponent implements OnInit {
 
+  form: FormGroup = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+  });
   public superAdmins: SuperAdmin[] = [];
   public adminSubscription: Subscription = new Subscription;
   public erreur:number =0;
@@ -40,9 +44,9 @@ export class ConnexionComponent implements OnInit {
     );
   }
 
-  onSubmit(form: NgForm) {
-    const name = form.value['name'];
-    const password = form.value['password'];
+  onSubmit() {
+    const name = this.form.value.username;
+    const password = this.form.value.password;
     if (this.exist(name,password) == 1){
       console.log("youpi, on est connecté! ")
       this.router.navigate(['gestion-admin'])

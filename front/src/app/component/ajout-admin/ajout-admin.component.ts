@@ -1,10 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AdminService } from '../admin.service';
-import { CentreService } from '../centre.service';
-import { Admin } from '../Modele/Admin.Model';
-import { Center } from '../Modele/Center.Model';
+import { AdminService } from '../../admin.service';
+import { CentreService } from '../../centre.service';
+import { Admin } from '../../Modele/Admin.Model';
+import { Center } from '../../Modele/Center.Model';
 
 @Component({
   selector: 'app-ajout-admin',

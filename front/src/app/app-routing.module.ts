@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './component/login';
 import { HomeComponent } from './component/home';
-import { GestionAdminComponent } from './gestion-admin/gestion-admin.component';
-import { ConnexionComponent } from './connexion/connexion.component';
-import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
+import { GestionAdminComponent } from './component/gestion-admin/gestion-admin.component';
+import { ConnexionComponent } from './component/connexion/connexion.component';
+import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},

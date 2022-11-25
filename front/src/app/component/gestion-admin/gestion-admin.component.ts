@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Admin } from '../Modele/Admin.Model';
-import { AdminService } from '../admin.service';
+import { Admin } from '../../Modele/Admin.Model';
+import { AdminService } from '../../admin.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

@@ -5,14 +5,13 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './component/login';
 import { HomeComponent } from './component/home';
-import { GestionAdminComponent } from './gestion-admin/gestion-admin.component';
+import { GestionAdminComponent } from './component/gestion-admin/gestion-admin.component';
 import { AdminService } from './admin.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ConnexionComponent } from './connexion/connexion.component'
+import { ConnexionComponent } from './component/connexion/connexion.component'
 import { SuperAdminService } from './super-admin.service';
-import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
+import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.component';
 import { MaterialModule } from './material.module';
 import { CentresComponent } from './component/centres/centres.component';
 import { AdminComponent } from './component/admin/admin.component';
@@ -22,7 +21,6 @@ import { MenuComponent } from './component/menu/menu.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HomeComponent,
     MenuComponent,
     FormEditComponent,

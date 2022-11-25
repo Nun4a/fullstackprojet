@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConnexionComponent } from './connexion/connexion.component'
 import { SuperAdminService } from './super-admin.service';
 import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
+import { AjoutCentreComponent } from './ajout-centre/ajout-centre.component';
+import { CentreService } from './centre.service';
+import { AddressService } from './address.service';
 import { MaterialModule } from './material.module';
 import { CentresComponent } from './component/centres/centres.component';
 import { AdminComponent } from './component/admin/admin.component';
@@ -30,7 +33,8 @@ import { MenuComponent } from './component/menu/menu.component';
     CentresComponent,
     GestionAdminComponent,
     ConnexionComponent,
-    AjoutAdminComponent
+    AjoutAdminComponent,
+    AjoutCentreComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,7 @@ import { MenuComponent } from './component/menu/menu.component';
     Ng2SearchPipeModule,
     HttpClientModule
   ],
-  providers: [AdminService, SuperAdminService],
+  providers: [AdminService, SuperAdminService, CentreService, AddressService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

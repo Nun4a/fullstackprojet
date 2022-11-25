@@ -5,6 +5,7 @@ import { AdminService } from '../../admin.service';
 import { CentreService } from '../../centre.service';
 import { Admin } from '../../Modele/Admin.Model';
 import { Center } from '../../Modele/Center.Model';
+import { Address } from 'src/app/Modele/Address.Model';
 
 @Component({
   selector: 'app-ajout-admin',
@@ -15,11 +16,18 @@ export class AjoutAdminComponent implements OnInit {
 
   public centers: Center[] = [];
   public adminSubscription: Subscription = new Subscription;
+  public choosenaddress: Address ={
+    id: 0,
+    zipcode: '',
+    street:'',
+    city:'',
+  }
   public choosencenter: Center =  {
     name: 'rien',
     id: 0,
     timetable: '',
-    capacity: 0
+    capacity: 0,
+    address:this.choosenaddress
   }
   public firstName: string | undefined;
   public lastName: string | undefined;

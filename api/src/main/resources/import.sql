@@ -15,3 +15,5 @@ INSERT INTO admin (firstname, lastname, mail, phone_number, id_address, id_cente
 INSERT INTO admin (firstname, lastname, mail, phone_number, id_address, id_center) VALUES ('admin2', 'admin2', 'admin2@mail.com','12324567', '2','1');
 INSERT INTO admin (firstname, lastname, mail, phone_number, id_address, id_center) VALUES ('admin3', 'admin3', 'admin3@mail.com','12334567', '1','1');
 INSERT INTO super_admin (firstname, lastname, mail, phone_number, id_address) VALUES ('supadmin', 'supadmin', 'supadmin@mail.com','1234567', '4');
+
+INSERT INTO appointment(jour) VALUES ('25-11-2022')

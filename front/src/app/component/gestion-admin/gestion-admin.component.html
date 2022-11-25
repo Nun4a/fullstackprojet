@@ -2,7 +2,7 @@
   <app-menu class="h-full bg-zinc-700"></app-menu>
   <div class="h-full w-full flex flex-col bg-slate-700 justify-evenly">
     <h2 class="flex justify-center"> Gérer les administrateurs </h2>
-    <app-datagrid class="flex w-full justify-center" [title]="'Administrateur'" [dataSourceArg]="data" [callbackFunctionChangeUser]="changeAdmin" [callbackFunctionDeleteUser]="deleteAdmin"></app-datagrid>
+    <app-datagrid class="flex w-full justify-center" [title]="'Administrateur'" [dataSourceArg]="admins" [callbackFunctionChangeUser]="changeAdmin" [callbackFunctionDeleteUser]="deleteAdmin"></app-datagrid>
     <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un administrateur</button>
     <button mat-raised-button color="primary" routerLink="/ajout-centre"> Ajouter un centre</button>
     <ul class="list-group">

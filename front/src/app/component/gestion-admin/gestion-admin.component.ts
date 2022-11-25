@@ -15,7 +15,6 @@ export class GestionAdminComponent implements OnInit {
   public admins: Admin[] = [];
   public adminSubscription: Subscription = new Subscription;
   constructor(private adminService: AdminService) { }
-  data = data;
 
   ngOnInit() {
     this.adminSubscription = this.adminService.getAdmins().subscribe(
@@ -45,10 +44,3 @@ export class GestionAdminComponent implements OnInit {
     this.adminService.confDeleteAdmin(id);
   }
 }
-
-
-const data: dataSourceType[] = [
-  {id: 1, name:"John Doe"},
-  {id: 2, name:"Jaine Doe"}
-]
-

@@ -28,4 +28,7 @@ public class AppointmentService {
         return repository.findById(id);
     }
 
+    public void delete(int id_appointment){
+        repository.deleteById(id_appointment);
+    }
 }

@@ -21,15 +21,15 @@ public class Center {
     private String timetable;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_address", 
-        foreignKey = @ForeignKey(name = "user_id_address_fk"), nullable = true)
+    @JoinColumn(name = "id_address")
     private Address address;
 
-    public Center(int id, String name, int capacity, String timetable) {
+    public Center(int id, String name, int capacity, String timetable, Address address) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
         this.timetable = timetable;
+        this.address = address;
     }
 
     
@@ -68,6 +68,20 @@ public class Center {
     public void setTimetable(String timetable) {
         this.timetable = timetable;
     }
+
+
+
+    public Address getAddress() {
+        return address;
+    }
+
+
+
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
 
 
 

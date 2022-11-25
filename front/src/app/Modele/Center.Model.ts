@@ -1,8 +1,11 @@
+import { Address } from "./Address.Model";
+
 export interface Center {
 
     id:number,
     name:string,
     timetable: string,
-    capacity:number
+    capacity:number,
+    address:Address
     
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AdminService } from '../admin.service';
 import { CentreService } from '../centre.service';
+import { Address } from '../Modele/Address.Model';
 import { Admin } from '../Modele/Admin.Model';
 import { Center } from '../Modele/Center.Model';
 
@@ -15,11 +16,18 @@ export class AjoutAdminComponent implements OnInit {
 
   public centers: Center[] = [];
   public adminSubscription: Subscription = new Subscription;
+  public choosenaddress: Address ={
+    id: 0,
+    zipcode: '',
+    street:'',
+    city:'',
+  }
   public choosencenter: Center =  {
     name: 'rien',
     id: 0,
     timetable: '',
-    capacity: 0
+    capacity: 0,
+    address:this.choosenaddress
   }
   public firstName:any
   public lastName: any

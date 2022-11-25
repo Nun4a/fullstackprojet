@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginComponent } from './login';
-import { HomeComponent } from './home';
+import { LoginComponent } from './component/login';
+import { HomeComponent } from './component/home';
 import { GestionAdminComponent } from './gestion-admin/gestion-admin.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';

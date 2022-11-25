@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  covid-front:
+    image: covid-front
+    container_name: covid-front
+    ports:
+      - 4200:4200
+    network_mode: "host"
+

@@ -6,6 +6,7 @@ import { GestionAdminComponent } from './component/gestion-admin/gestion-admin.c
 import { ConnexionComponent } from './component/connexion/connexion.component';
 import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.component';
 import { AjoutCentreComponent } from './component/ajout-centre/ajout-centre.component';
+import { CentresComponent } from './component/centres';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'addChangeAdmin', component: AjoutAdminComponent},
   {path: 'addadmin', component: AjoutAdminComponent},
   {path: 'addcentre', component: AjoutCentreComponent},
-  {path: 'connexion', component: ConnexionComponent}
+  {path: 'connexion', component: ConnexionComponent},
+  {path: 'centre', component: CentresComponent}
 ];
 
 @NgModule({

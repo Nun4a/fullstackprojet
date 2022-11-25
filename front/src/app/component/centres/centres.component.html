@@ -1,6 +1,6 @@
 <div class="h-full w-full flex bg-slate-600 flex-row">
     <app-menu class="h-full bg-zinc-700"></app-menu>
-    <mat-card class="flex h-fit items-center justify-items-center">
+    <mat-card class="flex w-full flex-row justify-evenly">
         <!-- Sélection centres -->
         <div class="bg-zinc-500 rounded-md p-2">
             <input class="flex m-auto form-control w-60" type="text" [(ngModel)]="searchText" name="search"  autocomplete="off" placeholder="Entrez un centre de vaccination">
@@ -26,7 +26,7 @@
         </div>
 
         <!-- Edit centre -->
-        <div *ngIf="centerEdit">
+        <div class="flex justify-center item-center"*ngIf="centerEdit">
             <form [formGroup]="form">
                 <div class="flex flex-col">
                   <mat-form-field appearance="outline">
@@ -58,8 +58,11 @@
 
         <div *ngIf="equipEdit">
             <div class="flex flex-col">
-                <p>{{centerChoosen.name}}</p>
-                <p>{{centerChoosen.adress}}</p>
+                <app-datagrid [title]="'Administrateur'"></app-datagrid>
+                <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un administrateur</button>
+                <app-datagrid [title]="'Médecins'"></app-datagrid>
+                <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un médecin</button>
+
             </div>
            
         </div>

@@ -1,0 +1,3 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://covid-db:5432/covid-db

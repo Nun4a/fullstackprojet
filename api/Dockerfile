@@ -21,4 +21,5 @@ WORKDIR /api
 EXPOSE 9797
 # Making sure the files are there
 RUN ls -la
+ENV spring_profiles_active=prod
 ENTRYPOINT ["java","-jar","covid-api-0.0.1-SNAPSHOT.jar"]

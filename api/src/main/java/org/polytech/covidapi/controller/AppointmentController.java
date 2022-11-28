@@ -13,17 +13,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.bucket4j.Bucket;
+
+
+
 @RestController
 @RequestMapping("/api")
 public class AppointmentController {
-    @Autowired
+    
     private AppointmentService appointmentService;
+    private final Bucket bucket;
+
+    @Autowired
+    public AppointmentController(AppointmentService appointmentService, Bucket bucket) {
+        this.appointmentService = appointmentService;
+        this.bucket = bucket;
+    }
 
     //rajoute 10 tokens toutes les minutes
-    Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
+    //Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
     //capacité max de 10 token
-    Bandwidth limit = Bandwidth.classic(10, refill);
-    Bucket bucket = Bucket.builder().addLimit(limit).build();
+    //Bandwidth limit = Bandwidth.classic(10, refill);
+    //Bucket bucket = Bucket.builder().addLimit(limit).build();
 
     @GetMapping(value="/appointments")
     public Iterable<Appointment> getAllAppointment(){
@@ -41,6 +52,7 @@ public class AppointmentController {
         if(bucket.tryConsume(1)) {
             return appointmentService.save(newappointment);
             }
+            return null;
     }
 
     @DeleteMapping("/appointment/{id}")

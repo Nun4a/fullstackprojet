@@ -2,6 +2,8 @@ package org.polytech.covidapi.controller;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.polytech.covidapi.controller.domain.SuperAdminDto;
 import org.polytech.covidapi.model.SuperAdmin;
 import org.polytech.covidapi.service.SuperAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +29,10 @@ public class SuperAdminController {
     @GetMapping("/showsuperadminpretty")
     public String findUsers (Model model) {
 
-        List<SuperAdmin> users = userService.findAll();
+        List<SuperAdminDto> users = userService.findAll().stream().map(this::mapEntity).toList();
         String str = "";
         for (int i=0; i<users.size(); i++){
-            SuperAdmin currentuser = users.get(i);
+            SuperAdminDto currentuser = users.get(i);
             str = str + "\n" + currentuser;
         }
 
@@ -38,25 +40,33 @@ public class SuperAdminController {
     }
 
     @GetMapping(value="/showsuperadmin")
-    public ResponseEntity<List<SuperAdmin>> getAllUser(){
-        List<SuperAdmin> admins = userService.findAll();
+    public ResponseEntity<List<SuperAdminDto>> getAllUser(){
+        List<SuperAdminDto> admins = userService.findAll().stream().map(this::mapEntity).toList();
         return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 
     @GetMapping("/showsuperadmin/{id}")
-    public Optional<SuperAdmin> getOneacteur(@PathVariable int id){
-            Optional<SuperAdmin> user = userService.findById(id);
+    public Optional<SuperAdminDto> getOneacteur(@PathVariable int id){
+            Optional<SuperAdminDto> user = userService.findById(id).map(this::mapEntity);
             return user;
     }
 
     @PostMapping(path = "/addsuperadmin")
-    public SuperAdmin save(@RequestBody SuperAdmin newuser) {
-        return userService.save(newuser);
+    public SuperAdminDto save(@RequestBody SuperAdminDto newuser) {
+        return mapEntity(userService.save(mapDto(newuser)));
     }
 
     @DeleteMapping("/deletesuperadmin/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
+    }
+
+    private SuperAdminDto mapEntity(SuperAdmin save) {
+        return new SuperAdminDto();
+    }
+
+    private SuperAdmin mapDto(SuperAdminDto newSuperAdmin) {
+        return new SuperAdmin();
     }
 
 

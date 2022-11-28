@@ -2,6 +2,8 @@ package org.polytech.covidapi.controller;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.polytech.covidapi.controller.domain.DoctorDto;
 import org.polytech.covidapi.model.Doctor;
 import org.polytech.covidapi.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,20 +44,29 @@ public class DoctorController {
     }
 
     @GetMapping("/showdoctor/{id}")
-    public Optional<Doctor> getOneacteur(@PathVariable int id){
-            Optional<Doctor> user = userService.findById(id);
+    public Optional<DoctorDto> getOneacteur(@PathVariable int id){
+            Optional<DoctorDto> user = userService.findById(id).map(this::mapEntity);
             return user;
     }
 
     @PostMapping(path = "/doctor")
-    public Doctor save(@RequestBody Doctor newDoctor) {
-        return userService.save(newDoctor);
+    public DoctorDto save(@RequestBody DoctorDto newDoctor) {
+        return mapEntity(userService.save(mapDto(newDoctor)));
+    }
+
+    private DoctorDto mapEntity(Doctor save) {
+        return new DoctorDto();
+    }
+
+    private Doctor mapDto(DoctorDto newDoctor) {
+        return new Doctor();
     }
 
     @DeleteMapping("/doctor/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
     }
+
 
 
 }

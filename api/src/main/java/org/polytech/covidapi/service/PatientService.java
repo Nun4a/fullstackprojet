@@ -3,6 +3,7 @@ package org.polytech.covidapi.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.polytech.covidapi.controller.domain.PatientDto;
 import org.polytech.covidapi.model.Patient;
 import org.polytech.covidapi.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;

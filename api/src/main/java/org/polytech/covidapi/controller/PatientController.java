@@ -3,6 +3,7 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.polytech.covidapi.controller.domain.PatientDto;
 import org.polytech.covidapi.model.Patient;
 import org.polytech.covidapi.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,10 @@ public class PatientController {
     @GetMapping("/showpatientpretty")
     public String findUsers (Model model) {
 
-        List<Patient> users = patientService.findAll();
+        List<PatientDto> users = patientService.findAll().stream().map(this::mapEntity).toList();
         String str = "";
         for (int i=0; i<users.size(); i++){
-            Patient currentuser = users.get(i);
+            PatientDto currentuser = users.get(i);
             str = str + "\n" + currentuser;
         }
 
@@ -37,20 +38,20 @@ public class PatientController {
     }
 
     @GetMapping(value="/showpatient")
-    public Iterable<Patient> getAllUser(){
-        Iterable<Patient> adminCollections = patientService.findAll();
+    public Iterable<PatientDto> getAllUser(){
+        Iterable<PatientDto> adminCollections = patientService.findAll().stream().map(this::mapEntity).toList();
         return adminCollections;
     }
 
     @GetMapping("/patient/{id}")
-    public Optional<Patient> getOnePatient(@PathVariable int id){
-            Optional<Patient> user = patientService.findById(id);
+    public Optional<PatientDto> getOnePatient(@PathVariable int id){
+            Optional<PatientDto> user = patientService.findById(id).map(this::mapEntity);
             return user;
     }
 
     @PostMapping(path = "/patient")
-    public Patient save(@RequestBody Patient newuser) {
-        return patientService.save(newuser);
+    public PatientDto save(@RequestBody PatientDto newuser) {
+        return mapEntity(patientService.save(mapDto(newuser)));
     }
 
     @DeleteMapping("/patient/{id}")
@@ -58,9 +59,11 @@ public class PatientController {
         patientService.delete(id);
     }
 
-    /*@GetMapping(path = "/patient/{id}/address")
-    public Address getOnePatientAddress(
-        @PathVariable Integer id) {
-        return  patientService.findById(id).get().getAddress();
-    }*/
+    private PatientDto mapEntity(Patient save) {
+        return new PatientDto(0, null, null, null, null, null, false);
+    }
+
+    private Patient mapDto(PatientDto newDoctor) {
+        return new Patient();
+    }
 }

@@ -3,6 +3,7 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.polytech.covidapi.controller.domain.CenterDto;
 import org.polytech.covidapi.model.Center;
 import org.polytech.covidapi.service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,10 @@ public class CenterController {
     @GetMapping("/showcenterpretty")
     public String findUsers (Model model) {
 
-        List<Center> centers = centerService.findAll();
+        List<CenterDto> centers = centerService.findAll().stream().map(this::mapEntity).toList();
         String str = "";
         for (int i=0; i<centers.size(); i++){
-            Center currentcenter = centers.get(i);
+            CenterDto currentcenter = centers.get(i);
             str = str + "\n" + currentcenter;
         }
 
@@ -37,25 +38,33 @@ public class CenterController {
     }
 
     @GetMapping(value="/showcenter")
-    public Iterable<Center> getAllUser(){
-        Iterable<Center> adminCollections = centerService.findAll();
+    public Iterable<CenterDto> getAllUser(){
+        Iterable<CenterDto> adminCollections = centerService.findAll().stream().map(this::mapEntity).toList();
         return adminCollections;
     }
 
     @GetMapping("/showcenter/{id}")
-    public Optional<Center> getOneacteur(@PathVariable int id){
-            Optional<Center> center = centerService.findById(id);
+    public Optional<CenterDto> getOneacteur(@PathVariable int id){
+            Optional<CenterDto> center = centerService.findById(id).map(this::mapEntity);
             return center;
     }
 
     @PostMapping(path = "/addcenter")
-    public Center save(@RequestBody Center newuser) {
-        return centerService.save(newuser);
+    public CenterDto save(@RequestBody CenterDto newuser) {
+        return mapEntity(centerService.save(mapDto(newuser)));
     }
 
     @DeleteMapping("/deletecenter/{id}")
     public void delete(@PathVariable int id){
         centerService.delete(id);
+    }
+
+    private CenterDto mapEntity(Center save) {
+        return new CenterDto();
+    }
+
+    private Center mapDto(CenterDto newDoctor) {
+        return new Center();
     }
 
 

@@ -14,6 +14,6 @@ export class SuperAdminService {
 
 
   public getSuperAdmins(): Observable<SuperAdmin[]> {
-    return this.http.get<SuperAdmin[]>('http://localhost:9797/api/showsuperadmin');
+    return this.http.get<SuperAdmin[]>('/api/showsuperadmin');
   }
 }

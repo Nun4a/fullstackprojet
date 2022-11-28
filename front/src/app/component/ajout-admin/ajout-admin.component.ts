@@ -32,7 +32,7 @@ export class AjoutAdminComponent implements OnInit {
 
   searchText: string = '';
 
-  public newAdmin: Admin = {id:5,firstName:'',lastName:'',mail:'',phoneNumber:'',center:this.choosencenter}
+  public newAdmin: Admin = {id:-1,firstName:'',lastName:'',mail:'',phoneNumber:'',center:this.choosencenter}
   
 
   constructor(private centerService: CentreService, private httpClient:HttpClient, private adminService:AdminService) { }

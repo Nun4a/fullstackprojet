@@ -5,8 +5,8 @@ import { HomeComponent } from './component/home';
 import { GestionAdminComponent } from './component/gestion-admin/gestion-admin.component';
 import { ConnexionComponent } from './component/connexion/connexion.component';
 import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.component';
-import { AjoutCentreComponent } from './component/ajout-centre/ajout-centre.component';
-import { CentresComponent } from './component/centres';
+import { AjoutCentreComponent } from './component/centres/ajout-centre/ajout-centre.component';
+import { CentresComponent } from './component/centres/centre';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},

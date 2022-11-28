@@ -1,0 +1,49 @@
+<div class="h-full w-full flex bg-slate-600 flex-row">
+    <app-menu class="h-full bg-zinc-700"></app-menu>
+    <mat-card class="flex w-full flex-row justify-evenly">
+        <!-- Sélection centres -->
+        <div class="bg-zinc-500 rounded-md p-2">
+            <input class="flex m-auto form-control w-60" type="text" [(ngModel)]="searchText" name="search"  autocomplete="off" placeholder="Entrez un centre de vaccination">
+            <table  class="table table-striped">
+                <!-- *ngIf="searchText.length>1" -->
+                <tbody class="flex flex-row">
+                <tr *ngFor="let centre of centers | filter:searchText" class="flex flex-col m-2 bg-zinc-400 rounded-md p-1">
+                <td>
+                    <div class="flex justify-evenly">
+                        {{centre.name}}
+                        <mat-icon class="hover:cursor-pointer" aria-hidden="false" aria-label="Example home icon" (click)="onCenterEdit(centre)" fontIcon="border_color"></mat-icon>
+                    </div>
+                </td>
+                <td>
+                    <div class="flex justify-evenly">
+                        {{centre.address.street}}
+                        <mat-icon class="hover:cursor-pointer" aria-hidden="false" (click)="onEquipClick(centre)" aria-label="Example home icon" fontIcon="group"></mat-icon>
+                    </div>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <button *ngIf="!isAddCenterVisible" class="flex m-2 justify-center" mat-raised-button (click)="setAddCenterVisible(true)" color="primary">Ajouter</button>
+
+        <!-- Ajouter centre -->
+
+        <div *ngIf="isAddCenterVisible" class="flex justify-center item-center bg-zinc-500 rounded-md p-2 m-2">
+          <app-ajout-centre></app-ajout-centre>
+        </div>
+
+        <!-- Edit centre -->
+        <div class="flex justify-center item-center bg-zinc-500 rounded-md p-2 m-2"*ngIf="centerEdit">
+            <app-ajout-centre></app-ajout-centre>
+        </div>
+
+        <div *ngIf="equipEdit">
+            <div class="flex flex-col bg-zinc-500 rounded-md p-2 m-2">
+                <app-datagrid [title]="'Administrateur'"></app-datagrid>
+                <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un administrateur</button>
+                <app-datagrid [title]="'Médecins'"></app-datagrid>
+                <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un médecin</button>
+            </div>
+        </div>
+    </mat-card>
+</div>

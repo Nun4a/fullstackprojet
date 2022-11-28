@@ -12,11 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConnexionComponent } from './component/connexion/connexion.component'
 import { SuperAdminService } from 'src/app/service';
 import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.component';
-import { AjoutCentreComponent } from './component/ajout-centre/ajout-centre.component';
+import { AjoutCentreComponent } from './component/centres/ajout-centre/ajout-centre.component';
 import { CentreService } from 'src/app/service';
 import { AddressService } from 'src/app/service';
 import { MaterialModule } from './material.module';
-import { CentresComponent } from './component/centres/centres.component';
+import { CentresComponent } from './component/centres/centre/centres.component';
 import { FormEditComponent } from './component/form-edit/form-edit.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { DatagridComponent } from './component/datagrid/datagrid.component';

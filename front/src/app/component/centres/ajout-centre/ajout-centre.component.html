@@ -1,0 +1,35 @@
+
+<form [formGroup]="form" class="bg-white rounded-md p-2 m-1">
+  <div class="flex flex-col">
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="name" placeholder="Nom" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Capacité</mat-label>
+      <input matInput formControlName="capacity" type="number" placeholder="Capacité" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Plage horaire</mat-label>
+      <input matInput formControlName="capacity" type="number" placeholder="Plage horaire" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Adresse</mat-label>
+      <input matInput formControlName="street" placeholder="Adresse" required>
+    </mat-form-field>
+    <div class="flex flex-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Code postal</mat-label>
+        <input matInput formControlName="zipcode" type="number" placeholder="Code postal" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Ville</mat-label>
+        <input matInput formControlName="city" placeholder="Ville" required>
+      </mat-form-field>
+    </div>
+    <div class="flex justify-evenly">
+      <mat-icon class="hover:cursor-pointer" aria-hidden="false" aria-label="Example home icon" fontIcon="group"></mat-icon>
+      <button mat-raised-button (click)="ajouterCentre(form)" color="primary">Ajouter</button>
+    </div>
+  </div>
+</form>

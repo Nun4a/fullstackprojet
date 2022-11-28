@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AddressService, CentreService } from 'src/app/service';
 import { Address, Center } from 'src/app/Modele';
+import { FormControl, FormGroup } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
 
 @Component({
   selector: 'app-ajout-centre',
@@ -9,12 +11,14 @@ import { Address, Center } from 'src/app/Modele';
 })
 export class AjoutCentreComponent implements OnInit {
 
-  public street:any
-  public zipcode:any
-  public city:any
-  public name:any
-  public capacity:any
-  public timetable:any
+  form!: FormGroup;
+  public street!: string
+  public zipcode!: string
+  public city!: string
+  public name!: string
+  public capacity!: number
+  public timetable!: number
+  post: any = '';
 
 
   public newAddress: Address = {id:0,street:'',zipcode:'',city:''}
@@ -23,25 +27,38 @@ export class AjoutCentreComponent implements OnInit {
   constructor(private centerService: CentreService, private httpClient:HttpClient, private addressService:AddressService) { }
 
   ngOnInit(): void {
+    this.createForm()
   }
 
-  public ajouterCentre() {
-    this.street=(<HTMLInputElement>document.getElementById("street")).value;
-    this.zipcode=(<HTMLInputElement>document.getElementById("zipcode")).value;
-    this.city=(<HTMLInputElement>document.getElementById("city")).value;
+  createForm() {
+    let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    this.form = new FormGroup({
+      street: new FormControl(''),
+      zipcode: new FormControl(''),
+      city: new FormControl(''),
+      name: new FormControl(''),
+      capacity: new FormControl(''),
+      timetable: new FormControl('')
+    });
+  }
+
+
+  public ajouterCentre(post: any) {
+    console.log(post)
+    this.street = post.value.street;
+    this.zipcode = post.value.zipcode;
+    this.city = post.value.city;
     this.addAddress(this.street,this.zipcode,this.city)
-    this.name=(<HTMLInputElement>document.getElementById("name")).value;
-    this.capacity=(<HTMLInputElement>document.getElementById("capacity")).value;
-    this.timetable=(<HTMLInputElement>document.getElementById("timetable")).value;
+    this.name = post.value.name;
+    this.capacity = post.value.capacity;
+    this.timetable = post.value.timetable;
     this.addCentre(this.name,this.capacity,this.timetable, this.newAddress)
   }
-
 
   public addAddress(street: any, zipcode: any, city: any) {
     this.newAddress.street=street
     this.newAddress.zipcode=zipcode
     this.newAddress.city=city
-
     return this.addressService.saveAddressToServer(this.newAddress)
   }
 

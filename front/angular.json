@@ -26,8 +26,7 @@
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
-            "scripts": [],
-            "proxyConfig": "src/proxy.conf.json"
+            "scripts": [] 
           },
           "configurations": {
             "production": {
@@ -64,9 +63,14 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "covid-app",
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
-              "browserTarget": "covid:build:production"
+              "browserTarget": "covid:build:production",
+              "proxyConfig": "src/proxy-prod.conf.json"
             },
             "development": {
               "browserTarget": "covid:build:development"

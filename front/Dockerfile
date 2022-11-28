@@ -3,7 +3,7 @@ COPY . /front
 WORKDIR /front
 RUN ls -al
 RUN npm install
-RUN npm run build --prod
+RUN npm run build --prod --proxy-config=src/proxy-prod.conf.json
 
 FROM nginx:alpine AS final
 COPY --from=build /front/dist/covid /usr/share/nginx/html

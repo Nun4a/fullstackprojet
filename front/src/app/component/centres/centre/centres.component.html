@@ -24,20 +24,21 @@
                 </tbody>
             </table>
         </div>
-        <button *ngIf="!isAddCenterVisible" class="flex m-2 justify-center" mat-raised-button (click)="setAddCenterVisible(true)" color="primary">Ajouter</button>
+        <button *ngIf="!isAddCenterVisible" class="flex m-2 justify-center" mat-raised-button (click)="setAddCenterVisible()" color="primary">Ajouter</button>
 
         <!-- Ajouter centre -->
 
         <div *ngIf="isAddCenterVisible" class="flex justify-center item-center bg-zinc-500 rounded-md p-2 m-2">
-          <app-ajout-centre></app-ajout-centre>
+          <app-ajout-centre [addCenterForm]="true" [centerToModify]="centerChoosen"></app-ajout-centre>
         </div>
 
         <!-- Edit centre -->
-        <div class="flex justify-center item-center bg-zinc-500 rounded-md p-2 m-2"*ngIf="centerEdit">
-            <app-ajout-centre></app-ajout-centre>
+        <div *ngIf="isEditCenterVisible" class="flex justify-center item-center bg-zinc-500 rounded-md p-2 m-2">
+            <app-ajout-centre [modifyCenterForm]="true"></app-ajout-centre>
         </div>
 
-        <div *ngIf="equipEdit">
+        <!-- Edit équipe du centre -->
+        <div *ngIf="isEditEquipeVisible">
             <div class="flex flex-col bg-zinc-500 rounded-md p-2 m-2">
                 <app-datagrid [title]="'Administrateur'"></app-datagrid>
                 <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un administrateur</button>

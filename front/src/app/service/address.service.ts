@@ -25,4 +25,20 @@ export class AddressService {
         }
       );
   }
+
+  public modifyAddressToServer(address: Address) {
+    this.http.post('http://localhost:9797/api/modifyaddress' , { id:address.id,
+      street:address.street,
+      zipcode:address.zipcode,
+      city:address.city,
+    })
+      .subscribe(
+        () => {
+          console.log('Ok');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
 }

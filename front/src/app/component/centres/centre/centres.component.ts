@@ -3,7 +3,6 @@ import { Component, Directive, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Center } from 'src/app/Modele';
 import { CentreService } from 'src/app/service';
-import { centerType } from './centres.types';
 
 @Component({
   selector: 'app-centres',
@@ -18,23 +17,20 @@ export class CentresComponent implements OnInit {
   checkPassword: any;
   checkInUseEmail: any;
   searchText: string = '';
-  isAddCenterVisible: boolean = false;
 
-  centerEdit: boolean = false;
-  equipEdit: boolean = false;
-  chooseAvailable: boolean = true;
+  isAddCenterVisible: boolean = false;
+  isEditCenterVisible: boolean = false;
+  isEditEquipeVisible: boolean = false;
 
   public centers: Center[] = [];
 
-  centerChoosen!: centerType;
+  centerChoosen!: Center;
 
   
   constructor(private centerService: CentreService) { }
 
   ngOnInit(): void {
     this.createForm();
-    this.centerEdit = false;
-    this.equipEdit = false;
     this.getCenter();
   }
 
@@ -49,22 +45,20 @@ export class CentresComponent implements OnInit {
     );
   }
 
-  onCenterEdit(centre: any){
-    this.centerEdit = true;
-    this.equipEdit = false;
+  onCenterEdit(centre: Center){
+    this.isEditCenterVisible = true;
+    this.isAddCenterVisible = false;
+    this.isEditEquipeVisible = false;
+
     this.centerChoosen = centre
-    this.form.setValue({
-      name: this.centerChoosen.name,
-      adress: this.centerChoosen.adress,
-      codepostal: this.centerChoosen.codepostal,
-      city: this.centerChoosen.city
-    })
+    console.log(this.centerChoosen)
   }
 
   onEquipClick(centre?: any){
     if(centre !== undefined) this.centerChoosen = centre; 
-    this.centerEdit = false;
-    this.equipEdit = true;
+    this.isEditCenterVisible = false;
+    this.isEditEquipeVisible = true;
+    this.isAddCenterVisible = false;
   }
 
   createForm() {
@@ -77,8 +71,10 @@ export class CentresComponent implements OnInit {
     });
   }
 
-  setAddCenterVisible(val: boolean){
-    this.isAddCenterVisible = val;
+  setAddCenterVisible(){
+    this.isAddCenterVisible = true;
+    this.isEditCenterVisible = false;
+    this.isEditEquipeVisible = false;
     console.log(this.isAddCenterVisible)
   }
 

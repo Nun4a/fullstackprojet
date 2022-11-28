@@ -28,8 +28,11 @@
       </mat-form-field>
     </div>
     <div class="flex justify-evenly">
-      <mat-icon class="hover:cursor-pointer" aria-hidden="false" aria-label="Example home icon" fontIcon="group"></mat-icon>
-      <button mat-raised-button (click)="ajouterCentre(form)" color="primary">Ajouter</button>
+      <button *ngIf="addCenterForm" mat-raised-button (click)="ajouterCentre(form)" color="primary">Ajouter</button>
+      <div>
+        <button *ngIf="modifyCenterForm" mat-raised-button (click)="modifierCentre(form)" color="primary">Mettre à jour</button>
+      </div>
+
     </div>
   </div>
 </form>

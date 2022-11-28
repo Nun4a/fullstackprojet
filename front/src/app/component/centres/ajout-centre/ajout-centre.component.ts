@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AddressService, CentreService } from 'src/app/service';
 import { Address, Center } from 'src/app/Modele';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -10,6 +10,13 @@ import { registerLocaleData } from '@angular/common';
   templateUrl: './ajout-centre.component.html'
 })
 export class AjoutCentreComponent implements OnInit {
+
+  @Input() 
+  addCenterForm: boolean = false;
+  @Input() 
+  modifyCenterForm: boolean = false;
+  @Input()
+  centerToModify!: Center;
 
   form!: FormGroup;
   public street!: string
@@ -23,15 +30,16 @@ export class AjoutCentreComponent implements OnInit {
 
   public newAddress: Address = {id:0,street:'',zipcode:'',city:''}
   public newCenter:Center = {id:0, name:'',capacity:0,timetable:'',address:this.newAddress}
-
+  
   constructor(private centerService: CentreService, private httpClient:HttpClient, private addressService:AddressService) { }
 
   ngOnInit(): void {
-    this.createForm()
+    console.log(this.centerToModify)
+    if(this.centerToModify) this.createModifyForm()
+    else this.createForm()
   }
 
   createForm() {
-    let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.form = new FormGroup({
       street: new FormControl(''),
       zipcode: new FormControl(''),
@@ -42,9 +50,19 @@ export class AjoutCentreComponent implements OnInit {
     });
   }
 
+  createModifyForm() {
+    this.form.setValue({
+      street: this.centerToModify.address.street,
+      zipcode:  this.centerToModify.address.zipcode,
+      city: this.centerToModify.address.city,
+      name: this.centerToModify.name,
+      capacity: this.centerToModify.capacity,
+      timetable: this.centerToModify.timetable
+    });
+  }
+
 
   public ajouterCentre(post: any) {
-    console.log(post)
     this.street = post.value.street;
     this.zipcode = post.value.zipcode;
     this.city = post.value.city;
@@ -70,5 +88,30 @@ export class AjoutCentreComponent implements OnInit {
     return this.centerService.saveCenterToServer(this.newCenter)
   }
 
+  modifierCentre = (post: any) => {
+    this.street = post.value.street;
+    this.zipcode = post.value.zipcode;
+    this.city = post.value.city;
+    this.modifyAddress(this.street,this.zipcode,this.city)
+    this.name = post.value.name;
+    this.capacity = post.value.capacity;
+    this.timetable = post.value.timetable;
+    this.modifyCentre(this.name,this.capacity,this.timetable, this.newAddress)
+  }
+
+  public modifyAddress(street: any, zipcode: any, city: any) {
+    this.newAddress.street=street
+    this.newAddress.zipcode=zipcode
+    this.newAddress.city=city
+    return this.addressService.modifyAddressToServer(this.newAddress)
+  }
+
+  public modifyCentre(name: any, capacity: any, timetable: any, address: any) {
+    this.newCenter.name=name
+    this.newCenter.capacity=capacity
+    this.newCenter.timetable=timetable
+    this.newCenter.address=address
+    return this.centerService.modifyCenterToServer(this.newCenter)
+  }
 
 }

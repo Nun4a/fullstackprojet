@@ -17,6 +17,7 @@ export class FormEditComponent {
   formType: boolean | undefined;
   @Input()
   public centers: Center[] = [];
+  
   public choosenCenter!: Center;
 
   form!: FormGroup;

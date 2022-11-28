@@ -29,4 +29,21 @@ export class CentreService {
         }
       );
   }
+
+  public modifyCenterToServer(centre: Center) {
+    this.http.post('http://localhost:9797/api/modifycenter' , { id:centre.id,
+      name:centre.name,
+      capacity:centre.capacity,
+      timetable:centre.timetable,
+      address:centre.address,
+    })
+      .subscribe(
+        () => {
+          console.log('Ok');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
 }

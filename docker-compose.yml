@@ -12,7 +12,6 @@ services:
       POSTGRES_DB: covid-db
     ports:
       - 5432:5432
-    network_mode: "host"
 
   covid-api:
     image: covid-api
@@ -20,12 +19,10 @@ services:
     user: 1000:1000
     ports:
       - 9797:9797
-    network_mode: "host"
 
   covid-front:
     image: covid-front
     container_name: covid-front
     ports:
       - 4200:4200
-    network_mode: "host"
 

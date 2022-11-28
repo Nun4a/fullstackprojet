@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { dataSourceType } from './datagrid.types';
@@ -13,12 +13,14 @@ export class DatagridComponent implements OnInit {
   dataSourceArg!: any[];
   @Input()
   title: string | undefined
-  @Input()
-  callbackFunctionDeleteUser: ((id: number) => void) | undefined;
-  @Input()
-  callbackFunctionChangeUser: ((id: number) => void) | undefined;
+  @Output()
+  deleteUser: EventEmitter<any> = new EventEmitter();
+  // callbackFunctionDeleteUser: ((id: number) => void) | undefined;
+  @Output()
+  changeUser: EventEmitter<any> = new EventEmitter();
+  // callbackFunctionChangeUser: ((id: number) => void) | undefined;
 
-  displayedColumns: string[] = ['id', 'name', 'Supp.', 'Add'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', "mail", "phoneNumber", 'Supp.', 'Add'];
 
   dataSource!: MatTableDataSource<dataSourceType>;
 
@@ -28,12 +30,11 @@ export class DatagridComponent implements OnInit {
     this.dataSource = new MatTableDataSource<dataSourceType>(this.dataSourceArg)
   }
 
-  deleteUser = (id: number) => {
-    if(this.callbackFunctionDeleteUser) this.callbackFunctionDeleteUser(id);
+  deleteUserEvent = (id: number): void => {
+    this.deleteUser.emit([id]);
   }
 
-  changeUser = (id: number) => {
-    if(this.callbackFunctionChangeUser) this.callbackFunctionChangeUser(id);
+  changeUserEvent = (id: number) => {
+    this.changeUser.emit([id]);
   }
-
 }

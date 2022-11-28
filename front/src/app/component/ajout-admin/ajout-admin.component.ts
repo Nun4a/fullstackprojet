@@ -62,13 +62,13 @@ export class AjoutAdminComponent implements OnInit {
     this.choosencenter = form;
   }
 
-  public onAdd = (firstName: string, lastName: string, password: string, mail: string, phoneNumber: string, center: Center): void => {
+  public onAdd = (firstName: string, lastName: string, mail: string, phoneNumber: string, center: Center): void => {
     this.newAdmin.firstName=firstName;
     this.newAdmin.lastName=lastName;
     this.newAdmin.mail=mail;
     this.newAdmin.phoneNumber=phoneNumber;
     this.newAdmin.center=center;
-    console.log(this.newAdmin)
+
     return this.adminService.saveAdminToServer(this.newAdmin)
   }
 }

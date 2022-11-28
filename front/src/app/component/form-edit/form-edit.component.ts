@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Center } from 'src/app/Modele/Center.Model';
+import { CentreService } from 'src/app/service';
 
 @Component({
   selector: 'app-form-edit',
@@ -10,17 +12,20 @@ import { Center } from 'src/app/Modele/Center.Model';
 export class FormEditComponent {
 
   @Input()
-  callbackFunction: ((firstName: string, lastName: string, password: string, mail: string, phoneNumber: string, center: Center) => void) | undefined;
+  callbackFunction: ((firstName: string, lastName: string, mail: string, phoneNumber: string, center: Center) => void) | undefined;
   @Input()
   formType: boolean | undefined;
   @Input()
-  centerList: Center[] | undefined;
+  public centers: Center[] = [];
+  public choosenCenter!: Center;
 
   form!: FormGroup;
   titleAlert: string = 'This field is required';
   post: any = '';
   checkPassword: any;
   checkInUseEmail: any;
+
+  private centerService!: CentreService;
   
   constructor() { 
     
@@ -35,12 +40,11 @@ export class FormEditComponent {
     if(this.formType === true){
       let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       this.form = new FormGroup({
-        lname: new FormControl(''),
-        fname: new FormControl(''),
-        password: new FormControl(''),
+        firstName: new FormControl(''),
+        lastName: new FormControl(''),
         mail: new FormControl(''),
-        role: new FormControl(''),
-        centre: new FormControl(this.centerList)
+        phoneNumber: new FormControl(''),
+        center: new FormControl(this.centers)
       });
     }
     else{
@@ -51,7 +55,18 @@ export class FormEditComponent {
         city: new FormControl('')
       });
     }
-    
+  }
+
+  public getCenter(): void{
+    this.centerService.getCenters().subscribe(
+      (response: Center[]) => {
+        this.centers = response;
+        console.log(this.centers);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   onSubmit(post: any) {
@@ -61,6 +76,6 @@ export class FormEditComponent {
       console.log("callbackFunction du form undefined");
       return
     }
-    this.callbackFunction(postData.fname, postData.lname, postData.password, postData.mail, postData.role, postData.center);
+    this.callbackFunction(postData.firstName, postData.lastName, postData.mail, postData.phoneNumber, this.choosenCenter);
   }
 }

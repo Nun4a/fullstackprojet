@@ -4,11 +4,11 @@
       <div class="flex flex-row">
         <mat-form-field appearance="outline">
           <mat-label>Prénom</mat-label>
-          <input matInput formControlName="fname" placeholder="Prénom">
+          <input matInput formControlName="firstName" placeholder="Prénom">
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Nom</mat-label>
-          <input matInput formControlName="lname" placeholder="Nom">
+          <input matInput formControlName="lastName" placeholder="Nom">
         </mat-form-field>
       </div>
       <mat-form-field appearance="outline">
@@ -16,21 +16,22 @@
         <input matInput formControlName="mail" placeholder="Email">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Mot de passe</mat-label>
-        <input matInput [type]="'password'" formControlName="password" placeholder="Mot de passe">
+        <mat-label>Numéro de téléphone</mat-label>
+        <input matInput formControlName="phoneNumber" placeholder="N° Téléphone">
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <!-- <mat-form-field appearance="fill">
         <mat-label>Rôle</mat-label>
         <mat-select formControlName="role">
           <mat-option value="one">First option</mat-option>
           <mat-option value="two">Second option</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
       <mat-form-field appearance="fill">
         <mat-label>Centre de rattachement</mat-label>
-        <mat-select formControlName="centre">
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
+        <mat-select [(ngModel)]="choosenCenter" [ngModelOptions]="{standalone: true}" name="centre">
+          <mat-option *ngFor="let center of centers" [value]="center">
+            {{center.name}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
       <div class="flex justify-evenly">

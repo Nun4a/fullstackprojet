@@ -7,11 +7,9 @@ import { Admin } from 'src/app/Modele';
   providedIn: 'root'
 })
 export class AdminService {
-
-    
+  status!: string;
+  
   constructor(private http:HttpClient) {}
-
-
 
   public getAdmins(): Observable<Admin[]> {
     return this.http.get<Admin[]>('http://localhost:9797/api/showadmin');
@@ -35,20 +33,7 @@ export class AdminService {
       );
   }
 
-  deleteAdmin(id_user:any){
-    return this.http.delete('http://localhost:9797/api/deleteadmin/'+id_user);
-  }
-
-
-  confDeleteAdmin(id_user:any) {
-    let conf = confirm("Etes vous sûr?");
-    if (conf) {
-      this.deleteAdmin(id_user)
-        .subscribe(data => {
-          this.getAdmins();
-        }, err => {
-          console.log(err);
-        })
-    }
+  deleteAdmin(id_user: number): void {
+    this.http.delete('http://localhost:9797/api/deleteadmin/' + id_user.toString()).subscribe(() => this.status = "Delete");
   }
 }

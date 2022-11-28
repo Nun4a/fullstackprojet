@@ -1,7 +1,7 @@
 FROM node:16.18-alpine AS build
 COPY . /front
 WORKDIR /front
-RUN ls -al
+
 RUN npm install
 RUN npm run build --prod
 

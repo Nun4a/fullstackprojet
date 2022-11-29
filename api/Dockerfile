@@ -1,5 +1,4 @@
 FROM gradle:7.5.1-jdk17-alpine AS build
-COPY . /api/
 WORKDIR /api/
 
 # Only copy dependency-related files

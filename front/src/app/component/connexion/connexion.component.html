@@ -1,0 +1,27 @@
+<div class="h-full w-full flex bg-slate-600 flex-row">
+  <div class="flex w-full items-center justify-center bg-slate-600">
+    <mat-card>
+      <mat-card-title>Login</mat-card-title>
+        <mat-card-content>  
+        <div *ngIf="erreur==1">
+          <strong>login ou mot de passe erronés</strong>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <p>
+            <mat-form-field>
+              <input type="text" id="name" matInput placeholder="Username" formControlName="username">
+            </mat-form-field>
+          </p>  
+          <p>
+            <mat-form-field>
+              <input type="password" id="password" matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+          </p>
+          <div class="button">
+            <button type="submit" mat-button>Connexion</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div> 
+</div>

@@ -5,35 +5,33 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './component/login';
 import { HomeComponent } from './component/home';
-import { GestionAdminComponent } from './gestion-admin/gestion-admin.component';
-import { AdminService } from './admin.service';
+import { GestionAdminComponent } from './component/gestion-admin/gestion-admin.component';
+import { AdminService } from 'src/app/service';
 import { HttpClientModule } from '@angular/common/http';
-import { ConnexionComponent } from './connexion/connexion.component'
-import { SuperAdminService } from './super-admin.service';
-import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
-import { AjoutCentreComponent } from './ajout-centre/ajout-centre.component';
-import { CentreService } from './centre.service';
-import { AddressService } from './address.service';
+import { ConnexionComponent } from './component/connexion/connexion.component'
+import { SuperAdminService } from 'src/app/service';
+import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.component';
+import { AjoutCentreComponent } from './component/ajout-centre/ajout-centre.component';
+import { CentreService } from 'src/app/service';
+import { AddressService } from 'src/app/service';
 import { MaterialModule } from './material.module';
 import { CentresComponent } from './component/centres/centres.component';
-import { AdminComponent } from './component/admin/admin.component';
 import { FormEditComponent } from './component/form-edit/form-edit.component';
 import { MenuComponent } from './component/menu/menu.component';
+import { DatagridComponent } from './component/datagrid/datagrid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HomeComponent,
     MenuComponent,
     FormEditComponent,
-    AdminComponent,
     CentresComponent,
     GestionAdminComponent,
     ConnexionComponent,
     AjoutAdminComponent,
+    DatagridComponent,
     AjoutCentreComponent
   ],
   imports: [

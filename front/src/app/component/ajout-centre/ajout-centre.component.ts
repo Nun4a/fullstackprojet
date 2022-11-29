@@ -1,14 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AddressService } from '../address.service';
-import { CentreService } from '../centre.service';
-import { Address } from '../Modele/Address.Model';
-import { Center } from '../Modele/Center.Model';
+import { AddressService, CentreService } from 'src/app/service';
+import { Address, Center } from 'src/app/Modele';
 
 @Component({
   selector: 'app-ajout-centre',
-  templateUrl: './ajout-centre.component.html',
-  styleUrls: ['./ajout-centre.component.css']
+  templateUrl: './ajout-centre.component.html'
 })
 export class AjoutCentreComponent implements OnInit {
 

@@ -1,0 +1,6 @@
+{
+    "/api": {
+        "target": "http://covid-api:9797",
+        "secure": false
+    }
+}

@@ -1,9 +1,10 @@
 FROM node:16.18-alpine AS build
-COPY . /front
+#Récupérer juste les dépendances
 WORKDIR /front
-RUN ls -al
+COPY package.json /front/
 RUN npm install
-RUN npm run build --prod
+COPY . /front
+RUN npm run build -- --configuration production
 
 FROM nginx:alpine AS final
 COPY --from=build /front/dist/covid /usr/share/nginx/html

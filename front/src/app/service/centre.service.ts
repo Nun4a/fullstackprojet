@@ -11,10 +11,10 @@ export class CentreService {
   constructor(private http:HttpClient) { }
 
   public getCenters(): Observable<Center[]> {
-    return this.http.get<Center[]>('http://localhost:9797/api/showcenter');
+    return this.http.get<Center[]>('/api/showcenter');
   }
   public saveCenterToServer(centre: Center) {
-    this.http.post('http://localhost:9797/api/addcenter' , { id:centre.id,
+    this.http.post('/api/addcenter' , { id:centre.id,
       name:centre.name,
       capacity:centre.capacity,
       timetable:centre.timetable,

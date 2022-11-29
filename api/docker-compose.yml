@@ -12,7 +12,6 @@ services:
       POSTGRES_DB: covid-db
     ports:
       - 5432:5432
-    network_mode: "host"
 
   covid-api:
     image: covid-api
@@ -20,5 +19,9 @@ services:
     user: 1000:1000
     ports:
       - 9797:9797
-    network_mode: "host"
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

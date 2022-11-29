@@ -1,5 +1,4 @@
 FROM gradle:7.5.1-jdk17-alpine AS build
-COPY . /api/
 WORKDIR /api/
 
 # Only copy dependency-related files
@@ -21,4 +20,5 @@ WORKDIR /api
 EXPOSE 9797
 # Making sure the files are there
 RUN ls -la
+ENV spring_profiles_active=prod
 ENTRYPOINT ["java","-jar","covid-api-0.0.1-SNAPSHOT.jar"]

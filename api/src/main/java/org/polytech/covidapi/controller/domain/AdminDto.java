@@ -1,23 +1,19 @@
-package org.polytech.covidapi.model;
+package org.polytech.covidapi.controller.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
-@Entity
-//@Table(name = "admins")
-//@DiscriminatorValue("2")
-public class Admin extends User {
 
-    @OneToOne
-    @JoinColumn(name = "id_center")
-    private Center center;
+
+
+public class AdminDto extends UserDto {
+
+
+    private CenterDto center;
 
     
 
     
 
-    public Admin(int id, String firstName, String lastName, String mail, String phoneNumber, Center center) {
+    public AdminDto(int id, String firstName, String lastName, String mail, String phoneNumber, CenterDto center) {
         super(id, firstName, lastName, mail, phoneNumber);
         this.center = center;
     }
@@ -26,7 +22,7 @@ public class Admin extends User {
 
 
 
-    public Admin() {
+    public AdminDto() {
     }
 
 
@@ -40,13 +36,13 @@ public class Admin extends User {
 
 
 
-    public Center getCenter() {
+    public CenterDto getCenter() {
         return center;
     }
 
 
 
-    public void setCenter(Center center) {
+    public void setCenter(CenterDto center) {
         this.center = center;
     }
 

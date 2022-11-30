@@ -61,7 +61,9 @@ public class UserDto {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {

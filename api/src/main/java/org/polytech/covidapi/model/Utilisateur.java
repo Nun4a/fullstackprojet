@@ -1,46 +1,70 @@
 package org.polytech.covidapi.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
-import javax.persistence.ForeignKey;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 
-
-@MappedSuperclass
-public class User {
+@Entity
+public class Utilisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "lastname")
     private String lastName;
+    private String password;
     private String mail;
-    private String phoneNumber;
-
+    private String role;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_address", 
-        foreignKey = @ForeignKey(name = "user_id_address_fk"), nullable = true)
-    private Address address;
+    @JoinColumn(name = "id_center")
+    private Center center;
 
-    public User (){
+
+
+    public Utilisateur (){
         
     }
 
-    public User (int id, String firstName, String lastName, String mail, String phoneNumber){
+    public Utilisateur(int id, String firstName, String lastName, String password, String mail, String role, Center center) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
         this.mail = mail;
-        this.phoneNumber = phoneNumber;
+        this.center = center;
+        this.role = role;
     }
 
+    
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public Center getCenter() {
+        return center;
+    }
+
+    public void setCenter(Center center) {
+        this.center = center;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public int getId() {
         return this.id;
@@ -70,20 +94,14 @@ public class User {
         this.mail = mail;
     }
 
-    public String getPhoneNumber() {
-        return this.phoneNumber;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    
 
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", mail=" + mail
-                + ", phoneNumber=" + phoneNumber + ", address=" + address + "]";
-    }
+
 
    
 }

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covidapi.controller.domain.PatientDto;
-import org.polytech.covidapi.model.Patient;
-import org.polytech.covidapi.service.PatientService;
+import org.polytech.covidapi.model.Utilisateur;
+import org.polytech.covidapi.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PatientController {
     
     @Autowired
-    private PatientService patientService;
+    private UtilisateurService patientService;
     @GetMapping("/showpatientpretty")
     public String findUsers (Model model) {
 
@@ -59,11 +59,11 @@ public class PatientController {
         patientService.delete(id);
     }
 
-    private PatientDto mapEntity(Patient save) {
-        return new PatientDto(0, null, null, null, null, null, false);
+    private PatientDto mapEntity(Utilisateur save) {
+        return new PatientDto();
     }
 
-    private Patient mapDto(PatientDto newDoctor) {
-        return new Patient();
+    private Utilisateur mapDto(PatientDto newPatient) {
+        return new Utilisateur();
     }
 }

@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.ForeignKey;
 
 @Entity
 //@Table(name = "centers")
@@ -19,7 +18,6 @@ public class Center {
     private String name;
     private int capacity;
     private String timetable;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_address")
     private Address address;

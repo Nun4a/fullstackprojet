@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covidapi.controller.domain.SuperAdminDto;
-import org.polytech.covidapi.model.SuperAdmin;
-import org.polytech.covidapi.service.SuperAdminService;
+import org.polytech.covidapi.model.Utilisateur;
+import org.polytech.covidapi.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SuperAdminController {
     
     @Autowired
-    private SuperAdminService userService;
+    private UtilisateurService userService;
     @GetMapping("/showsuperadminpretty")
     public String findUsers (Model model) {
 
@@ -61,12 +61,29 @@ public class SuperAdminController {
         userService.delete(id);
     }
 
-    private SuperAdminDto mapEntity(SuperAdmin save) {
-        return new SuperAdminDto();
+    private SuperAdminDto mapEntity(Utilisateur save) {
+        SuperAdminDto superAdmin  = new SuperAdminDto();
+        if (save.getRole()=="SuperAdmin"){
+            superAdmin.setId(save.getId());
+            superAdmin.setFirstName(save.getFirstName());
+            superAdmin.setLastName(save.getLastName());
+            superAdmin.setMail(save.getMail());
+            superAdmin.setPhoneNumber(" ");
+        }
+        return superAdmin;
     }
 
-    private SuperAdmin mapDto(SuperAdminDto newSuperAdmin) {
-        return new SuperAdmin();
+    private Utilisateur mapDto(SuperAdminDto newSuperAdmin) {
+        Utilisateur user = new Utilisateur();
+        user.setId(newSuperAdmin.getId());
+        user.setRole("SuperAdmin");
+        user.setCenter(null);
+        user.setFirstName(newSuperAdmin.getFirstName());
+        user.setLastName(newSuperAdmin.getLastName());
+        user.setMail(newSuperAdmin.getMail());
+        user.setPassword(null);
+        return user;
+
     }
 
 

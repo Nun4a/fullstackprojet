@@ -1,12 +1,9 @@
-package org.polytech.covidapi.model;
+package org.polytech.covidapi.controller.domain;
 
-import javax.persistence.Entity;
 
-@Entity
-//@DiscriminatorValue("1")
-public class SuperAdmin extends User{
+public class SuperAdminDto extends UserDto{
 
-    @Override
+
     public String toString() {
         return super.toString();
     }

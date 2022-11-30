@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covidapi.controller.domain.DoctorDto;
-import org.polytech.covidapi.model.Doctor;
-import org.polytech.covidapi.service.DoctorService;
+import org.polytech.covidapi.model.Utilisateur;
+import org.polytech.covidapi.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,14 +23,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class DoctorController {
     
     @Autowired
-    private DoctorService userService;
+    private UtilisateurService userService;
     @GetMapping("/showdoctorpretty")
     public String findUsers (Model model) {
 
-        List<Doctor> doctors = userService.findAll();
+        List<DoctorDto> doctors = userService.findAll().stream().map(this::mapEntity).toList();
         String str = "";
         for (int i=0; i<doctors.size(); i++){
-            Doctor currentuser = doctors.get(i);
+            DoctorDto currentuser = doctors.get(i);
             str = str + "\n" + currentuser;
         }
 
@@ -38,8 +38,8 @@ public class DoctorController {
     }
 
     @GetMapping(value="/showdoctor")
-    public Iterable<Doctor> getAllUser(){
-        Iterable<Doctor> doctorCollections = userService.findAll();
+    public Iterable<DoctorDto> getAllUser(){
+        Iterable<DoctorDto> doctorCollections = userService.findAll().stream().map(this::mapEntity).toList();
         return doctorCollections;
     }
 
@@ -54,17 +54,17 @@ public class DoctorController {
         return mapEntity(userService.save(mapDto(newDoctor)));
     }
 
-    private DoctorDto mapEntity(Doctor save) {
-        return new DoctorDto();
-    }
-
-    private Doctor mapDto(DoctorDto newDoctor) {
-        return new Doctor();
-    }
-
     @DeleteMapping("/doctor/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
+    }
+
+    private DoctorDto mapEntity(Utilisateur save) {
+        return new DoctorDto();
+    }
+
+    private Utilisateur mapDto(DoctorDto newDoctor) {
+        return new Utilisateur();
     }
 
 

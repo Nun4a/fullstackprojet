@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.polytech.covidapi.controller.domain.AdminDto;
 import org.polytech.covidapi.controller.domain.CenterDto;
-import org.polytech.covidapi.model.Admin;
-import org.polytech.covidapi.service.AdminService;
+import org.polytech.covidapi.model.Utilisateur;
+import org.polytech.covidapi.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
     
     @Autowired
-    private AdminService userService;
+    private UtilisateurService userService;
     @GetMapping("/showadminpretty")
     public String findUsers (Model model) {
 
@@ -71,12 +71,12 @@ public class AdminController {
         userService.delete(id);
     }
 
-    private AdminDto mapEntity(Admin save) {
+    private AdminDto mapEntity(Utilisateur save) {
         return new AdminDto();
     }
 
-    private Admin mapDto(AdminDto newDoctor) {
-        return new Admin();
+    private Utilisateur mapDto(AdminDto newDoctor) {
+        return new Utilisateur();
     }
 
 

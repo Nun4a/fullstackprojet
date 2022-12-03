@@ -3,7 +3,7 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.polytech.covidapi.controller.domain.SuperAdminDto;
+
 import org.polytech.covidapi.model.Utilisateur;
 import org.polytech.covidapi.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +29,10 @@ public class SuperAdminController {
     @GetMapping("/showsuperadminpretty")
     public String findUsers (Model model) {
 
-        List<SuperAdminDto> users = userService.findAll().stream().map(this::mapEntity).toList();
+        List<Utilisateur> users = userService.findsuperadmin();
         String str = "";
         for (int i=0; i<users.size(); i++){
-            SuperAdminDto currentuser = users.get(i);
+            Utilisateur currentuser = users.get(i);
             str = str + "\n" + currentuser;
         }
 
@@ -40,50 +40,34 @@ public class SuperAdminController {
     }
 
     @GetMapping(value="/showsuperadmin")
-    public ResponseEntity<List<SuperAdminDto>> getAllUser(){
-        List<SuperAdminDto> admins = userService.findAll().stream().map(this::mapEntity).toList();
+    public ResponseEntity<List<Utilisateur>> getAllUser(){
+        List<Utilisateur> admins = userService.findsuperadmin();
         return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 
+
+
+    
+
     @GetMapping("/showsuperadmin/{id}")
-    public Optional<SuperAdminDto> getOneacteur(@PathVariable int id){
-            Optional<SuperAdminDto> user = userService.findById(id).map(this::mapEntity);
+    public Optional<Utilisateur> getOneadmin(@PathVariable int id){
+            Optional<Utilisateur> user = userService.findById(id);
             return user;
     }
 
+    /*@GetMapping("/showcenteradmin/{id}")
+    public Utilisateur getOnecenteradmin(@PathVariable int id){
+            return  userService.findById(id).getCenter();
+    }*/
+
     @PostMapping(path = "/addsuperadmin")
-    public SuperAdminDto save(@RequestBody SuperAdminDto newuser) {
-        return mapEntity(userService.save(mapDto(newuser)));
+    public Utilisateur save(@RequestBody Utilisateur newuser) {
+        return userService.save(newuser);
     }
 
     @DeleteMapping("/deletesuperadmin/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
-    }
-
-    private SuperAdminDto mapEntity(Utilisateur save) {
-        SuperAdminDto superAdmin  = new SuperAdminDto();
-        if (save.getRole()=="SuperAdmin"){
-            superAdmin.setId(save.getId());
-            superAdmin.setFirstName(save.getFirstName());
-            superAdmin.setLastName(save.getLastName());
-            superAdmin.setMail(save.getMail());
-            superAdmin.setPhoneNumber(" ");
-        }
-        return superAdmin;
-    }
-
-    private Utilisateur mapDto(SuperAdminDto newSuperAdmin) {
-        Utilisateur user = new Utilisateur();
-        user.setId(newSuperAdmin.getId());
-        user.setRole("SuperAdmin");
-        user.setCenter(null);
-        user.setFirstName(newSuperAdmin.getFirstName());
-        user.setLastName(newSuperAdmin.getLastName());
-        user.setMail(newSuperAdmin.getMail());
-        user.setPassword(null);
-        return user;
-
     }
 
 

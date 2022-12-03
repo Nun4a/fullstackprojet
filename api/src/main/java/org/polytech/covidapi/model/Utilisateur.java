@@ -98,6 +98,12 @@ public class Utilisateur {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Utilisateur [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", password="
+                + password + ", mail=" + mail + ", role=" + role + ", center=" + center + "]";
+    }
+
     
 
 

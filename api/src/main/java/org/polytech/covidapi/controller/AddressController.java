@@ -3,7 +3,6 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.polytech.covidapi.controller.domain.AddressDto;
 import org.polytech.covidapi.model.Address;
 import org.polytech.covidapi.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +28,10 @@ public class AddressController {
 
     public String findUsers (Model model) {
 
-        List<AddressDto> address = addressService.findAll().stream().map(this::mapEntity).toList();
+        List<Address> address = addressService.findAll();
         String str = "";
         for (int i=0; i<address.size(); i++){
-            AddressDto currentaddress = address.get(i);
+            Address currentaddress = address.get(i);
             str = str + "\n" + currentaddress;
         }
 
@@ -40,32 +39,24 @@ public class AddressController {
     }
 
     @GetMapping(value="/showaddress")
-    public Iterable<AddressDto> getAllUser(){
-        Iterable<AddressDto> addressCollections = addressService.findAll().stream().map(this::mapEntity).toList();
+    public Iterable<Address> getAllUser(){
+        Iterable<Address> addressCollections = addressService.findAll();
         return addressCollections;
     }
 
     @GetMapping("/showaddress/{id}")
-    public Optional<AddressDto> getOneacteur(@PathVariable int id){
-            return addressService.findById(id).map(this::mapEntity);
+    public Optional<Address> getOneacteur(@PathVariable int id){
+            return addressService.findById(id);
     }
 
     @PostMapping(path = "/address")
-    public AddressDto save(@RequestBody AddressDto newaddress) {
-        return mapEntity(addressService.save(mapDto(newaddress)));
+    public Address save(@RequestBody Address newaddress) {
+        return addressService.save(newaddress);
     }
 
     @DeleteMapping("/address/{id}")
     public void delete(@PathVariable int id){
         addressService.delete(id);
-    }
-
-    private AddressDto mapEntity(Address save) {
-        return new AddressDto();
-    }
-
-    private Address mapDto(AddressDto newDoctor) {
-        return new Address();
     }
 
 

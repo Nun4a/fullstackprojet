@@ -36,4 +36,29 @@ public class UtilisateurService {
     public void delete(int id_utilisateur){
         repository.deleteById(id_utilisateur);
     }
+
+    public List<Utilisateur> findadmin() {
+
+        List<Utilisateur> utilisateurs = repository.findByRole("Admin");
+
+        return utilisateurs;
+    }
+    public List<Utilisateur> findsuperadmin() {
+
+        List<Utilisateur> utilisateurs = repository.findByRole("SuperAdmin");
+
+        return utilisateurs;
+    }
+    public List<Utilisateur> finddoc() {
+
+        List<Utilisateur> utilisateurs = repository.findByRole("Doctor");
+
+        return utilisateurs;
+    }
+    public List<Utilisateur> findpatient() {
+
+        List<Utilisateur> utilisateurs = repository.findByRole("Patient");
+
+        return utilisateurs;
+    }
 }

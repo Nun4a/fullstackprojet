@@ -3,10 +3,11 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.polytech.covidapi.controller.domain.DoctorDto;
 import org.polytech.covidapi.model.Utilisateur;
 import org.polytech.covidapi.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,47 +25,48 @@ public class DoctorController {
     
     @Autowired
     private UtilisateurService userService;
-    @GetMapping("/showdoctorpretty")
+    @GetMapping("/showdocpretty")
     public String findUsers (Model model) {
 
-        List<DoctorDto> doctors = userService.findAll().stream().map(this::mapEntity).toList();
+        List<Utilisateur> users = userService.finddoc();
         String str = "";
-        for (int i=0; i<doctors.size(); i++){
-            DoctorDto currentuser = doctors.get(i);
+        for (int i=0; i<users.size(); i++){
+            Utilisateur currentuser = users.get(i);
             str = str + "\n" + currentuser;
         }
 
         return str;
     }
 
-    @GetMapping(value="/showdoctor")
-    public Iterable<DoctorDto> getAllUser(){
-        Iterable<DoctorDto> doctorCollections = userService.findAll().stream().map(this::mapEntity).toList();
-        return doctorCollections;
+    @GetMapping(value="/showdoc")
+    public ResponseEntity<List<Utilisateur>> getAllUser(){
+        List<Utilisateur> admins = userService.finddoc();
+        return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 
-    @GetMapping("/showdoctor/{id}")
-    public Optional<DoctorDto> getOneacteur(@PathVariable int id){
-            Optional<DoctorDto> user = userService.findById(id).map(this::mapEntity);
+
+
+    
+
+    @GetMapping("/showdoc/{id}")
+    public Optional<Utilisateur> getOneadmin(@PathVariable int id){
+            Optional<Utilisateur> user = userService.findById(id);
             return user;
     }
 
-    @PostMapping(path = "/doctor")
-    public DoctorDto save(@RequestBody DoctorDto newDoctor) {
-        return mapEntity(userService.save(mapDto(newDoctor)));
+    /*@GetMapping("/showcenteradmin/{id}")
+    public Utilisateur getOnecenteradmin(@PathVariable int id){
+            return  userService.findById(id).getCenter();
+    }*/
+
+    @PostMapping(path = "/adddoc")
+    public Utilisateur save(@RequestBody Utilisateur newuser) {
+        return userService.save(newuser);
     }
 
-    @DeleteMapping("/doctor/{id}")
+    @DeleteMapping("/deletedoc/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
-    }
-
-    private DoctorDto mapEntity(Utilisateur save) {
-        return new DoctorDto();
-    }
-
-    private Utilisateur mapDto(DoctorDto newDoctor) {
-        return new Utilisateur();
     }
 
 

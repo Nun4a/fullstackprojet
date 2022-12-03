@@ -3,8 +3,6 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.polytech.covidapi.controller.domain.AdminDto;
-import org.polytech.covidapi.controller.domain.CenterDto;
 import org.polytech.covidapi.model.Utilisateur;
 import org.polytech.covidapi.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200/")
-@RequestMapping("/private")
+@RequestMapping("/api")
 public class AdminController {
     
     @Autowired
@@ -30,10 +28,10 @@ public class AdminController {
     @GetMapping("/showadminpretty")
     public String findUsers (Model model) {
 
-        List<AdminDto> users = userService.findAll().stream().map(this::mapEntity).toList();
+        List<Utilisateur> users = userService.findAll();
         String str = "";
         for (int i=0; i<users.size(); i++){
-            AdminDto currentuser = users.get(i);
+            Utilisateur currentuser = users.get(i);
             str = str + "\n" + currentuser;
         }
 
@@ -41,8 +39,8 @@ public class AdminController {
     }
 
     @GetMapping(value="/showadmin")
-    public ResponseEntity<List<AdminDto>> getAllUser(){
-        List<AdminDto> admins = userService.findAll().stream().map(this::mapEntity).toList();
+    public ResponseEntity<List<Utilisateur>> getAllUser(){
+        List<Utilisateur> admins = userService.findadmin();
         return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 
@@ -51,32 +49,24 @@ public class AdminController {
     
 
     @GetMapping("/showadmin/{id}")
-    public Optional<AdminDto> getOneadmin(@PathVariable int id){
-            Optional<AdminDto> user = userService.findById(id).map(this::mapEntity);
+    public Optional<Utilisateur> getOneadmin(@PathVariable int id){
+            Optional<Utilisateur> user = userService.findById(id);
             return user;
     }
 
-    @GetMapping("/showcenteradmin/{id}")
-    public CenterDto getOnecenteradmin(@PathVariable int id){
-            return  userService.findById(id).map(this::mapEntity).get().getCenter();
-    }
+    /*@GetMapping("/showcenteradmin/{id}")
+    public Utilisateur getOnecenteradmin(@PathVariable int id){
+            return  userService.findById(id).getCenter();
+    }*/
 
     @PostMapping(path = "/addadmin")
-    public AdminDto save(@RequestBody AdminDto newuser) {
-        return mapEntity(userService.save(mapDto(newuser)));
+    public Utilisateur save(@RequestBody Utilisateur newuser) {
+        return userService.save(newuser);
     }
 
     @DeleteMapping("/deleteadmin/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
-    }
-
-    private AdminDto mapEntity(Utilisateur save) {
-        return new AdminDto();
-    }
-
-    private Utilisateur mapDto(AdminDto newDoctor) {
-        return new Utilisateur();
     }
 
 

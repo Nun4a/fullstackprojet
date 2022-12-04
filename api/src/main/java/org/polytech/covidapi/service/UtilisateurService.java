@@ -15,8 +15,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 @Service
@@ -38,6 +36,7 @@ public class UtilisateurService implements UserDetailsService{
     }
     
     public Utilisateur save(Utilisateur utilisateur){
+        utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
         return repository.save(utilisateur);
     }
 
@@ -103,16 +102,16 @@ public class UtilisateurService implements UserDetailsService{
     
     
     @Override
-    public UserDetails loadUserByUsername(final String login)
+    public UserDetails loadUserByUsername(final String mail)
             throws UsernameNotFoundException {
-        log.info("recuperation de {}", login);
+        log.info("recuperation de {}", mail);
     
-        Optional<Utilisateur> optionalUtilisateur = repository.findByMail(login);
+        Optional<Utilisateur> optionalUtilisateur = repository.findByMail(mail);
         if (optionalUtilisateur.isPresent()) {
             Utilisateur utilisateur = optionalUtilisateur.get();
             return new User(utilisateur.getMail(), utilisateur.getPassword(), List.of());
         } else {
-            throw new UsernameNotFoundException("L'utilisateur" + login + " n'existe pas");
+            throw new UsernameNotFoundException("L'utilisateur" + mail + " n'existe pas");
         }
 
     }

@@ -14,11 +14,11 @@ export class AdminService {
 
 
   public getAdmins(): Observable<Admin[]> {
-    return this.http.get<Admin[]>('http://localhost:9797/private/showadmin');
+    return this.http.get<Admin[]>('http://localhost:9797/api/showadmin');
   }
 
   public saveAdminToServer(admin: Admin) {
-    this.http.post('http://localhost:9797/private/addadmin' , { id:admin.id,
+    this.http.post('http://localhost:9797/api/addadmin' , { id:admin.id,
       firstName:admin.firstName,
       lastName:admin.lastName,
       mail:admin.mail,
@@ -36,7 +36,7 @@ export class AdminService {
   }
 
   deleteAdmin(id_user:any){
-    return this.http.delete('http://localhost:9797/private/deleteadmin/'+id_user);
+    return this.http.delete('http://localhost:9797/api/deleteadmin/'+id_user);
   }
 
 

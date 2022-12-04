@@ -13,6 +13,6 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Intege
 
     List<Utilisateur> findByRole(String role) ;
 
-    Optional<Utilisateur> findByMail(String login);
+    Optional<Utilisateur> findByMail(String mail);
     
 }

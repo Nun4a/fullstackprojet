@@ -15,7 +15,8 @@ const routes: Routes = [
   {path: 'addadmin', component: AjoutAdminComponent},
   {path: 'addcentre', component: AjoutCentreComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'connexion', component: ConnexionComponent}
+  {path: 'connexion', component: ConnexionComponent},
+  {path: 'login', component:LoginComponent}
 ];
 
 @NgModule({

@@ -10,7 +10,7 @@ INSERT INTO center (name, capacity, timetable, id_address) VALUES ('Saint seb', 
 INSERT INTO center (name, capacity, timetable, id_address) VALUES ('Stan', '40', 'timetable', '2');
 
 
-INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('toto', 'taoa','tot.tat@gmail.com', '$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'SuperAdmin','2');
+INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('toto', 'taoa','1234', '$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'SuperAdmin','2');
 INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('toto', 'taoa', 'tot.tut@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Admin','2');
 INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('toto', 'taoa', 'tot.tot@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Patient','2');
 INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('toto', 'taoa', 'tot.tit@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Doctor','2');

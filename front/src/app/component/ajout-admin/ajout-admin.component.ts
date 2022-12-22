@@ -1,16 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AdminService } from '../admin.service';
-import { CentreService } from '../centre.service';
-import { Address } from '../Modele/Address.Model';
-import { Admin } from '../Modele/Admin.Model';
-import { Center } from '../Modele/Center.Model';
-
+import { AdminService, CentreService } from 'src/app/service';
+import { Address, Admin, Center } from 'src/app/Modele';
 @Component({
   selector: 'app-ajout-admin',
   templateUrl: './ajout-admin.component.html',
-  styleUrls: ['./ajout-admin.component.css']
 })
 export class AjoutAdminComponent implements OnInit {
 
@@ -29,16 +24,15 @@ export class AjoutAdminComponent implements OnInit {
     capacity: 0,
     address:this.choosenaddress
   }
-  public firstName:any
-  public lastName: any
-  public mail:any
-  public phoneNumber:any
-
-
+  public firstName: string | undefined;
+  public lastName: string | undefined;
+  public mail: string | undefined;
+  public phoneNumber: string | undefined;
+  public role: string | undefined;
 
   searchText: string = '';
 
-  public newAdmin: Admin = {id:5,firstName:'',lastName:'',mail:'',phoneNumber:'',center:this.choosencenter,}
+  public newAdmin: Admin = {id:5,firstName:'',lastName:'',mail:'',phoneNumber:'',center:this.choosencenter}
   
 
   constructor(private centerService: CentreService, private httpClient:HttpClient, private adminService:AdminService) { }
@@ -65,26 +59,16 @@ export class AjoutAdminComponent implements OnInit {
   }
 
   onChooseClick(form: Center) {
-    this.choosencenter = form
+    this.choosencenter = form;
   }
 
-
-  public ajouterAdmin() {
-    this.firstName=(<HTMLInputElement>document.getElementById("firstName")).value;
-    this.lastName=(<HTMLInputElement>document.getElementById("lastName")).value;
-    this.mail=(<HTMLInputElement>document.getElementById("mail")).value;
-    this.phoneNumber=(<HTMLInputElement>document.getElementById("phoneNumber")).value;
-      this.onAjouter(this.firstName,this.lastName,this.mail, this.phoneNumber, this.choosencenter)
-    }
-  public onAjouter(firstName: any, lastName: any, mail: any, phoneNumber: any,center:any) {
-    this.newAdmin.firstName=firstName
-    this.newAdmin.lastName=lastName
-    this.newAdmin.mail=mail
-    this.newAdmin.phoneNumber=phoneNumber
-    this.newAdmin.center=center
+  public onAdd = (firstName: string, lastName: string, password: string, mail: string, phoneNumber: string, center: Center): void => {
+    this.newAdmin.firstName=firstName;
+    this.newAdmin.lastName=lastName;
+    this.newAdmin.mail=mail;
+    this.newAdmin.phoneNumber=phoneNumber;
+    this.newAdmin.center=center;
+    console.log(this.newAdmin)
     return this.adminService.saveAdminToServer(this.newAdmin)
   }
-
-
-
 }

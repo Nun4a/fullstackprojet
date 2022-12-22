@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Address } from './Modele/Address.Model';
+import { Address } from 'src/app/Modele';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AddressService {
 
 
   public saveAddressToServer(address: Address) {
-    this.http.post('http://localhost:9797/api/addaddress' , { id:address.id,
+    this.http.post('/api/addaddress' , { id:address.id,
       street:address.street,
       zipcode:address.zipcode,
       city:address.city,

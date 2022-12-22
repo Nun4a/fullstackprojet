@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { CentreService } from 'src/app/centre.service';
+import { CentreService } from 'src/app/service';
 import { Center } from 'src/app/Modele/Center.Model';
 import { centerType } from './home.types';
 import { reserveDataToSend } from './home.types';

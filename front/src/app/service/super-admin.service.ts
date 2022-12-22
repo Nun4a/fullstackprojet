@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Admin } from './Modele/Admin.Model';
-import { SuperAdmin } from './Modele/SuperAdmin.Model';
+import { SuperAdmin } from 'src/app/Modele';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,6 @@ export class SuperAdminService {
 
 
   public getSuperAdmins(): Observable<SuperAdmin[]> {
-    return this.http.get<SuperAdmin[]>('http://localhost:9797/api/showsuperadmin');
+    return this.http.get<SuperAdmin[]>('/api/showsuperadmin');
   }
 }

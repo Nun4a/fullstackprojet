@@ -1,10 +1,13 @@
 package org.polytech.covidapi.controller;
 
+import java.time.Duration;
 import java.util.Optional;
 
 import org.polytech.covidapi.model.Appointment;
 import org.polytech.covidapi.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,32 +17,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.bucket4j.Bucket;
-
+import org.springframework.web.server.ResponseStatusException;
 
 
 @RestController
 @RequestMapping("/api")
 public class AppointmentController {
     
-    private AppointmentService appointmentService;
-    private final Bucket bucket;
-
     @Autowired
+    private AppointmentService appointmentService;
+
+    private Bucket bucket;
+
     public AppointmentController(AppointmentService appointmentService, Bucket bucket) {
         this.appointmentService = appointmentService;
         this.bucket = bucket;
     }
 
-    //rajoute 10 tokens toutes les minutes
-    //Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
-    //capacité max de 10 token
-    //Bandwidth limit = Bandwidth.classic(10, refill);
-    //Bucket bucket = Bucket.builder().addLimit(limit).build();
-
     @GetMapping(value="/appointments")
     public Iterable<Appointment> getAllAppointment(){
-        Iterable<Appointment> appointmentCollections = appointmentService.findAll();
-        return appointmentCollections;
+            Iterable<Appointment> appointmentCollections = appointmentService.findAll();
+            return appointmentCollections;
     }
 
     @GetMapping("/appointment/{id}")
@@ -51,8 +49,10 @@ public class AppointmentController {
     public Appointment save(@RequestBody Appointment newappointment) {
         if(bucket.tryConsume(1)) {
             return appointmentService.save(newappointment);
-            }
-            return null;
+        }
+        else {
+            throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Trop de requêtes");
+        }
     }
 
     @DeleteMapping("/appointment/{id}")

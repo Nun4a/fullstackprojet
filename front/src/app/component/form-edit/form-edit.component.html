@@ -34,7 +34,7 @@
         </mat-select>
       </mat-form-field>
       <div class="flex justify-evenly">
-        <button mat-raised-button color="primary">Annuler</button>
+        <button (click)="backClicked()" mat-raised-button color="primary">Annuler</button>
         <button mat-raised-button color="primary">Désactiver</button>
         <button (click)="onSubmit(form)" mat-raised-button color="primary">Enregistrer</button>
       </div>

@@ -4,8 +4,7 @@
     <h2 class="flex justify-center"> Gérer les administrateurs </h2>
     <app-datagrid class="flex w-full justify-center" [dataSourceArg]="admins" [callbackFunctionChangeUser]="changeAdmin" [callbackFunctionDeleteUser]="deleteAdmin"></app-datagrid>
     <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un administrateur</button>
-    <button mat-raised-button color="primary" routerLink="/ajout-centre"> Ajouter un centre</button>
-    <ul class="list-group">
+    <!-- <ul class="list-group">
       <li class="list-group-item" *ngFor="let admin of admins">
         <h3> Administrateur {{ admin.id}}</h3>
         <p>Nom d'administrateur: {{ admin.firstName }} <br/> Mot de pass: {{ admin.lastName }}</p>
@@ -13,7 +12,7 @@
         <p> email : {{ admin.mail }}; Telephone : 0{{ admin.phoneNumber}}, Adress : {{ admin.center.name}}</p>
         <button (click)="deleteAdmin(admin.id)">Delete</button>
       </li>
-    </ul>
+    </ul> -->
   </div>
 </div>
 

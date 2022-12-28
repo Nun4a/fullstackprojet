@@ -1,42 +1,6 @@
-<p>ajout-centre works!</p>
-<form>
-    <h1>Centre</h1>
-    <div >
-        <label for="name">nom </label>
-        <div >
-          <input id="name" required>
-        </div>
-    </div>
-    <div >
-        <label for="capacity"> capacité</label>
-        <div >
-          <input id="capacity" required>
-        </div>
-    </div>
-    <div >
-        <label for="timetable">Plage horraire </label>
-        <div >
-          <input id="timetable" required>
-        </div>
-    </div>
-    <h1> Address</h1>
-    <div >
-        <label for="street">Rue </label>
-        <div >
-          <input id="street" required>
-        </div>
-    </div>
-    <div >
-        <label for="zipcode">code postal</label>
-        <div >
-          <input id="zipcode" required>
-        </div>
-    </div>
-    <div >
-        <label for="city">Ville</label>
-        <div >
-          <input id="city" required>
-        </div>
-    </div>
-    <a class="btn btn-success"  style="cursor: pointer;" (click)="ajouterCentre()" routerLink="/gestion-admin">Save</a>
-</form>
+<div class="h-full w-full flex bg-slate-600">
+  <app-menu class="h-full bg-zinc-700"></app-menu>
+  <app-form-edit class="flex w-full justify-center items-center" [formType]="false"></app-form-edit>
+</div>
+    <!-- <a class="btn btn-success"  style="cursor: pointer;" (click)="ajouterCentre()" routerLink="/gestion-admin">Save</a> -->
+

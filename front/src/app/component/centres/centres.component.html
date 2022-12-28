@@ -3,7 +3,10 @@
     <mat-card class="flex w-full flex-row justify-evenly">
         <!-- Sélection centres -->
         <div class="bg-zinc-500 rounded-md p-2">
+          <div class="flex flex-row">
             <input class="flex m-auto form-control w-60" type="text" [(ngModel)]="searchText" name="search"  autocomplete="off" placeholder="Entrez un centre de vaccination">
+            <button mat-raised-button color="primary" routerLink="/addcentre"> Ajouter un centre</button>
+          </div>
             <table  class="table table-striped">
                 <!-- *ngIf="searchText.length>1" -->
                 <tbody>

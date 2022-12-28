@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Center } from 'src/app/Modele/Center.Model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-form-edit',
@@ -22,13 +23,13 @@ export class FormEditComponent {
   checkPassword: any;
   checkInUseEmail: any;
   
-  constructor() { 
+  constructor(private _location: Location) { 
     
   }
 
   ngOnInit() {
     this.createForm();
-
+    console.log(this.formType);
   }
 
   createForm() {
@@ -46,12 +47,15 @@ export class FormEditComponent {
     else{
       this.form = new FormGroup({
         centerName: new FormControl(''),
-        adress: new FormControl(''),
+        address: new FormControl(''),
         postalCode: new FormControl(''),
         city: new FormControl('')
       });
-    }
-    
+    } 
+  }
+
+  backClicked = () => {
+    this._location.back();
   }
 
   onSubmit(post: any) {

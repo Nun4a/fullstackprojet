@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AdminService, CentreService } from 'src/app/service';
-import { Address, Admin, Center } from 'src/app/Modele';
+import { Address, Center, Utilisateur } from 'src/app/Modele';
 @Component({
   selector: 'app-ajout-admin',
   templateUrl: './ajout-admin.component.html',
@@ -27,12 +27,13 @@ export class AjoutAdminComponent implements OnInit {
   public firstName: string | undefined;
   public lastName: string | undefined;
   public mail: string | undefined;
-  public phoneNumber: string | undefined;
-  public role: string | undefined;
+  public password: string | undefined;
+  public role: string = 'Admin';
+  public maxid:number = 0;
 
   searchText: string = '';
 
-  public newAdmin: Admin = {id:5,firstName:'',lastName:'',mail:'',phoneNumber:'',center:this.choosencenter}
+  public newAdmin: Utilisateur = {id:5,firstName:'',lastName:'',mail:'',password:'',role:'Admin',center:this.choosencenter}
   
 
   constructor(private centerService: CentreService, private httpClient:HttpClient, private adminService:AdminService) { }
@@ -44,13 +45,21 @@ export class AjoutAdminComponent implements OnInit {
       }
     );
     this.getCenter();
+
+    this.adminService.maxId().subscribe((response: number) => {
+      this.maxid = response;
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  );
   }
 
   public getCenter(): void{
     this.centerService.getCenters().subscribe(
       (response: Center[]) => {
         this.centers = response;
-        console.log(this.centers);
+        //console.log(this.centers);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -62,13 +71,16 @@ export class AjoutAdminComponent implements OnInit {
     this.choosencenter = form;
   }
 
-  public onAdd = (firstName: string, lastName: string, password: string, mail: string, phoneNumber: string, center: Center): void => {
-    this.newAdmin.firstName=firstName;
-    this.newAdmin.lastName=lastName;
-    this.newAdmin.mail=mail;
-    this.newAdmin.phoneNumber=phoneNumber;
-    this.newAdmin.center=center;
-    console.log(this.newAdmin)
-    return this.adminService.saveAdminToServer(this.newAdmin)
+  public onAdd = (newAdmin:Utilisateur): void => {
+    this.adminService.maxId().subscribe((response: number) => {
+      this.maxid = response;
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  );
+    console.log(this.maxid)
+    newAdmin.id = this.maxid +1;
+    return this.adminService.saveAdminToServer(newAdmin)
   }
 }

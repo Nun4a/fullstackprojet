@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Admin } from 'src/app/Modele';
+import { Utilisateur } from 'src/app/Modele';
 import { AdminService } from 'src/app/service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { dataSourceType } from 'src/app/component/datagrid';
@@ -12,13 +12,14 @@ import { dataSourceType } from 'src/app/component/datagrid';
 })
 export class GestionAdminComponent implements OnInit {
 
-  public admins: Admin[] = [];
+  public admins: Utilisateur[] = [];
   public adminSubscription: Subscription = new Subscription;
-  constructor(private adminService: AdminService) { }
+  public eventemitter: EventEmitter<any> = new EventEmitter();
+  constructor(public adminService: AdminService) { }
 
   ngOnInit() {
     this.adminSubscription = this.adminService.getAdmins().subscribe(
-      (admins: Admin[]) => {
+      (admins: Utilisateur[]) => {
         this.admins = admins;
       }
     );
@@ -26,7 +27,7 @@ export class GestionAdminComponent implements OnInit {
   }
   public getAdmins(): void{
     this.adminService.getAdmins().subscribe(
-      (response: Admin[]) => {
+      (response: Utilisateur[]) => {
         this.admins = response;
         console.log(this.admins);
       },
@@ -41,6 +42,8 @@ export class GestionAdminComponent implements OnInit {
   }
 
   deleteAdmin(id:number){
-    this.adminService.confDeleteAdmin(id);
+      //this.adminService.confDeleteAdmin(id);
+      this.adminService.confDeleteAdmin(id);
   }
+    
 }

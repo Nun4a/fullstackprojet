@@ -1,6 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Address, Utilisateur } from 'src/app/Modele';
 import { Center } from 'src/app/Modele/Center.Model';
+import { AdminService, CentreService } from 'src/app/service';
 
 @Component({
   selector: 'app-form-edit',
@@ -10,7 +13,7 @@ import { Center } from 'src/app/Modele/Center.Model';
 export class FormEditComponent {
 
   @Input()
-  callbackFunction: ((firstName: string, lastName: string, password: string, mail: string, phoneNumber: string, center: Center) => void) | undefined;
+  callbackFunction: ((newAdmin:Utilisateur) => void) | undefined;
   @Input()
   formType: boolean | undefined;
   @Input()
@@ -21,14 +24,45 @@ export class FormEditComponent {
   post: any = '';
   checkPassword: any;
   checkInUseEmail: any;
+
+  public choosenaddress: Address ={
+    id: 0,
+    zipcode: '',
+    street:'',
+    city:'',
+  }
+  public choosencenter: Center =  {
+    name: 'rien',
+    id: 0,
+    timetable: '',
+    capacity: 0,
+    address:this.choosenaddress
+  }
+  public newAdmin: Utilisateur = {id:5,firstName:'',lastName:'',mail:'',password:'',role:'Admin',center:this.choosencenter}
   
-  constructor() { 
+  
+  constructor(private centerService:CentreService, private adminService:AdminService) { 
     
   }
 
-  ngOnInit() {
-    this.createForm();
+  
 
+  ngOnInit() {
+    this.getcenters();
+    this.createForm();
+    
+  }
+
+  public getcenters(): void{
+    this.centerService.getCenters().subscribe(
+      (response: Center[]) => {
+        this.centerList = response;
+        console.log(this.centerList);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   createForm() {
@@ -40,7 +74,7 @@ export class FormEditComponent {
         password: new FormControl(''),
         mail: new FormControl(''),
         role: new FormControl(''),
-        centre: new FormControl(this.centerList)
+        centre: new FormControl('')
       });
     }
     else{
@@ -57,10 +91,17 @@ export class FormEditComponent {
   onSubmit(post: any) {
     var postData;
     postData = post.value;
+    this.newAdmin.firstName=postData.fname;
+    this.newAdmin.lastName=postData.lname;
+    this.newAdmin.password=postData.password;
+    this.newAdmin.mail=postData.mail;
+    this.newAdmin.center=postData.centre;
+    this.newAdmin.role='Admin';
+    console.log('form-edit' + postData.center);
     if(this.callbackFunction ===undefined){
       console.log("callbackFunction du form undefined");
       return
     }
-    this.callbackFunction(postData.fname, postData.lname, postData.password, postData.mail, postData.role, postData.center);
+    this.callbackFunction(this.newAdmin);
   }
 }

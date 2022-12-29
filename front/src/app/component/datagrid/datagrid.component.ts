@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { AdminService } from 'src/app/service';
 import { dataSourceType } from './datagrid.types';
 
 @Component({
@@ -14,7 +15,7 @@ export class DatagridComponent implements OnInit {
   @Input()
   title: string | undefined
   @Input()
-  callbackFunctionDeleteUser: ((id: number) => void) | undefined;
+  public callbackFunctionDeleteUser!: ((id: number) => void);
   @Input()
   callbackFunctionChangeUser: ((id: number) => void) | undefined;
 
@@ -22,14 +23,16 @@ export class DatagridComponent implements OnInit {
 
   dataSource!: MatTableDataSource<dataSourceType>;
 
-  constructor() { }
+  constructor(public adminService: AdminService) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<dataSourceType>(this.dataSourceArg)
   }
 
   deleteUser = (id: number) => {
-    if(this.callbackFunctionDeleteUser) this.callbackFunctionDeleteUser(id);
+    console.log(this.callbackFunctionDeleteUser);
+    console.log(id);
+    this.callbackFunctionDeleteUser(id);
   }
 
   changeUser = (id: number) => {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
-import { Admin } from 'src/app/Modele';
+import { Admin, Utilisateur } from 'src/app/Modele';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +13,21 @@ export class AdminService {
 
 
 
-  public getAdmins(): Observable<Admin[]> {
-    return this.http.get<Admin[]>('/api/showadmin');
+  public getAdmins(): Observable<Utilisateur[]> {
+    return this.http.get<Utilisateur[]>('/api/showadmin');
   }
 
-  public saveAdminToServer(admin: Admin) {
+  public maxId():Observable<number>{
+    return this.http.get<number>('/api/max');
+  }
+
+  public saveAdminToServer(admin: Utilisateur) {
     this.http.post('/api/addadmin' , { id:admin.id,
       firstName:admin.firstName,
       lastName:admin.lastName,
       mail:admin.mail,
-      phoneNumber:admin.phoneNumber,
+      password:admin.password,
+      role:"Admin",
       center:admin.center
     })
       .subscribe(
@@ -35,12 +40,12 @@ export class AdminService {
       );
   }
 
-  deleteAdmin(id_user:any){
+  deleteAdmin(id_user:number){
     return this.http.delete('/api/deleteadmin/'+id_user);
   }
 
 
-  confDeleteAdmin(id_user:any) {
+  confDeleteAdmin(id_user:number) {
     let conf = confirm("Etes vous sûr?");
     if (conf) {
       this.deleteAdmin(id_user)

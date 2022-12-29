@@ -45,7 +45,10 @@ public class AdminController {
     }
 
 
-
+    @GetMapping(value="/max")
+    public int max(){
+        return userService.max();
+    }
     
 
     @GetMapping("/showadmin/{id}")

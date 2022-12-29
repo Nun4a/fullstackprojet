@@ -1,4 +1,3 @@
 export type dataSourceType = {
-    id: number,
-    name: string
+    id: number
 }

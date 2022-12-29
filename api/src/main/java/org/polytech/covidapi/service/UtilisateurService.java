@@ -71,6 +71,12 @@ public class UtilisateurService /*implements UserDetailsService*/{
         return utilisateurs;
     }
 
+    public int max(){
+
+        return repository.findMaxId();
+
+    }
+
 
 
     /*@Autowired

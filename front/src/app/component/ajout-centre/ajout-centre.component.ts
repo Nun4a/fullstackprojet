@@ -24,33 +24,27 @@ export class AjoutCentreComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public ajouterCentre() {
-    this.street=(<HTMLInputElement>document.getElementById("street")).value;
-    this.zipcode=(<HTMLInputElement>document.getElementById("zipcode")).value;
-    this.city=(<HTMLInputElement>document.getElementById("city")).value;
-    this.addAddress(this.street,this.zipcode,this.city)
-    this.name=(<HTMLInputElement>document.getElementById("name")).value;
-    this.capacity=(<HTMLInputElement>document.getElementById("capacity")).value;
-    this.timetable=(<HTMLInputElement>document.getElementById("timetable")).value;
-    this.addCentre(this.name,this.capacity,this.timetable, this.newAddress)
-  }
-
-
-  public addAddress(street: any, zipcode: any, city: any) {
-    this.newAddress.street=street
-    this.newAddress.zipcode=zipcode
-    this.newAddress.city=city
-
+  public addAddress(street: string, zipcode: string, city: string) {
+    this.newAddress = {
+      street: street,
+      zipcode: zipcode,
+      city: city,
+      id: -1,
+    }
+    console.log(this.newAddress)
     return this.addressService.saveAddressToServer(this.newAddress)
   }
 
-  public addCentre(name: any, capacity: any, timetable: any, address: any) {
-    this.newCenter.name=name
-    this.newCenter.capacity=capacity
-    this.newCenter.timetable=timetable
-    this.newCenter.address=address
-    return this.centerService.saveCenterToServer(this.newCenter)
+  public addCentre(name: string, capacity: number) {
+    setTimeout(() => {
+      this.newCenter = {
+        name: name,
+        capacity: capacity,
+        timetable: '',
+        id: -1,
+        address: this.newAddress
+      } 
+      return this.centerService.saveCenterToServer(this.newCenter)
+    }, 500 )
   }
-
-
 }

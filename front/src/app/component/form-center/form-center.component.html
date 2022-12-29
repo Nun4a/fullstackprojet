@@ -3,26 +3,28 @@
       <form [formGroup]="form">
         <div class="flex flex-col">
           <div class="flex flex-row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Nom</mat-label>
-                    <input matInput formControlName="name" placeholder="Nom">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Adresse</mat-label>
-                    <input matInput formControlName="address" placeholder="Adresse">
-                </mat-form-field>
-            </div>
+              <mat-form-field appearance="outline">
+                  <mat-label>Nom</mat-label>
+                  <input matInput formControlName="name" placeholder="Nom">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                  <mat-label>Adresse</mat-label>
+                  <input matInput formControlName="street" placeholder="Adresse">
+              </mat-form-field>
+          </div>
+          <div class="flex flex-row">
             <mat-form-field appearance="outline">
-                <mat-label>Code postaal</mat-label>
-                <input matInput formControlName="codepostal" placeholder="Code Postal">
+                <mat-label>Code postal</mat-label>
+                <input matInput formControlName="zipcode" placeholder="Code Postal">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Ville</mat-label>
                 <input matInput formControlName="city" placeholder="ville">
             </mat-form-field>
+          </div>
           <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="mail" placeholder="Email">
+            <mat-label>Capacité</mat-label>
+            <input matInput formControlName="capacity" placeholder="Capacité">
           </mat-form-field>
           <div class="flex justify-evenly">
             <button (click)="backClicked()" mat-raised-button color="primary">Annuler</button>

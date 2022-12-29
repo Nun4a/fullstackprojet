@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Center } from 'src/app/Modele';
@@ -11,11 +11,13 @@ import { Center } from 'src/app/Modele';
 export class FormCenterComponent implements OnInit {
 
   @Input()
-  callbackCenterFunction: ((name: string, address: string, codepostal: string, city: string) => void) | undefined;
+  callbackCenterFunction: ((name: string, capacity: number) => void) | undefined;
+  @Input()
+  callbackAddressFunction:((street: string, zipcode: string, city: string) => void) | undefined;
   @Input()
   centerChoosen : Center | undefined;
   
-  constructor(private _location: Location) { }
+  constructor(private _location: Location) {this.ngOnInit()}
 
   form!: FormGroup;
 
@@ -23,19 +25,27 @@ export class FormCenterComponent implements OnInit {
     this.createForm();
   }
 
+  ngOnChanges(changes: SimpleChanges): void{
+    this.createForm()
+  }
+
   createForm() {
     if(this.centerChoosen === undefined){
       this.form = new FormGroup({
         name: new FormControl(''),
-        address: new FormControl(''),
-        codepostal: new FormControl(''),
-        city: new FormControl('')
+        capacity : new FormControl(''),
+        city: new FormControl(''),
+        zipcode: new FormControl(''),
+        street: new FormControl('')
       });
     }
     else {
       this.form.setValue({
         name: this.centerChoosen.name,
-        adress: this.centerChoosen.address,
+        capacity : this.centerChoosen.capacity,
+        city: this.centerChoosen.address.city,
+        zipcode: this.centerChoosen.address.zipcode,
+        street: this.centerChoosen.address.street,
       })
     }
       
@@ -48,9 +58,13 @@ export class FormCenterComponent implements OnInit {
   onSubmit(post: any) {
     var postData;
     postData = post.value;
-    if(this.callbackCenterFunction ===undefined){
+    if(this.callbackCenterFunction ===undefined || this.callbackAddressFunction === undefined){
       console.log("callbackFunction du form undefined");
       return
     }
-    else this.callbackCenterFunction(postData.name, postData.address, postData. codepostal, postData.city);  }
+    else {
+      this.callbackCenterFunction(postData.name, postData.capacity);  
+      this.callbackAddressFunction(postData.street, postData.zipcode, postData.city);
+    }
+  }
 }

@@ -9,18 +9,18 @@
           </div>
             <table  class="table table-striped">
                 <!-- *ngIf="searchText.length>1" -->
-                <tbody>
-                <tr *ngFor="let centre of centre | filter:searchText" class="flex flex-col m-2 bg-zinc-400 rounded-md p-1">
+                <tbody class="flex">
+                <tr *ngFor="let centers of centers | filter:searchText" class="flex flex-col m-2 bg-zinc-400 rounded-md p-1">
                 <td>
                     <div>
-                        {{centre.name}}
-                        <mat-icon class="hover:cursor-pointer" aria-hidden="false" aria-label="Example home icon" (click)="onCenterEdit(centre)" fontIcon="border_color"></mat-icon>
+                        {{centers.name}}
+                        <mat-icon class="hover:cursor-pointer" aria-hidden="false" aria-label="Example home icon" (click)="onCenterEdit(centers)" fontIcon="border_color"></mat-icon>
                     </div>
                 </td>
                 <td>
                     <div>
-                        {{centre.adress}}
-                        <mat-icon class="hover:cursor-pointer" aria-hidden="false" (click)="onEquipClick(centre)" aria-label="Example home icon" fontIcon="group"></mat-icon>
+                        {{centers.address.street}}
+                        <mat-icon class="hover:cursor-pointer" aria-hidden="false" (click)="onEquipClick(centers)" aria-label="Example home icon" fontIcon="group"></mat-icon>
                     </div>
                 </td>
                 </tr>
@@ -30,33 +30,7 @@
 
         <!-- Edit centre -->
         <div class="flex justify-center item-center"*ngIf="centerEdit">
-            <form [formGroup]="form">
-                <div class="flex flex-col">
-                  <mat-form-field appearance="outline">
-                    <mat-label>Nom</mat-label>
-                    <input matInput formControlName="name" placeholder="Nom">
-                  </mat-form-field>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Adresse</mat-label>
-                    <input matInput formControlName="adress" placeholder="Adresse">
-                  </mat-form-field>
-                  <div class="flex flex-row">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Code postal</mat-label>
-                      <input matInput formControlName="codepostal" placeholder="Code postal">
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Ville</mat-label>
-                      <input matInput formControlName="city" placeholder="Ville">
-                    </mat-form-field>
-                  </div>
-                  <div class="flex justify-evenly">
-                    <mat-icon class="hover:cursor-pointer" aria-hidden="false" (click)="onEquipClick()" aria-label="Example home icon" fontIcon="group"></mat-icon>
-                    <button (click)="onUpdate(form)" mat-raised-button color="primary">Mettre à jour</button>
-                    <button mat-raised-button color="primary">Annuler</button>
-                  </div>
-                </div>
-              </form>
+            <app-form-center [centerChoosen]="centerChoosen"></app-form-center>
         </div>
 
         <div *ngIf="equipEdit">

@@ -13,7 +13,6 @@ const routes: Routes = [
   {path: 'gestion-admin', component: GestionAdminComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'connexion', component: ConnexionComponent},
-  {path: 'addChangeAdmin', component: AjoutAdminComponent},
   {path: 'addadmin', component: AjoutAdminComponent},
   {path: 'addcentre', component: AjoutCentreComponent},
   {path: 'connexion', component: ConnexionComponent},

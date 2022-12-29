@@ -20,6 +20,7 @@ import { CentresComponent } from './component/centres/centres.component';
 import { FormEditComponent } from './component/form-edit/form-edit.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { DatagridComponent } from './component/datagrid/datagrid.component';
+import { FormCenterComponent } from './component/form-center';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DatagridComponent } from './component/datagrid/datagrid.component';
     ConnexionComponent,
     AjoutAdminComponent,
     DatagridComponent,
-    AjoutCentreComponent
+    AjoutCentreComponent,
+    FormCenterComponent
   ],
   imports: [
     BrowserModule,

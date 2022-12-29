@@ -21,8 +21,7 @@ export class CentresComponent implements OnInit {
   form!: FormGroup;
   titleAlert: string = 'This field is required';
   post: any = '';
-  checkPassword: any;
-  checkInUseEmail: any;
+
   searchText: string = '';
 
   centerEdit: boolean = false;

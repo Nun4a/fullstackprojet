@@ -3,7 +3,7 @@
   <div class="h-full w-full flex flex-col bg-slate-700 justify-evenly">
     <h2 class="flex justify-center"> Gérer les administrateurs </h2>
     <app-datagrid class="flex w-full justify-center" [dataSourceArg]="admins" [callbackFunctionChangeUser]="changeAdmin" [callbackFunctionDeleteUser]="deleteAdmin"></app-datagrid>
-    <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un administrateur</button>
+    <button mat-raised-button color="primary" routerLink="/addadmin"> Ajouter un administrateur</button>
     <!-- <ul class="list-group">
       <li class="list-group-item" *ngFor="let admin of admins">
         <h3> Administrateur {{ admin.id}}</h3>

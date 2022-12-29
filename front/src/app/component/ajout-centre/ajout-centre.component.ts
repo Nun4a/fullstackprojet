@@ -15,15 +15,14 @@ export class AjoutCentreComponent implements OnInit {
   public name:any
   public capacity:any
   public timetable:any
-
+  public centers: Center[] = [];
 
   public newAddress: Address = {id:0,street:'',zipcode:'',city:''}
   public newCenter:Center = {id:0, name:'',capacity:0,timetable:'',address:this.newAddress}
 
   constructor(private centerService: CentreService, private httpClient:HttpClient, private addressService:AddressService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public ajouterCentre() {
     this.street=(<HTMLInputElement>document.getElementById("street")).value;

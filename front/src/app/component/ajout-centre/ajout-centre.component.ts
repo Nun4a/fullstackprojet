@@ -24,24 +24,26 @@ export class AjoutCentreComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public addAddress(street: string, zipcode: string, city: string) {
-    this.newAddress = {
+  addAddress = (street: string, zipcode: string, city: string) => {
+    if(this.addressService === undefined) return
+    else {
+      this.newAddress = {
       street: street,
       zipcode: zipcode,
       city: city,
-      id: -1,
+      id: 5,
     }
-    console.log(this.newAddress)
     return this.addressService.saveAddressToServer(this.newAddress)
+    }
   }
 
-  public addCentre(name: string, capacity: number) {
+  addCentre = (name: string, capacity: number) => {
     setTimeout(() => {
       this.newCenter = {
         name: name,
         capacity: capacity,
         timetable: '',
-        id: -1,
+        id: 5,
         address: this.newAddress
       } 
       return this.centerService.saveCenterToServer(this.newCenter)

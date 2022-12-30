@@ -11,7 +11,7 @@ export class AddressService {
 
 
   public saveAddressToServer(address: Address) {
-    this.http.post('/api/addaddress' , { id:address.id,
+    this.http.post('/api/address' , { id:address.id,
       street:address.street,
       zipcode:address.zipcode,
       city:address.city,

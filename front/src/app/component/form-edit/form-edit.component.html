@@ -30,8 +30,8 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Centre de rattachement</mat-label>
-          <mat-select formControlName="centre">
-            <mat-option *ngFor="let center of centerList" [value]="center.id">
+          <mat-select formControlName="center">
+            <mat-option *ngFor="let center of centerList" [value]="center">
               {{center.name}}
             </mat-option>
           </mat-select>

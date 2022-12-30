@@ -32,7 +32,7 @@ export class AjoutAdminComponent implements OnInit {
 
   searchText: string = '';
 
-  public newAdmin: Admin = {id:-1,firstName:'',lastName:'',mail:'',phoneNumber:'',center:this.choosencenter}
+  public newAdmin: Admin = {id: -1, firstName: '', lastName: '', mail: '', phoneNumber: '', center: this.choosencenter}
   
 
   constructor(private centerService: CentreService, private httpClient:HttpClient, private adminService:AdminService) { }
@@ -50,7 +50,6 @@ export class AjoutAdminComponent implements OnInit {
     this.centerService.getCenters().subscribe(
       (response: Center[]) => {
         this.centers = response;
-        console.log(this.centers);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -63,11 +62,11 @@ export class AjoutAdminComponent implements OnInit {
   }
 
   public onAdd = (firstName: string, lastName: string, password: string, mail: string, phoneNumber: string, center: Center): void => {
-    this.newAdmin.firstName=firstName;
-    this.newAdmin.lastName=lastName;
-    this.newAdmin.mail=mail;
-    this.newAdmin.phoneNumber=phoneNumber;
-    this.newAdmin.center=center;
+    this.newAdmin.firstName = firstName;
+    this.newAdmin.lastName = lastName;
+    this.newAdmin.mail = mail;
+    this.newAdmin.phoneNumber = phoneNumber;
+    this.newAdmin.center = center;
     return this.adminService.saveAdminToServer(this.newAdmin)
   }
 }

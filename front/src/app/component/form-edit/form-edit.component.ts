@@ -28,7 +28,6 @@ export class FormEditComponent {
 
   ngOnInit() {
     this.createForm();
-    console.log(this.centerList)
   }
 
   createForm() {
@@ -38,7 +37,7 @@ export class FormEditComponent {
         password: new FormControl(''),
         mail: new FormControl(''),
         role: new FormControl(''),
-        centre: new FormControl('')
+        center: new FormControl()
       });
   }
 
@@ -53,7 +52,5 @@ export class FormEditComponent {
       console.log("callbackFunction du form undefined");
       return
     }
-    console.log(postData)
-  }
-    // else this.callbackAdminFunction(postData.fname, postData.lname, postData.password, postData.mail, postData.role, postData.center);  }
+    else this.callbackAdminFunction(postData.fname, postData.lname, postData.password, postData.mail, postData.role, postData.center);  }
 }

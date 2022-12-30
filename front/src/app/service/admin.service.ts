@@ -18,12 +18,14 @@ export class AdminService {
   }
 
   public saveAdminToServer(admin: Admin) {
-    this.http.post('/api/addadmin' , { id:admin.id,
+    console.log(admin)
+    this.http.post('/api/addadmin' , { 
+      id:admin.id,
       firstName:admin.firstName,
       lastName:admin.lastName,
       mail:admin.mail,
       phoneNumber:admin.phoneNumber,
-      center:admin.center
+      address:admin.center.address
     })
       .subscribe(
         () => {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { dataSourceType } from './datagrid.types';
@@ -25,6 +25,11 @@ export class DatagridComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource<dataSourceType>(this.dataSourceArg)
+    console.log(this.dataSourceArg)
+  }
+
+  ngOnChanges(changes: SimpleChanges): void{
     this.dataSource = new MatTableDataSource<dataSourceType>(this.dataSourceArg)
   }
 

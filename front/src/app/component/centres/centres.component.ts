@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Directive, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Center } from 'src/app/Modele';
-import { CentreService } from 'src/app/service';
+import { Admin, Center } from 'src/app/Modele';
+import { AdminService, CentreService } from 'src/app/service';
 
 @Component({
   selector: 'app-centres',
@@ -14,7 +14,21 @@ export class CentresComponent implements OnInit {
 
   public centers: Center[] = [];
   public centerSubscription : Subscription = new Subscription
-  constructor(private centerService: CentreService) { 
+  public adminSubscription : Subscription = new Subscription
+  public admins!: Admin[];
+  form!: FormGroup;
+  titleAlert: string = 'This field is required';
+  post: any = '';
+  searchText: string = '';
+
+  centerEdit: boolean = false;
+  equipEdit: boolean = false;
+  chooseAvailable: boolean = true;
+
+  centerChoosen!: Center;
+
+
+  constructor(private centerService: CentreService, private adminService: AdminService) { 
   }
 
   ngOnInit(): void {
@@ -32,7 +46,6 @@ export class CentresComponent implements OnInit {
     this.centerService.getCenters().subscribe(
       (response: Center[]) => {
         this.centers = response;
-        console.log(this.centers);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -40,28 +53,42 @@ export class CentresComponent implements OnInit {
     );
   }
 
-  form!: FormGroup;
-  titleAlert: string = 'This field is required';
-  post: any = '';
-  searchText: string = '';
-
-  centerEdit: boolean = false;
-  equipEdit: boolean = false;
-  chooseAvailable: boolean = true;
-
-  centerChoosen!: Center;
-
   onCenterEdit(centre: any){
     this.centerEdit = true;
     this.equipEdit = false;
     this.centerChoosen = centre
-    console.log(this.centerChoosen)
   }
 
   onEquipClick(centre?: any){
     if(centre !== undefined) this.centerChoosen = centre; 
     this.centerEdit = false;
     this.equipEdit = true;
+
+    this.adminSubscription = this.adminService.getAdmins().subscribe(
+      (admins: Admin[]) => {
+        this.admins = admins;
+      }
+    );
+    this.getAdmins();
+
+    //Faire pareil avec médecin
+    // this.adminSubscription = this.adminService.getAdmins().subscribe(
+    //   (admins: Admin[]) => {
+    //     this.admins = admins;
+    //   }
+    // );
+    // this.getAdmins();
+  }
+
+  public getAdmins(): void{
+    this.adminService.getAdmins().subscribe(
+      (response: Admin[]) => {
+        this.admins = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   onUpdate(post: any) {

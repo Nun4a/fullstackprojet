@@ -24,6 +24,7 @@ export class GestionAdminComponent implements OnInit {
     );
     this.getAdmins();
   }
+  
   public getAdmins(): void{
     this.adminService.getAdmins().subscribe(
       (response: Admin[]) => {
@@ -40,7 +41,7 @@ export class GestionAdminComponent implements OnInit {
     console.log(id)
   }
 
-  deleteAdmin(id:number){
+  deleteAdmin = (id:number) => {
     this.adminService.confDeleteAdmin(id);
   }
 }

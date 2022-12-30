@@ -19,6 +19,8 @@ export class FormEditComponent {
   post: any = '';
   checkPassword: any;
   checkInUseEmail: any;
+
+  roleList=['Superadministrateur','Administrateur','Médecin','Patient']
   
   constructor(private _location: Location) {
     this.ngOnInit();
@@ -26,6 +28,7 @@ export class FormEditComponent {
 
   ngOnInit() {
     this.createForm();
+    console.log(this.centerList)
   }
 
   createForm() {
@@ -35,7 +38,7 @@ export class FormEditComponent {
         password: new FormControl(''),
         mail: new FormControl(''),
         role: new FormControl(''),
-        centre: new FormControl(this.centerList)
+        centre: new FormControl('')
       });
   }
 
@@ -50,5 +53,7 @@ export class FormEditComponent {
       console.log("callbackFunction du form undefined");
       return
     }
-    else this.callbackAdminFunction(postData.fname, postData.lname, postData.password, postData.mail, postData.role, postData.center);  }
+    console.log(postData)
+  }
+    // else this.callbackAdminFunction(postData.fname, postData.lname, postData.password, postData.mail, postData.role, postData.center);  }
 }

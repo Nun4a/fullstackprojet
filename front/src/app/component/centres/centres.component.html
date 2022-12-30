@@ -35,7 +35,7 @@
 
         <div *ngIf="equipEdit">
             <div class="flex flex-col">
-                <app-datagrid [title]="'Administrateur'"></app-datagrid>
+                <app-datagrid [title]="'Administrateur'" [dataSourceArg]="admins"></app-datagrid>
                 <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un administrateur</button>
                 <app-datagrid [title]="'Médecins'"></app-datagrid>
                 <button mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un médecin</button>

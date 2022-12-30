@@ -7,6 +7,7 @@ import { ConnexionComponent } from './component/connexion/connexion.component';
 import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.component';
 import { AjoutCentreComponent } from './component/ajout-centre/ajout-centre.component';
 import { CentresComponent } from './component/centres';
+import { LoginComponent } from './component/login/login.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'addadmin', component: AjoutAdminComponent},
   {path: 'addcentre', component: AjoutCentreComponent},
   {path: 'connexion', component: ConnexionComponent},
-  {path: 'centre', component: CentresComponent}
+  {path: 'centre', component: CentresComponent},
+  {path: 'login', component:LoginComponent}
 ];
 
 @NgModule({

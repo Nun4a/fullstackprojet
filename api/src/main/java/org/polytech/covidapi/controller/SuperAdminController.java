@@ -2,8 +2,10 @@ package org.polytech.covidapi.controller;
 
 import java.util.List;
 import java.util.Optional;
-import org.polytech.covidapi.model.SuperAdmin;
-import org.polytech.covidapi.service.SuperAdminService;
+
+
+import org.polytech.covidapi.model.Utilisateur;
+import org.polytech.covidapi.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class SuperAdminController {
     
     @Autowired
-    private SuperAdminService userService;
+    private UtilisateurService userService;
     @GetMapping("/showsuperadminpretty")
     public String findUsers (Model model) {
 
-        List<SuperAdmin> users = userService.findAll();
+        List<Utilisateur> users = userService.findsuperadmin();
         String str = "";
         for (int i=0; i<users.size(); i++){
-            SuperAdmin currentuser = users.get(i);
+            Utilisateur currentuser = users.get(i);
             str = str + "\n" + currentuser;
         }
 
@@ -38,19 +40,28 @@ public class SuperAdminController {
     }
 
     @GetMapping(value="/showsuperadmin")
-    public ResponseEntity<List<SuperAdmin>> getAllUser(){
-        List<SuperAdmin> admins = userService.findAll();
+    public ResponseEntity<List<Utilisateur>> getAllUser(){
+        List<Utilisateur> admins = userService.findsuperadmin();
         return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 
+
+
+    
+
     @GetMapping("/showsuperadmin/{id}")
-    public Optional<SuperAdmin> getOneacteur(@PathVariable int id){
-            Optional<SuperAdmin> user = userService.findById(id);
+    public Optional<Utilisateur> getOneadmin(@PathVariable int id){
+            Optional<Utilisateur> user = userService.findById(id);
             return user;
     }
 
+    /*@GetMapping("/showcenteradmin/{id}")
+    public Utilisateur getOnecenteradmin(@PathVariable int id){
+            return  userService.findById(id).getCenter();
+    }*/
+
     @PostMapping(path = "/addsuperadmin")
-    public SuperAdmin save(@RequestBody SuperAdmin newuser) {
+    public Utilisateur save(@RequestBody Utilisateur newuser) {
         return userService.save(newuser);
     }
 

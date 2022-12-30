@@ -6,6 +6,8 @@ import { CentreService } from 'src/app/service';
 import { Center } from 'src/app/Modele/Center.Model';
 import { centerType } from './home.types';
 import { reserveDataToSend } from './home.types';
+import { AppointmentService } from 'src/app/service/appointment.service';
+import { Appointment } from 'src/app/Modele';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
@@ -23,10 +25,12 @@ export class HomeComponent {
   mail!: string;
   daterdv!: string;
 
+  newAppointment!: Appointment;
+
   public centers: Center[] = [];
   public adminSubscription: Subscription = new Subscription;
 
-  constructor(private centerService: CentreService) { }
+  constructor(private centerService: CentreService, private appointmentService: AppointmentService) { }
 
   //Charger les données des centres là dedans
 
@@ -38,6 +42,7 @@ export class HomeComponent {
     );
     this.getCenter();
   }
+
   public getCenter(): void{
     this.centerService.getCenters().subscribe(
       (response: Center[]) => {
@@ -74,14 +79,13 @@ export class HomeComponent {
     this.sendData()
   }
 
-  sendData(){
-    const bufferData: reserveDataToSend = {
+  sendData = () => {
+    const bufferData: Appointment = {
+      id: 1,
       centerId: this.centerChoosen.id,
-      fname: this.fname,
-      lname: this.lname,
-      mail: this.mail,
-      daterdv: this.daterdv
+      patientMail: this.mail,
+      day: this.daterdv,
     } 
-    console.log(bufferData)
+    return this.appointmentService.saveAppointmentToServer(bufferData)
   }
 }

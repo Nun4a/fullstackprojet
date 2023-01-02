@@ -10,16 +10,21 @@ import org.polytech.covidapi.repository.UtilisateurRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class UtilisateurService /*implements UserDetailsService*/{
+public class UtilisateurService implements UserDetailsService{
 
     @Autowired
     private UtilisateurRepository repository;
     private static Logger log = LoggerFactory.getLogger(UtilisateurService.class);
-    //private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     
 
 
@@ -32,7 +37,7 @@ public class UtilisateurService /*implements UserDetailsService*/{
     }
     
     public Utilisateur save(Utilisateur utilisateur){
-        //utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+        utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
         return repository.save(utilisateur);
     }
 
@@ -79,7 +84,7 @@ public class UtilisateurService /*implements UserDetailsService*/{
 
 
 
-    /*@Autowired
+    @Autowired
     public UtilisateurService(final UtilisateurRepository utilisateurRepository, PasswordEncoder passwordEncoder) {
         this.repository = utilisateurRepository;
         this.passwordEncoder = passwordEncoder;
@@ -116,5 +121,5 @@ public class UtilisateurService /*implements UserDetailsService*/{
             throw new UsernameNotFoundException("L'utilisateur" + mail + " n'existe pas");
         }
 
-    }*/
+    }
 }

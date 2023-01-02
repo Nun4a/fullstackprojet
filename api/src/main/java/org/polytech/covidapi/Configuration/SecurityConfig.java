@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -23,22 +24,17 @@ public class SecurityConfig{
     
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
-        http
-            .addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class)
-            .csrf().disable()
-            .cors().configurationSource(corsConfigurationSource())
-            .and()
-            .authorizeRequests()
-            .antMatchers("/api")
-            .permitAll()
-            .anyRequest()
-            .authenticated()
-            .and()
-            //.httpBasic()
-            .formLogin();
-			/* .and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);*/
-            //enlever le stateless hors des phases de test
+        http.authorizeHttpRequests((authz) -> authz
+                .antMatchers("/api/**").authenticated()
+                .antMatchers("/public/**").permitAll()
+
+        )
+                .httpBasic(withDefaults())
+                .cors().configurationSource(corsConfigurationSource()).and()
+                .csrf().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                ;// On rend les session stateless
 
         return http.build();
     }

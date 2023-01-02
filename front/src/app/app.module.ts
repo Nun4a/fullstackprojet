@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './component/home';
 import { GestionAdminComponent } from './component/gestion-admin/gestion-admin.component';
 import { AdminService } from 'src/app/service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConnexionComponent } from './component/connexion/connexion.component'
 import { SuperAdminService } from 'src/app/service';
 import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.component';
@@ -20,6 +20,7 @@ import { CentresComponent } from './component/centres/centres.component';
 import { FormEditComponent } from './component/form-edit/form-edit.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { DatagridComponent } from './component/datagrid/datagrid.component';
+import { HeaderInterceptor } from './interceptor/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,12 @@ import { DatagridComponent } from './component/datagrid/datagrid.component';
     Ng2SearchPipeModule,
     HttpClientModule
   ],
-  providers: [AdminService, SuperAdminService, CentreService, AddressService],
+  providers: [AdminService, SuperAdminService, CentreService, AddressService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

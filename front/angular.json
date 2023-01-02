@@ -65,10 +65,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "covid:build:production"
+              "browserTarget": "covid:build:production",
+              "proxyConfig": "src/proxy-prod.conf.json"
             },
             "development": {
-              "browserTarget": "covid:build:development"
+              "browserTarget": "covid:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

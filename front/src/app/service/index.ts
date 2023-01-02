@@ -1,0 +1,6 @@
+export * from './address.service'
+export * from './admin.service'
+export * from './centre.service'
+export * from './login.service'
+export * from './patient.service'
+export * from './super-admin.service'

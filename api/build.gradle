@@ -20,7 +20,8 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation group: 'com.github.vladimir-bukhtoyarov' , name: 'bucket4j-core' , version: '7.6.0'
+	//implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {

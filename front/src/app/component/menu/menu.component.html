@@ -1,7 +1,7 @@
 <mat-toolbar class="h-full bg-zinc-700">
     <!-- Uniquement super admin -->
     <mat-toolbar-row class="hover:bg-gray-700 hover:text-white"> 
-      <a routerLink="/centres" class='w-full hover:bg-gray-700 hover:cursor-pointer'>Centres</a>
+      <a routerLink="/centre" class='w-full hover:bg-gray-700 hover:cursor-pointer'>Centres</a>
     </mat-toolbar-row>
     <!-- uniquement admin rattache au centre -->
     <mat-toolbar-row class="hover:bg-gray-700 hover:text-white">
@@ -13,6 +13,6 @@
     </mat-toolbar-row>
     <!-- uniquement super admin -->
     <mat-toolbar-row class="hover:bg-gray-700 hover:text-white">
-        <a href='' class='w-full hover:bg-gray-700'>Config.</a>
+        <a routerLink="/gestion-admin" class='w-full hover:bg-gray-700'>Config.</a>
       </mat-toolbar-row>
 </mat-toolbar>

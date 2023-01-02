@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.polytech.covidapi.model.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 
@@ -14,5 +15,8 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Intege
     List<Utilisateur> findByRole(String role) ;
 
     Optional<Utilisateur> findByMail(String mail);
+
+    @Query(value = "SELECT MAX(id) FROM utilisateur", nativeQuery = true)
+    int findMaxId();
     
 }

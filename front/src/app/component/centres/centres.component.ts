@@ -14,6 +14,8 @@ export class CentresComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    this.centerEdit = false;
+    this.equipEdit = false;
   }
 
   form!: FormGroup;
@@ -25,6 +27,7 @@ export class CentresComponent implements OnInit {
 
   centerEdit: boolean = false;
   equipEdit: boolean = false;
+  chooseAvailable: boolean = true;
 
   centerChoosen!: centerType;
 

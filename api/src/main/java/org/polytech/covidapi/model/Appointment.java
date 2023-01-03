@@ -14,7 +14,7 @@ public class Appointment {
     private String patientMail;
     private int centerId;
     
-    public Appointment(String jour, String patientMail int centerId){
+    public Appointment(String jour, String patientMail, int centerId){
         this.jour = jour;
         this.patientMail = patientMail;
         this.centerId = centerId;

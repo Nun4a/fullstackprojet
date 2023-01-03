@@ -40,6 +40,7 @@ export class FormEditComponent {
   }
   public newAdmin: Utilisateur = {id:5,firstName:'',lastName:'',mail:'',password:'',role:'Admin',center:this.choosencenter}
   
+  public roleList = ["Super administrateur", "Admin", "Médecin", "Patient"]
   
   constructor(private centerService:CentreService, private adminService:AdminService, private _location: Location) { 
     

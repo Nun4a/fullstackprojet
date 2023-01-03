@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Directive, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Admin, Center } from 'src/app/Modele';
+import { Admin, Center, Utilisateur } from 'src/app/Modele';
 import { AdminService, CentreService } from 'src/app/service';
 
 @Component({
@@ -15,7 +15,7 @@ export class CentresComponent implements OnInit {
   public centers: Center[] = [];
   public centerSubscription : Subscription = new Subscription
   public adminSubscription : Subscription = new Subscription
-  public admins!: Admin[];
+  public admins: Utilisateur[] = [];
   form!: FormGroup;
   titleAlert: string = 'This field is required';
   post: any = '';
@@ -65,8 +65,8 @@ export class CentresComponent implements OnInit {
     this.equipEdit = true;
 
     this.adminSubscription = this.adminService.getAdmins().subscribe(
-      (admins: Admin[]) => {
-        this.admins = admins;
+      (response: Utilisateur[]) => {
+        this.admins = response;
       }
     );
     this.getAdmins();
@@ -82,7 +82,7 @@ export class CentresComponent implements OnInit {
 
   public getAdmins(): void{
     this.adminService.getAdmins().subscribe(
-      (response: Admin[]) => {
+      (response: Utilisateur[]) => {
         this.admins = response;
       },
       (error: HttpErrorResponse) => {

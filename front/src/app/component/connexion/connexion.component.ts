@@ -51,9 +51,9 @@ export class ConnexionComponent implements OnInit {
     else{
       this.erreur=1;
     }
-
-
   }
+
+  
   exist(pseudo : String, password : String){
     let p:boolean = false;
     let n:boolean = false;

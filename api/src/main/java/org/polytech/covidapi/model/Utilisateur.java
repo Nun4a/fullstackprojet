@@ -19,7 +19,7 @@ public class Utilisateur {
     private String password;
     private String mail;
     private String role;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_center")
     private Center center;
 

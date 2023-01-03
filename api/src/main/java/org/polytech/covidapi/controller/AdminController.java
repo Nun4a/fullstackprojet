@@ -30,8 +30,7 @@ public class AdminController {
 
         List<Utilisateur> users = userService.findAll();
         String str = "";
-        for (int i=0; i<users.size(); i++){
-            Utilisateur currentuser = users.get(i);
+        for (Utilisateur currentuser : users) {
             str = str + "\n" + currentuser;
         }
 

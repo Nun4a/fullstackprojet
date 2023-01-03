@@ -10,12 +10,12 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String jour;
+    private String day;
     private String patientMail;
     private int centerId;
     
-    public Appointment(String jour, String patientMail, int centerId){
-        this.jour = jour;
+    public Appointment(String day, String patientMail, int centerId){
+        this.day = day;
         this.patientMail = patientMail;
         this.centerId = centerId;
     }
@@ -24,12 +24,12 @@ public class Appointment {
         
     }
     
-    public String getJour() {
-        return jour;
+    public String getDay() {
+        return day;
     }
 
-    public void setJour(String jour) {
-        this.jour = jour;
+    public void setDay(String day) {
+        this.day = day;
     }
     
     public String getPatientMail(){

@@ -26,9 +26,6 @@ public class UtilisateurService implements UserDetailsService{
     private static Logger log = LoggerFactory.getLogger(UtilisateurService.class);
     private final PasswordEncoder passwordEncoder;
     
-
-
-    
     public List<Utilisateur> findAll() {
 
         var utilisateurs = (List<Utilisateur>) repository.findAll();
@@ -41,12 +38,10 @@ public class UtilisateurService implements UserDetailsService{
         return repository.save(utilisateur);
     }
 
-     
     public Optional<Utilisateur> findById(int id){
         return repository.findById(id);
     }
 
-    
     public void delete(int id_utilisateur){
         repository.deleteById(id_utilisateur);
     }
@@ -82,14 +77,11 @@ public class UtilisateurService implements UserDetailsService{
 
     }
 
-
-
     @Autowired
     public UtilisateurService(final UtilisateurRepository utilisateurRepository, PasswordEncoder passwordEncoder) {
         this.repository = utilisateurRepository;
         this.passwordEncoder = passwordEncoder;
     }
-    
     
     @PostConstruct
     public void createUserDefault(){
@@ -107,7 +99,6 @@ public class UtilisateurService implements UserDetailsService{
         this.repository.save(admin);
     }
     
-    
     @Override
     public UserDetails loadUserByUsername(final String mail)
             throws UsernameNotFoundException {
@@ -120,6 +111,5 @@ public class UtilisateurService implements UserDetailsService{
         } else {
             throw new UsernameNotFoundException("L'utilisateur" + mail + " n'existe pas");
         }
-
     }
 }

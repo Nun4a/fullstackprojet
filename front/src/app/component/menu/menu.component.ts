@@ -15,6 +15,5 @@ export class MenuComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 }

@@ -19,7 +19,7 @@ export class HomeComponent {
   secondForm: boolean = true;
   reserveOk: boolean = true;
 
-  centerChoosen!: centerType;
+  centerChoosen!: Center;
   fname!: string;
   lname!: string;
   mail!: string;
@@ -55,7 +55,7 @@ export class HomeComponent {
     );
   }
 
-  onChooseClick(form: centerType) {
+  onChooseClick(form: Center) {
     this.secondForm = !this.secondForm
     this.centerChoosen = form  
   }
@@ -66,7 +66,14 @@ export class HomeComponent {
       {
         id: 0,
         name: '',
-        adress: ''
+        timetable: '',
+        capacity: 0,
+        address: {
+          id: -1,
+          zipcode: '',
+          street: '',
+          city: '',
+        }
       }
   }
 

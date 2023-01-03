@@ -22,6 +22,7 @@ import { MenuComponent } from './component/menu/menu.component';
 import { DatagridComponent } from './component/datagrid/datagrid.component';
 import { FormCenterComponent } from './component/form-center';
 import { HeaderInterceptor } from './interceptor/header.interceptor';
+import { PlaningComponent } from './component/planing/planing.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HeaderInterceptor } from './interceptor/header.interceptor';
     AjoutAdminComponent,
     DatagridComponent,
     AjoutCentreComponent,
-    FormCenterComponent
+    FormCenterComponent,
+    PlaningComponent
   ],
   imports: [
     BrowserModule,

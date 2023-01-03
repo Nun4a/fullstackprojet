@@ -13,7 +13,7 @@ export class AppointmentService {
       console.log(appointment)
         this.http.post('/api/appointment', {
             id: appointment.id,
-            jour: appointment.day,
+            day: appointment.day,
             patientMail: appointment.patientMail,
             centerId: appointment.centerId
         })
@@ -25,5 +25,9 @@ export class AppointmentService {
             console.log('Erreur ! : ' + error);
           }
         );
+    }
+
+    public getAppointmentByCenterId(centerId: number) {
+      return this.http.get<Appointment[]>('api/appointmentbycenter/'+centerId);
     }
 }

@@ -35,8 +35,8 @@ export class CentresComponent implements OnInit {
     this.centerEdit = false;
     this.equipEdit = false;
     this.centerSubscription = this.centerService.getCenters().subscribe(
-      (admins: Center[]) => {
-        this.centers = admins;
+      (centers: Center[]) => {
+        this.centers = centers;
       }
     );
     this.getCenters();

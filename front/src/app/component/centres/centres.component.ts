@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Admin, Center, Utilisateur } from 'src/app/Modele';
 import { AdminService, CentreService } from 'src/app/service';
+import { DoctorService } from 'src/app/service/doctor.service';
 
 @Component({
   selector: 'app-centres',
@@ -12,10 +13,12 @@ import { AdminService, CentreService } from 'src/app/service';
 
 export class CentresComponent implements OnInit {
 
-  public centers: Center[] = [];
-  public centerSubscription : Subscription = new Subscription
-  public adminSubscription : Subscription = new Subscription
-  public admins: Utilisateur[] = [];
+  centers: Center[] = [];
+  doctors: Utilisateur[] = [];
+  centerSubscription : Subscription = new Subscription
+  adminSubscription : Subscription = new Subscription
+  doctorSubscription: Subscription = new Subscription
+  admins: Utilisateur[] = [];
   form!: FormGroup;
   titleAlert: string = 'This field is required';
   post: any = '';
@@ -28,7 +31,7 @@ export class CentresComponent implements OnInit {
   centerChoosen!: Center;
 
 
-  constructor(private centerService: CentreService, private adminService: AdminService) { 
+  constructor(private centerService: CentreService,private doctorService: DoctorService, private adminService: AdminService) { 
   }
 
   ngOnInit(): void {
@@ -59,34 +62,21 @@ export class CentresComponent implements OnInit {
     this.centerChoosen = centre
   }
 
-  onEquipClick(centre?: any){
+  onEquipClick(centre?: Center){
+    if(centre === undefined) return
     if(centre !== undefined) this.centerChoosen = centre; 
     this.centerEdit = false;
     this.equipEdit = true;
 
-    this.adminSubscription = this.adminService.getAdmins().subscribe(
+    this.adminSubscription = this.adminService.getAdminByCenterId(centre?.id).subscribe(
       (response: Utilisateur[]) => {
         this.admins = response;
       }
     );
-    this.getAdmins();
-
-    //Faire pareil avec médecin
-    // this.adminSubscription = this.adminService.getAdmins().subscribe(
-    //   (admins: Admin[]) => {
-    //     this.admins = admins;
-    //   }
-    // );
-    // this.getAdmins();
-  }
-
-  public getAdmins(): void{
-    this.adminService.getAdmins().subscribe(
+   
+    this.doctorSubscription = this.doctorService.getDoctorByCenterId(centre?.id).subscribe(
       (response: Utilisateur[]) => {
-        this.admins = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.doctors = response;
       }
     );
   }

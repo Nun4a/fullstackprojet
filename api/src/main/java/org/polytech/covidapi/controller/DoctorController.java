@@ -29,13 +29,12 @@ public class DoctorController {
     public String findUsers (Model model) {
 
         List<Utilisateur> users = userService.finddoc();
-        String str = "";
-        for (int i=0; i<users.size(); i++){
-            Utilisateur currentuser = users.get(i);
-            str = str + "\n" + currentuser;
+        StringBuilder str = new StringBuilder();
+        for (Utilisateur currentuser : users) {
+            str.append("\n").append(currentuser);
         }
 
-        return str;
+        return str.toString();
     }
 
     @GetMapping(value="/showdoc")
@@ -50,8 +49,7 @@ public class DoctorController {
 
     @GetMapping("/showdoc/{id}")
     public Optional<Utilisateur> getOneadmin(@PathVariable int id){
-            Optional<Utilisateur> user = userService.findById(id);
-            return user;
+        return userService.findById(id);
     }
 
     /*@GetMapping("/showcenteradmin/{id}")
@@ -69,6 +67,9 @@ public class DoctorController {
         userService.delete(id);
     }
 
-
+    @GetMapping("/showdocbycenter/{id}")
+    public List<Utilisateur> getUserByCenterAndRole(@PathVariable int id){
+        return userService.getUserByCenterAndRole("Doctor",id);
+    }
 
 }

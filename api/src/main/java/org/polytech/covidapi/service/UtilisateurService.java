@@ -28,9 +28,7 @@ public class UtilisateurService implements UserDetailsService{
     
     public List<Utilisateur> findAll() {
 
-        var utilisateurs = (List<Utilisateur>) repository.findAll();
-
-        return utilisateurs;
+        return (List<Utilisateur>) repository.findAll();
     }
     
     public Utilisateur save(Utilisateur utilisateur){
@@ -48,27 +46,19 @@ public class UtilisateurService implements UserDetailsService{
 
     public List<Utilisateur> findadmin() {
 
-        List<Utilisateur> utilisateurs = repository.findByRole("Admin");
-
-        return utilisateurs;
+        return repository.findByRole("Admin");
     }
     public List<Utilisateur> findsuperadmin() {
 
-        List<Utilisateur> utilisateurs = repository.findByRole("SuperAdmin");
-
-        return utilisateurs;
+        return repository.findByRole("SuperAdmin");
     }
     public List<Utilisateur> finddoc() {
 
-        List<Utilisateur> utilisateurs = repository.findByRole("Doctor");
-
-        return utilisateurs;
+        return repository.findByRole("Doctor");
     }
     public List<Utilisateur> findpatient() {
 
-        List<Utilisateur> utilisateurs = repository.findByRole("Patient");
-
-        return utilisateurs;
+        return repository.findByRole("Patient");
     }
 
     public int max(){
@@ -111,5 +101,9 @@ public class UtilisateurService implements UserDetailsService{
         } else {
             throw new UsernameNotFoundException("L'utilisateur" + mail + " n'existe pas");
         }
+    }
+
+    public List<Utilisateur> getUserByCenterAndRole(String role, int centerId){
+        return repository.getUserByCenterAndRole(role, centerId);
     }
 }

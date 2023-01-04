@@ -18,5 +18,8 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Intege
 
     @Query(value = "SELECT MAX(id) FROM utilisateur", nativeQuery = true)
     int findMaxId();
-    
+
+    @Query(value="select * from utilisateur a where a.role= :role and id_center= :centerId", nativeQuery=true)
+    List<Utilisateur> getUserByCenterAndRole(String role, int centerId);
+
 }

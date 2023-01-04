@@ -22,8 +22,8 @@
       <mat-form-field appearance="fill">
         <mat-label>Rôle</mat-label>
         <mat-select formControlName="role">
-          <mat-option *ngFor="let role of roleList" [value]="role">
-            {{role}}
+          <mat-option *ngFor="let role of roleList" [value]="role.roleValue">
+            {{role.role}}
           </mat-option>
         </mat-select>
       </mat-form-field>

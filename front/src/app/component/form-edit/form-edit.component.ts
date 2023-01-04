@@ -28,17 +28,17 @@ export class FormEditComponent {
   public choosenaddress: Address ={
     id: 0,
     zipcode: '',
-    street:'',
-    city:'',
+    street: '',
+    city: '',
   }
   public choosencenter: Center =  {
     name: 'rien',
     id: 0,
     timetable: '',
     capacity: 0,
-    address:this.choosenaddress
+    address: this.choosenaddress
   }
-  public newAdmin: Utilisateur = {id:5,firstName:'',lastName:'',mail:'',password:'',role:'Admin',center:this.choosencenter}
+  public newAdmin: Utilisateur = {id: 5, firstName: '', lastName: '', mail: '', password: '', role: 'Admin', center: this.choosencenter}
   
   public roleList = [
     {
@@ -63,12 +63,9 @@ export class FormEditComponent {
     
   }
 
-  
-
   ngOnInit() {
     this.getcenters();
     this.createForm();
-    
   }
 
   public getcenters(): void{
@@ -81,6 +78,11 @@ export class FormEditComponent {
         alert(error.message);
       }
     );
+  }
+
+  getCenterChoosen = (e: any) =>{
+    if(e.value === undefined) return
+    else this.newAdmin.center = e.value;
   }
 
   createForm() {
@@ -105,9 +107,7 @@ export class FormEditComponent {
     this.newAdmin.lastName=postData.lname;
     this.newAdmin.password=postData.password;
     this.newAdmin.mail=postData.mail;
-    this.newAdmin.center=postData.centre;
-    this.newAdmin.role='Admin';
-    console.log('form-edit' + postData.center);
+    this.newAdmin.role=postData.role;
     if(this.callbackFunction ===undefined){
       console.log("callbackFunction du form undefined");
       return

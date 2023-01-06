@@ -35,10 +35,10 @@
 
         <div *ngIf="equipEdit">
             <div class="flex flex-col">
-                <app-datagrid class="m-2" [title]="'Administrateur'" [dataSourceArg]="admins"></app-datagrid>
-                <button class="m-2" mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un administrateur</button>
+                <app-datagrid class="m-2" [title]="'Administrateur'" [dataSourceArg]="admins" ></app-datagrid>
+                <button class="m-2" mat-raised-button color="primary" routerLink="/addadmin"> Ajouter un administrateur</button>
                 <app-datagrid class="m-2" [title]="'Médecins'" [dataSourceArg]="doctors"></app-datagrid>
-                <button class="m-2" mat-raised-button color="primary" routerLink="/addChangeAdmin"> Ajouter un médecin</button>
+                <button class="m-2" mat-raised-button color="primary" routerLink="/addadmin"> Ajouter un médecin</button>
 
             </div>
            

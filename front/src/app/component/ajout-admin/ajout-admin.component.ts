@@ -47,12 +47,13 @@ export class AjoutAdminComponent implements OnInit {
     this.getCenter();
 
     this.adminService.maxId().subscribe((response: number) => {
-      this.maxid = response;
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-  );
+        this.maxid = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+    console.log(window.history.state);
   }
 
   public getCenter(): void{

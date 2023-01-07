@@ -26,7 +26,7 @@ public class PatientController {
     
     @Autowired
     private UtilisateurService userService;
-    @GetMapping("/showpatientpretty")
+    @GetMapping("/private/showpatientpretty")
     public String findUsers (Model model) {
 
         List<Utilisateur> users = userService.findpatient();
@@ -39,7 +39,7 @@ public class PatientController {
         return str;
     }
 
-    @GetMapping(value="/showpatient")
+    @GetMapping(value="/private/showpatient")
     public ResponseEntity<List<Utilisateur>> getAllUser(){
         List<Utilisateur> admins = userService.findpatient();
         return new ResponseEntity<>(admins, HttpStatus.OK);
@@ -49,7 +49,7 @@ public class PatientController {
 
     
 
-    @GetMapping("/showpatient/{id}")
+    @GetMapping("/private/showpatient/{id}")
     public Optional<Utilisateur> getOneadmin(@PathVariable int id){
             Optional<Utilisateur> user = userService.findById(id);
             return user;
@@ -60,12 +60,12 @@ public class PatientController {
             return  userService.findById(id).getCenter();
     }*/
 
-    @PostMapping(path = "/addpatient")
+    @PostMapping(path = "/public/addpatient")
     public Utilisateur save(@RequestBody Utilisateur newuser) {
         return userService.save(newuser);
     }
 
-    @DeleteMapping("/deletepatient/{id}")
+    @DeleteMapping("/private/deletepatient/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
     }

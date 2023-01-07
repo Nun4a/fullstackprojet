@@ -11,7 +11,7 @@ export class CentreService {
   constructor(private http:HttpClient) { }
 
   public getCenters(): Observable<Center[]> {
-    return this.http.get<Center[]>('/api/showcenter');
+    return this.http.get<Center[]>('/api/public/showcenter');
   }
   public saveCenterToServer(centre: Center) {
     this.http.post('/api/addcenter' , { id:centre.id,

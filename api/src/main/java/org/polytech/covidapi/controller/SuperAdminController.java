@@ -26,7 +26,7 @@ public class SuperAdminController {
     
     @Autowired
     private UtilisateurService userService;
-    @GetMapping("/showsuperadminpretty")
+    @GetMapping("/private/superadmin/showsuperadminpretty")
     public String findUsers (Model model) {
 
         List<Utilisateur> users = userService.findsuperadmin();
@@ -39,7 +39,7 @@ public class SuperAdminController {
         return str;
     }
 
-    @GetMapping(value="/showsuperadmin")
+    @GetMapping(value="/private/superadmin/showsuperadmin")
     public ResponseEntity<List<Utilisateur>> getAllUser(){
         List<Utilisateur> admins = userService.findsuperadmin();
         return new ResponseEntity<>(admins, HttpStatus.OK);
@@ -49,7 +49,7 @@ public class SuperAdminController {
 
     
 
-    @GetMapping("/showsuperadmin/{id}")
+    @GetMapping("/private/superadmin/showsuperadmin/{id}")
     public Optional<Utilisateur> getOneadmin(@PathVariable int id){
             Optional<Utilisateur> user = userService.findById(id);
             return user;
@@ -60,12 +60,12 @@ public class SuperAdminController {
             return  userService.findById(id).getCenter();
     }*/
 
-    @PostMapping(path = "/addsuperadmin")
+    @PostMapping(path = "/private/superadmin/addsuperadmin")
     public Utilisateur save(@RequestBody Utilisateur newuser) {
         return userService.save(newuser);
     }
 
-    @DeleteMapping("/deletesuperadmin/{id}")
+    @DeleteMapping("/private/superadmin/deletesuperadmin/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
     }

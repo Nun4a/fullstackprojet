@@ -20,23 +20,23 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @GetMapping(value="/appointments")
+    @GetMapping(value="/public/appointments")
     public Iterable<Appointment> getAllAppointment(){
         Iterable<Appointment> appointmentCollections = appointmentService.findAll();
         return appointmentCollections;
     }
 
-    @GetMapping("/appointment/{id}")
+    @GetMapping("/public/appointment/{id}")
     public Optional<Appointment> getOneacteur(@PathVariable int id){
             return appointmentService.findById(id);
     }
 
-    @PostMapping(path = "/appointment")
+    @PostMapping(path = "/public/appointment")
     public Appointment save(@RequestBody Appointment newappointment) {
         return appointmentService.save(newappointment);
     }
 
-    @DeleteMapping("/appointment/{id}")
+    @DeleteMapping("/private/appointment/{id}")
     public void delete(@PathVariable int id){
         appointmentService.delete(id);
     }

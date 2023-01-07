@@ -25,7 +25,7 @@ public class AdminController {
     
     @Autowired
     private UtilisateurService userService;
-    @GetMapping("/showadminpretty")
+    @GetMapping("/private/admin/showadminpretty")
     public String findUsers (Model model) {
 
         List<Utilisateur> users = userService.findAll();
@@ -38,20 +38,20 @@ public class AdminController {
         return str;
     }
 
-    @GetMapping(value="/showadmin")
+    @GetMapping(value="/private/admin/showadmin")
     public ResponseEntity<List<Utilisateur>> getAllUser(){
         List<Utilisateur> admins = userService.findadmin();
         return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 
 
-    @GetMapping(value="/max")
+    @GetMapping(value="/public/max")
     public int max(){
         return userService.max();
     }
     
 
-    @GetMapping("/showadmin/{id}")
+    @GetMapping("/private/admin/showadmin/{id}")
     public Optional<Utilisateur> getOneadmin(@PathVariable int id){
             Optional<Utilisateur> user = userService.findById(id);
             return user;
@@ -62,12 +62,12 @@ public class AdminController {
             return  userService.findById(id).getCenter();
     }*/
 
-    @PostMapping(path = "/addadmin")
+    @PostMapping(path = "/private/admin/addadmin")
     public Utilisateur save(@RequestBody Utilisateur newuser) {
         return userService.save(newuser);
     }
 
-    @DeleteMapping("/deleteadmin/{id}")
+    @DeleteMapping("/private/admin/deleteadmin/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
     }

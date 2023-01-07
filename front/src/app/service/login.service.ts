@@ -18,7 +18,7 @@ export class LoginService {
   constructor(private httpClient: HttpClient, private router: Router) {
   }
 
-  connect(username: string, password: string): Observable<any> {
+  /*connect(username: string, password: string): Observable<any> {
     let token = this.createToken(username, password);
     let options = {
       headers: {
@@ -30,7 +30,7 @@ export class LoginService {
       this.username = username;
       console.log("Connected")
     }))
-  }
+  }*/
 
   private createToken(username?: string, password?: string) {
     let token = `Basic ` + btoa(`${username}:${password}`);

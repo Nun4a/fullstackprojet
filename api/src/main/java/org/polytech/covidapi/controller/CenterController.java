@@ -23,7 +23,7 @@ public class CenterController {
     
     @Autowired
     private CenterService centerService;
-    @GetMapping("/showcenterpretty")
+    @GetMapping("/public/showcenterpretty")
     public String findUsers (Model model) {
 
         List<Center> centers = centerService.findAll();
@@ -36,24 +36,24 @@ public class CenterController {
         return str;
     }
 
-    @GetMapping(value="/showcenter")
+    @GetMapping(value="/public/showcenter")
     public Iterable<Center> getAllUser(){
         Iterable<Center> adminCollections = centerService.findAll();
         return adminCollections;
     }
 
-    @GetMapping("/showcenter/{id}")
+    @GetMapping("/public/showcenter/{id}")
     public Optional<Center> getOneacteur(@PathVariable int id){
             Optional<Center> center = centerService.findById(id);
             return center;
     }
 
-    @PostMapping(path = "/addcenter")
+    @PostMapping(path = "/private/addcenter")
     public Center save(@RequestBody Center newuser) {
         return centerService.save(newuser);
     }
 
-    @DeleteMapping("/deletecenter/{id}")
+    @DeleteMapping("/private/deletecenter/{id}")
     public void delete(@PathVariable int id){
         centerService.delete(id);
     }

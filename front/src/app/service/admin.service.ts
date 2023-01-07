@@ -14,15 +14,15 @@ export class AdminService {
 
 
   public getAdmins(): Observable<Utilisateur[]> {
-    return this.http.get<Utilisateur[]>('/api/showadmin');
+    return this.http.get<Utilisateur[]>('/api/private/admin/showadmin');
   }
 
   public maxId():Observable<number>{
-    return this.http.get<number>('/api/max');
+    return this.http.get<number>('/api/public/max');
   }
 
   public saveAdminToServer(admin: Utilisateur) {
-    this.http.post('/api/addadmin' , { id:admin.id,
+    this.http.post('/api/private/admin/addadmin' , { id:admin.id,
       firstName:admin.firstName,
       lastName:admin.lastName,
       mail:admin.mail,
@@ -41,7 +41,7 @@ export class AdminService {
   }
 
   deleteAdmin(id_user:number){
-    return this.http.delete('/api/deleteadmin/'+id_user);
+    return this.http.delete('/api/private/admin/deleteadmin/'+id_user);
   }
 
 

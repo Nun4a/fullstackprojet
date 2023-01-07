@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -25,8 +24,11 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
         http.authorizeHttpRequests((authz) -> authz
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/public/**").permitAll()
+                .antMatchers("/api/private/**").authenticated()
+                .antMatchers("/api/public/**").permitAll()
+                .mvcMatchers("/private/admin").hasRole("Admin")
+                .mvcMatchers("/private/superadmin").hasRole("SuperAdmin")
+                .mvcMatchers("/private/doctor").hasRole("Doctor")
 
         )
                 .httpBasic(withDefaults())

@@ -1,0 +1,1 @@
+export * from './gestion-admin.component';

@@ -1,35 +1,43 @@
+import { HttpClient } from '@angular/common/http';
 import { Input, Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/service/login.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
+  selector: 'login',
+  templateUrl: './login.component.html'
 })
 
 export class LoginComponent implements OnInit {
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
+  model: any = {};
 
-  // constructor(private loginService: LoginService, private router: Router) {
-  // }
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private http: HttpClient
+    ) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit() {
+        sessionStorage.setItem('token', '');
+    }
 
-
-  connect(): void {
-    // this.loginService.connect(this.form.value.username, this.form.value.password).subscribe(value => {
-    //   this.router.navigate(["AdminComponent"])
-    // });
-  }
-
-  @Input()
-  error!: string | null;
-
-  @Output() submitEM = new EventEmitter();
+    login() {
+        this.http.post<Observable<boolean>>("localhost:9797/login", {
+            username: this.model.username,
+            password: this.model.password
+        }).subscribe(isValid => {
+            if (isValid) {
+                sessionStorage.setItem(
+                  'token', 
+                  btoa(this.model.username + ':' + this.model.password)
+                );
+            this.router.navigate(['']);
+            } else {
+                alert("Authentication failed.")
+            }
+        });
+    }
 }

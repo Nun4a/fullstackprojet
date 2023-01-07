@@ -3,9 +3,12 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.polytech.covidapi.model.Patient;
-import org.polytech.covidapi.service.PatientService;
+
+import org.polytech.covidapi.model.Utilisateur;
+import org.polytech.covidapi.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,14 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class PatientController {
     
     @Autowired
-    private PatientService patientService;
+    private UtilisateurService userService;
     @GetMapping("/showpatientpretty")
     public String findUsers (Model model) {
 
-        List<Patient> users = patientService.findAll();
+        List<Utilisateur> users = userService.findpatient();
         String str = "";
         for (int i=0; i<users.size(); i++){
-            Patient currentuser = users.get(i);
+            Utilisateur currentuser = users.get(i);
             str = str + "\n" + currentuser;
         }
 
@@ -37,30 +40,33 @@ public class PatientController {
     }
 
     @GetMapping(value="/showpatient")
-    public Iterable<Patient> getAllUser(){
-        Iterable<Patient> adminCollections = patientService.findAll();
-        return adminCollections;
+    public ResponseEntity<List<Utilisateur>> getAllUser(){
+        List<Utilisateur> admins = userService.findpatient();
+        return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 
-    @GetMapping("/patient/{id}")
-    public Optional<Patient> getOnePatient(@PathVariable int id){
-            Optional<Patient> user = patientService.findById(id);
+
+
+    
+
+    @GetMapping("/showpatient/{id}")
+    public Optional<Utilisateur> getOneadmin(@PathVariable int id){
+            Optional<Utilisateur> user = userService.findById(id);
             return user;
     }
 
-    @PostMapping(path = "/patient")
-    public Patient save(@RequestBody Patient newuser) {
-        return patientService.save(newuser);
-    }
-
-    @DeleteMapping("/patient/{id}")
-    public void delete(@PathVariable int id){
-        patientService.delete(id);
-    }
-
-    /*@GetMapping(path = "/patient/{id}/address")
-    public Address getOnePatientAddress(
-        @PathVariable Integer id) {
-        return  patientService.findById(id).get().getAddress();
+    /*@GetMapping("/showcenteradmin/{id}")
+    public Utilisateur getOnecenteradmin(@PathVariable int id){
+            return  userService.findById(id).getCenter();
     }*/
+
+    @PostMapping(path = "/addpatient")
+    public Utilisateur save(@RequestBody Utilisateur newuser) {
+        return userService.save(newuser);
+    }
+
+    @DeleteMapping("/deletepatient/{id}")
+    public void delete(@PathVariable int id){
+        userService.delete(id);
+    }
 }

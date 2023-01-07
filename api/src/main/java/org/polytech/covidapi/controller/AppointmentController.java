@@ -1,13 +1,11 @@
 package org.polytech.covidapi.controller;
 
-import java.time.Duration;
+import java.util.List;
 import java.util.Optional;
-
 import org.polytech.covidapi.model.Appointment;
 import org.polytech.covidapi.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,15 +32,19 @@ public class AppointmentController {
         this.bucket = bucket;
     }
 
-    @GetMapping(value="/appointments")
-    public Iterable<Appointment> getAllAppointment(){
-            Iterable<Appointment> appointmentCollections = appointmentService.findAll();
-            return appointmentCollections;
-    }
+     @GetMapping(value="/appointments")
+     public Iterable<Appointment> getAllAppointment(){
+         return (Iterable<Appointment>) appointmentService.findAll();
+     }
 
     @GetMapping("/appointment/{id}")
     public Optional<Appointment> getOneacteur(@PathVariable int id){
-            return appointmentService.findById(id);
+        return appointmentService.findById(id);
+    }
+
+    @GetMapping("/appointmentbycenter/{id}")
+    public List<Appointment> getAppoitementsbyCenter(@PathVariable int id){
+         return appointmentService.getAppointementByCenterId(id);
     }
 
     @PostMapping(path = "/appointment")

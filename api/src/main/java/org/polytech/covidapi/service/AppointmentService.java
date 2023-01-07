@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covidapi.model.Appointment;
+import org.polytech.covidapi.model.Center;
 import org.polytech.covidapi.repository.AppointmentRepository;
+import org.polytech.covidapi.repository.CenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,23 +14,25 @@ import org.springframework.stereotype.Service;
 public class AppointmentService {
 
     @Autowired
-    private AppointmentRepository repository;
+    private AppointmentRepository appointmentRepository;
 
-    
     public List<Appointment> findAll() {
-        var appointment = (List<Appointment>) repository.findAll();
-        return appointment;
+        return (List<Appointment>) appointmentRepository.findAll();
     }
     
     public Appointment save(Appointment Appointment){
-        return repository.save(Appointment);
+        return appointmentRepository.save(Appointment);
     }
 
     public Optional<Appointment> findById(int id){
-        return repository.findById(id);
+        return appointmentRepository.findById(id);
     }
 
+    public List<Appointment> getAppointementByCenterId(int id){
+        return appointmentRepository.getAppointementByCenterId(id);
+    }
     public void delete(int id_appointment){
-        repository.deleteById(id_appointment);
+        appointmentRepository.deleteById(id_appointment);
     }
 }
+

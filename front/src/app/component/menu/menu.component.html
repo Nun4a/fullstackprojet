@@ -5,14 +5,14 @@
     </mat-toolbar-row>
     <!-- uniquement admin rattache au centre -->
     <mat-toolbar-row class="hover:bg-gray-700 hover:text-white">
-        <a href='' class='w-full hover:bg-gray-700'>Mon centre</a>
+        <a href='' class='w-full hover:bg-gray-700 hover:cursor-pointer'>Mon centre</a>
     </mat-toolbar-row>
     <!-- Uniquement au admins ou médecin rattaché au centre -->
     <mat-toolbar-row class="hover:bg-gray-700 hover:text-white">
-        <a href='' class='w-full hover:bg-gray-700'>Planning</a>
+        <a routerLink='/planning' class='w-full hover:bg-gray-700 hover:cursor-pointer'>Planning</a>
     </mat-toolbar-row>
     <!-- uniquement super admin -->
     <mat-toolbar-row class="hover:bg-gray-700 hover:text-white">
-        <a routerLink="/gestion-admin" class='w-full hover:bg-gray-700'>Config.</a>
+        <a routerLink="/gestion-admin" class='w-full hover:bg-gray-700 hover:cursor-pointer'>Config.</a>
       </mat-toolbar-row>
 </mat-toolbar>

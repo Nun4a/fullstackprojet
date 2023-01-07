@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.polytech.covidapi.service.AppointmentService;
@@ -20,20 +22,24 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @GetMapping(value="/public/appointments")
-    public Iterable<Appointment> getAllAppointment(){
-        Iterable<Appointment> appointmentCollections = appointmentService.findAll();
-        return appointmentCollections;
-    }
+     @GetMapping(value="/public/appointments")
+     public Iterable<Appointment> getAllAppointment(){
+         return (Iterable<Appointment>) appointmentService.findAll();
+     }
 
     @GetMapping("/public/appointment/{id}")
     public Optional<Appointment> getOneacteur(@PathVariable int id){
-            return appointmentService.findById(id);
+        return appointmentService.findById(id);
     }
 
     @PostMapping(path = "/public/appointment")
     public Appointment save(@RequestBody Appointment newappointment) {
         return appointmentService.save(newappointment);
+    }
+
+    @GetMapping("/public/appointmentbycenter/{id}")
+    public List<Appointment> getAppoitementsbyCenter(@PathVariable int id){
+         return appointmentService.getAppointementByCenterId(id);
     }
 
     @DeleteMapping("/private/appointment/{id}")

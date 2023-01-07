@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Address, Utilisateur } from 'src/app/Modele';
 import { Center } from 'src/app/Modele/Center.Model';
+import { Location } from '@angular/common';
 import { AdminService, CentreService } from 'src/app/service';
 
 @Component({
@@ -20,7 +21,6 @@ export class FormEditComponent {
   centerList: Center[] | undefined;
 
   form!: FormGroup;
-  titleAlert: string = 'This field is required';
   post: any = '';
   checkPassword: any;
   checkInUseEmail: any;
@@ -28,29 +28,44 @@ export class FormEditComponent {
   public choosenaddress: Address ={
     id: 0,
     zipcode: '',
-    street:'',
-    city:'',
+    street: '',
+    city: '',
   }
   public choosencenter: Center =  {
     name: 'rien',
     id: 0,
     timetable: '',
     capacity: 0,
-    address:this.choosenaddress
+    address: this.choosenaddress
   }
-  public newAdmin: Utilisateur = {id:5,firstName:'',lastName:'',mail:'',password:'',role:'Admin',center:this.choosencenter}
+  public newAdmin: Utilisateur = {id: 5, firstName: '', lastName: '', mail: '', password: '', role: 'Admin', center: this.choosencenter}
   
-  
-  constructor(private centerService:CentreService, private adminService:AdminService) { 
+  public roleList = [
+    {
+      role: "Super Administrateur",
+      roleValue: "SuperAdmin"
+    },
+    {
+      role: "Admin",
+      roleValue: "Admin"
+    },
+    {
+      role: "Docteur",
+      roleValue: "Doctor",
+    },
+    {
+      role: "Patient",
+      roleValue: "Patient"
+    }
+  ]
+    
+  constructor(private centerService:CentreService, private adminService:AdminService, private _location: Location) { 
     
   }
-
-  
 
   ngOnInit() {
     this.getcenters();
     this.createForm();
-    
   }
 
   public getcenters(): void{
@@ -65,9 +80,12 @@ export class FormEditComponent {
     );
   }
 
+  getCenterChoosen = (e: any) =>{
+    if(e.value === undefined) return
+    else this.newAdmin.center = e.value;
+  }
+
   createForm() {
-    if(this.formType === true){
-      let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       this.form = new FormGroup({
         lname: new FormControl(''),
         fname: new FormControl(''),
@@ -76,16 +94,10 @@ export class FormEditComponent {
         role: new FormControl(''),
         centre: new FormControl('')
       });
-    }
-    else{
-      this.form = new FormGroup({
-        centerName: new FormControl(''),
-        adress: new FormControl(''),
-        postalCode: new FormControl(''),
-        city: new FormControl('')
-      });
-    }
-    
+  }
+
+  backClicked = () => {
+    this._location.back();
   }
 
   onSubmit(post: any) {
@@ -95,9 +107,7 @@ export class FormEditComponent {
     this.newAdmin.lastName=postData.lname;
     this.newAdmin.password=postData.password;
     this.newAdmin.mail=postData.mail;
-    this.newAdmin.center=postData.centre;
-    this.newAdmin.role='Admin';
-    console.log('form-edit' + postData.center);
+    this.newAdmin.role=postData.role;
     if(this.callbackFunction ===undefined){
       console.log("callbackFunction du form undefined");
       return

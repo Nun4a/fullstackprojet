@@ -20,7 +20,9 @@ import { CentresComponent } from './component/centres/centres.component';
 import { FormEditComponent } from './component/form-edit/form-edit.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { DatagridComponent } from './component/datagrid/datagrid.component';
+import { FormCenterComponent } from './component/form-center';
 import { HeaderInterceptor } from './interceptor/header.interceptor';
+import { PlaningComponent } from './component/planing/planing.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { HeaderInterceptor } from './interceptor/header.interceptor';
     ConnexionComponent,
     AjoutAdminComponent,
     DatagridComponent,
-    AjoutCentreComponent
+    AjoutCentreComponent,
+    FormCenterComponent,
+    PlaningComponent
   ],
   imports: [
     BrowserModule,

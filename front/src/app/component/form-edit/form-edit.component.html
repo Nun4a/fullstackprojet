@@ -22,15 +22,17 @@
       <mat-form-field appearance="fill">
         <mat-label>Rôle</mat-label>
         <mat-select formControlName="role">
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
+          <mat-option *ngFor="let role of roleList" [value]="role.roleValue">
+            {{role.role}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Centre de rattachement</mat-label>
-        <mat-select formControlName="centre">
-          <mat-option *ngFor="let centre of centerList"
-                  [value]="centre">{{centre.name}}</mat-option>
+        <mat-select formControlName="center" (selectionChange)="getCenterChoosen($event)">
+          <mat-option *ngFor="let center of centerList" [value]="center">
+            {{center.name}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
       <div class="flex justify-evenly">

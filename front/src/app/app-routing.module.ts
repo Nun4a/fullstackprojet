@@ -8,18 +8,19 @@ import { AjoutAdminComponent } from './component/ajout-admin/ajout-admin.compone
 import { AjoutCentreComponent } from './component/ajout-centre/ajout-centre.component';
 import { CentresComponent } from './component/centres';
 import { LoginComponent } from './component/login/login.component';
+import { PlaningComponent } from './component/planing/planing.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'gestion-admin', component: GestionAdminComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'connexion', component: ConnexionComponent},
-  {path: 'addChangeAdmin', component: AjoutAdminComponent},
   {path: 'addadmin', component: AjoutAdminComponent},
   {path: 'addcentre', component: AjoutCentreComponent},
   {path: 'connexion', component: ConnexionComponent},
   {path: 'centre', component: CentresComponent},
-  {path: 'login', component:LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'planning', component: PlaningComponent}
 ];
 
 @NgModule({

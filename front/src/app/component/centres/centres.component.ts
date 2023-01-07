@@ -1,6 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Directive, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { centerType } from './centres.types';
+import { Subscription } from 'rxjs';
+import { Admin, Center, Utilisateur } from 'src/app/Modele';
+import { AdminService, CentreService } from 'src/app/service';
+import { DoctorService } from 'src/app/service/doctor.service';
 
 @Component({
   selector: 'app-centres',
@@ -9,64 +13,75 @@ import { centerType } from './centres.types';
 
 export class CentresComponent implements OnInit {
 
-  constructor() { 
-  }
-
-  ngOnInit(): void {
-    this.createForm();
-    this.centerEdit = false;
-    this.equipEdit = false;
-  }
-
+  centers: Center[] = [];
+  doctors: Utilisateur[] = [];
+  centerSubscription : Subscription = new Subscription
+  adminSubscription : Subscription = new Subscription
+  doctorSubscription: Subscription = new Subscription
+  admins: Utilisateur[] = [];
   form!: FormGroup;
   titleAlert: string = 'This field is required';
   post: any = '';
-  checkPassword: any;
-  checkInUseEmail: any;
   searchText: string = '';
 
   centerEdit: boolean = false;
   equipEdit: boolean = false;
   chooseAvailable: boolean = true;
 
-  centerChoosen!: centerType;
+  centerChoosen!: Center;
 
-  //Charger les données des centres là dedans
-  centre: centerType[] = [
-    { id: 1, name: 'CH Narbonne', adress: 'Boulevard Dr Lacroix', codepostal: 11100, city: 'Narbonne' },
-    { id: 2, name: 'Nancy - Tour Marcel Brot' , adress: '1, Rue Joseph Cugnot', codepostal: 54000, city: 'Nancy'}
-  ];
+
+  constructor(private centerService: CentreService,private doctorService: DoctorService, private adminService: AdminService) { 
+  }
+
+  ngOnInit(): void {
+    this.centerEdit = false;
+    this.equipEdit = false;
+    this.centerSubscription = this.centerService.getCenters().subscribe(
+      (centers: Center[]) => {
+        this.centers = centers;
+      }
+    );
+    this.getCenters();
+  }
+
+  public getCenters(): void{
+    this.centerService.getCenters().subscribe(
+      (response: Center[]) => {
+        this.centers = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 
   onCenterEdit(centre: any){
     this.centerEdit = true;
     this.equipEdit = false;
     this.centerChoosen = centre
-    this.form.setValue({
-      name: this.centerChoosen.name,
-      adress: this.centerChoosen.adress,
-      codepostal: this.centerChoosen.codepostal,
-      city: this.centerChoosen.city
-    })
   }
 
-  onEquipClick(centre?: any){
+  onEquipClick(centre?: Center){
+    if(centre === undefined) return
     if(centre !== undefined) this.centerChoosen = centre; 
     this.centerEdit = false;
     this.equipEdit = true;
-  }
 
-  createForm() {
-    let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    this.form = new FormGroup({
-      name: new FormControl(''),
-      adress: new FormControl(''),
-      codepostal: new FormControl(''),
-      city: new FormControl('')
-    });
+    this.adminSubscription = this.adminService.getAdminByCenterId(centre?.id).subscribe(
+      (response: Utilisateur[]) => {
+        this.admins = response;
+      }
+    );
+   
+    this.doctorSubscription = this.doctorService.getDoctorByCenterId(centre?.id).subscribe(
+      (response: Utilisateur[]) => {
+        this.doctors = response;
+      }
+    );
   }
 
   onUpdate(post: any) {
     this.post = post;
-    console.log(JSON.stringify(post.value))
   }
 }

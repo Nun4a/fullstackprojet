@@ -26,14 +26,9 @@ public class UtilisateurService implements UserDetailsService{
     private static Logger log = LoggerFactory.getLogger(UtilisateurService.class);
     private final PasswordEncoder passwordEncoder;
     
-
-
-    
     public List<Utilisateur> findAll() {
 
-        var utilisateurs = (List<Utilisateur>) repository.findAll();
-
-        return utilisateurs;
+        return (List<Utilisateur>) repository.findAll();
     }
     
     public Utilisateur save(Utilisateur utilisateur){
@@ -41,39 +36,29 @@ public class UtilisateurService implements UserDetailsService{
         return repository.save(utilisateur);
     }
 
-     
     public Optional<Utilisateur> findById(int id){
         return repository.findById(id);
     }
 
-    
     public void delete(int id_utilisateur){
         repository.deleteById(id_utilisateur);
     }
 
     public List<Utilisateur> findadmin() {
 
-        List<Utilisateur> utilisateurs = repository.findByRole("Admin");
-
-        return utilisateurs;
+        return repository.findByRole("Admin");
     }
     public List<Utilisateur> findsuperadmin() {
 
-        List<Utilisateur> utilisateurs = repository.findByRole("SuperAdmin");
-
-        return utilisateurs;
+        return repository.findByRole("SuperAdmin");
     }
     public List<Utilisateur> finddoc() {
 
-        List<Utilisateur> utilisateurs = repository.findByRole("Doctor");
-
-        return utilisateurs;
+        return repository.findByRole("Doctor");
     }
     public List<Utilisateur> findpatient() {
 
-        List<Utilisateur> utilisateurs = repository.findByRole("Patient");
-
-        return utilisateurs;
+        return repository.findByRole("Patient");
     }
 
     public int max(){
@@ -82,14 +67,11 @@ public class UtilisateurService implements UserDetailsService{
 
     }
 
-
-
     @Autowired
     public UtilisateurService(final UtilisateurRepository utilisateurRepository, PasswordEncoder passwordEncoder) {
         this.repository = utilisateurRepository;
         this.passwordEncoder = passwordEncoder;
     }
-    
     
     @PostConstruct
     public void createUserDefault(){
@@ -107,7 +89,6 @@ public class UtilisateurService implements UserDetailsService{
         this.repository.save(admin);
     }
     
-    
     @Override
     public UserDetails loadUserByUsername(final String mail)
             throws UsernameNotFoundException {
@@ -120,6 +101,9 @@ public class UtilisateurService implements UserDetailsService{
         } else {
             throw new UsernameNotFoundException("L'utilisateur" + mail + " n'existe pas");
         }
+    }
 
+    public List<Utilisateur> getUserByCenterAndRole(String role, int centerId){
+        return repository.getUserByCenterAndRole(role, centerId);
     }
 }

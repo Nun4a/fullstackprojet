@@ -14,6 +14,7 @@ export class CentreService {
     return this.http.get<Center[]>('/api/public/showcenter');
   }
   public saveCenterToServer(centre: Center) {
+    console.log(centre)
     this.http.post('/api/addcenter' , { id:centre.id,
       name:centre.name,
       capacity:centre.capacity,

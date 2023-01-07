@@ -29,13 +29,12 @@ public class AdminController {
     public String findUsers (Model model) {
 
         List<Utilisateur> users = userService.findAll();
-        String str = "";
-        for (int i=0; i<users.size(); i++){
-            Utilisateur currentuser = users.get(i);
-            str = str + "\n" + currentuser;
+        StringBuilder str = new StringBuilder();
+        for (Utilisateur currentuser : users) {
+            str.append("\n").append(currentuser);
         }
 
-        return str;
+        return str.toString();
     }
 
     @GetMapping(value="/private/admin/showadmin")
@@ -53,8 +52,7 @@ public class AdminController {
 
     @GetMapping("/private/admin/showadmin/{id}")
     public Optional<Utilisateur> getOneadmin(@PathVariable int id){
-            Optional<Utilisateur> user = userService.findById(id);
-            return user;
+        return userService.findById(id);
     }
 
     /*@GetMapping("/showcenteradmin/{id}")
@@ -72,5 +70,8 @@ public class AdminController {
         userService.delete(id);
     }
 
-
+    @GetMapping("/showadminbycenter/{id}")
+    public List<Utilisateur> getUserByCenterAndRole(@PathVariable int id){
+        return userService.getUserByCenterAndRole("Admin",id);
+    }
 }

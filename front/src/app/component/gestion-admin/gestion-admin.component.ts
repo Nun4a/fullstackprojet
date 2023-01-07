@@ -25,6 +25,7 @@ export class GestionAdminComponent implements OnInit {
     );
     this.getAdmins();
   }
+  
   public getAdmins(): void{
     this.adminService.getAdmins().subscribe(
       (response: Utilisateur[]) => {

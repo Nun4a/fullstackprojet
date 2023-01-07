@@ -11,7 +11,7 @@ export class AppointmentService {
 
     public saveAppointmentToServer(appointment: Appointment){
       console.log(appointment)
-        this.http.post('/api/appointment', {
+        this.http.post('/api/public/appointment', {
             id: appointment.id,
             day: appointment.day,
             patientMail: appointment.patientMail,
@@ -28,6 +28,6 @@ export class AppointmentService {
     }
 
     public getAppointmentByCenterId(centerId: number) {
-      return this.http.get<Appointment[]>('api/appointmentbycenter/'+centerId);
+      return this.http.get<Appointment[]>('api/public/appointmentbycenter/'+centerId);
     }
 }

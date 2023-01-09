@@ -1,7 +1,7 @@
 server:
-  port: 9797
+  port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://covid-db:5432/covid-db
+    url: jdbc:postgresql://localhost:5432/covid-db
     username: postgres
     password: sudo

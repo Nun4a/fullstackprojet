@@ -9,3 +9,8 @@ spring:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
       show-sql : true
       hibernate.ddl-auto: create-drop
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus

@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    environment:
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/config:/config
+        #- ./prometheus/data:/prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/config/prometheus.yml"
+        #network_mode: "host"
+
+networks: 
+  default: 
+    external: 
+      name: fullstackprojet_default

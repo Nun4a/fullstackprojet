@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    environment:
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+    restart: unless-stopped
+      #network_mode: "host"
+
+networks: 
+  default: 
+    external: 
+      name: fullstackprojet_default

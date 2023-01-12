@@ -19,11 +19,14 @@ export class FormEditComponent {
   formType: boolean | undefined;
   @Input()
   centerList: Center[] | undefined;
+  @Input()
+  userId: string | null | undefined;
 
   form!: FormGroup;
   post: any = '';
   checkPassword: any;
   checkInUseEmail: any;
+  modifiedUser: Utilisateur | undefined;
 
   public choosenaddress: Address ={
     id: 0,
@@ -65,9 +68,25 @@ export class FormEditComponent {
 
   ngOnInit() {
     this.getcenters();
-    this.createForm();
+    this.getModifiedUser();
+    this.createForm(this.modifiedUser);
   }
 
+  public getModifiedUser(){
+    if(this.userId === undefined) return
+    if(this.userId === null) return
+    else{
+      this.adminService.getAdminsById(this.userId).subscribe((response: Utilisateur) =>{
+          this.modifiedUser = response;
+          this.createForm(response);
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
+  }
+  
   public getcenters(): void{
     this.centerService.getCenters().subscribe(
       (response: Center[]) => {
@@ -85,7 +104,18 @@ export class FormEditComponent {
     else this.newAdmin.center = e.value;
   }
 
-  createForm() {
+  createForm(user: Utilisateur|undefined) {
+    if(user){
+      this.form = new FormGroup({
+        lname: new FormControl(user.lastName),
+        fname: new FormControl(user.firstName),
+        password: new FormControl(user.password),
+        mail: new FormControl(user.mail),
+        role: new FormControl(user.role),
+        centre: new FormControl(user.center)
+      });
+    }
+    else{
       this.form = new FormGroup({
         lname: new FormControl(''),
         fname: new FormControl(''),
@@ -94,6 +124,7 @@ export class FormEditComponent {
         role: new FormControl(''),
         centre: new FormControl('')
       });
+    }
   }
 
   backClicked = () => {
@@ -113,5 +144,9 @@ export class FormEditComponent {
       return
     }
     this.callbackFunction(this.newAdmin);
+  }
+
+  onSubmitChange(post: any){
+    
   }
 }

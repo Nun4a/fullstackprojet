@@ -11,7 +11,9 @@ export class AdminService {
     
   constructor(private http:HttpClient) {}
 
-
+  public getAdminsById(id: string) {
+    return this.http.get<Utilisateur>('/api/showadmin/'+id);
+  }
 
   public getAdmins(): Observable<Utilisateur[]> {
     return this.http.get<Utilisateur[]>('/api/showadmin');

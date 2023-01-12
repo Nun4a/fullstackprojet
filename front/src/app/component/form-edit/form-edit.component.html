@@ -37,8 +37,8 @@
       </mat-form-field>
       <div class="flex justify-evenly">
         <button mat-raised-button color="primary">Annuler</button>
-        <button mat-raised-button color="primary">Désactiver</button>
-        <button (click)="onSubmit(form)" mat-raised-button color="primary">Enregistrer</button>
+        <button *ngIf="this.userId" (click)="onSubmitChange(form)" mat-raised-button color="primary">Modifier</button>
+        <button *ngIf="!this.userId" (click)="onSubmit(form)" mat-raised-button color="primary">Enregistrer</button>
       </div>
     </div>
   </form>

@@ -19,6 +19,7 @@ export class LoginService {
   }
 
   connect(username: string, password: string): Observable<any> {
+    console.log(username);
     let token = this.createToken(username, password);
     let options = {
       headers: {
@@ -33,6 +34,7 @@ export class LoginService {
   }
 
   private createToken(username?: string, password?: string) {
+    console.log(username);
     let token = `Basic ` + btoa(`${username}:${password}`);
     return token;
   }

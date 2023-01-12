@@ -67,4 +67,8 @@ export class FormCenterComponent implements OnInit {
       this.callbackAddressFunction(postData.street, postData.zipcode, postData.city);
     }
   }
+
+  onSubmitChange(post: any){
+    
+  }
 }

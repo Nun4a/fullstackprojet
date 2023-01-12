@@ -17,7 +17,7 @@ export class GestionAdminComponent implements OnInit {
   public adminSubscription: Subscription = new Subscription;
   public eventemitter: EventEmitter<any> = new EventEmitter();
 
-  constructor(public adminService: AdminService, public router:Router) { }
+  constructor(private adminService: AdminService, private router:Router) { }
 
   ngOnInit() {
     this.adminSubscription = this.adminService.getAdmins().subscribe(

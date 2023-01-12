@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Directive, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Admin, Center, Utilisateur } from 'src/app/Modele';
 import { AdminService, CentreService } from 'src/app/service';
@@ -31,7 +32,7 @@ export class CentresComponent implements OnInit {
   centerChoosen!: Center;
 
 
-  constructor(private centerService: CentreService,private doctorService: DoctorService, private adminService: AdminService) { 
+  constructor(private centerService: CentreService,private doctorService: DoctorService, private adminService: AdminService, private router:Router) { 
   }
 
   ngOnInit(): void {
@@ -83,5 +84,9 @@ export class CentresComponent implements OnInit {
 
   onUpdate(post: any) {
     this.post = post;
+  }
+
+  changeAdmin = (id: number) => {
+    this.router.navigateByUrl('/addadmin/'+id);
   }
 }

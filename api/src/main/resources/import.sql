@@ -11,9 +11,9 @@ INSERT INTO center (name, capacity, timetable, id_address) VALUES ('Stan', '40',
 INSERT INTO center (name, capacity, timetable, id_address) VALUES ('Nord', '60', 'timetable', '3');
 
 --SuperUtilisateur
-INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('bapt', 'taoa','1234', '$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'SuperAdmin','1');
---INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('guigui', 'taoa','1234', '$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'SuperAdmin','1');
---INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('al', 'taoa','1234', '$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'SuperAdmin','1');
+INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('bapt', 'taoa','bapt', '$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'SuperAdmin','1');
+INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('guigui', 'taoa','guigui', '$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'SuperAdmin','1');
+INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('al', 'taoa','al', '$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'SuperAdmin','1');
 
 --Administrateur
 INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('Indiana', 'taoa', 'tot.tut@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Admin','1');

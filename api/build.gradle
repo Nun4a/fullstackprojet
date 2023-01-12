@@ -20,8 +20,11 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation group: 'com.github.vladimir-bukhtoyarov' , name: 'bucket4j-core' , version: '7.6.0'
+	implementation 'com.github.vladimir-bukhtoyarov:bucket4j-core:7.6.0'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.0.1'
+	implementation 'io.micrometer:micrometer-registry-prometheus:1.10.2'
+
 }
 
 tasks.named('test') {

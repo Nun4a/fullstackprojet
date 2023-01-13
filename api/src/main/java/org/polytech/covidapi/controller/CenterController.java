@@ -49,8 +49,8 @@ public class CenterController {
     }
 
     @PostMapping(path = "/addcenter")
-    public Center save(@RequestBody Center newuser) {
-        return centerService.save(newuser);
+    public Center save(@RequestBody Center newCenter) {
+        return centerService.save(newCenter);
     }
 
     @DeleteMapping("/deletecenter/{id}")
@@ -58,7 +58,10 @@ public class CenterController {
         centerService.delete(id);
     }
 
-
+    @PostMapping(path = "/changecenter")
+    public void updateCenter(Center center){
+        this.centerService.updateCenter(center.getName(), center.getCapacity(), center.getTimetable(), center.getId(), center.getAddress());
+    }
 
 
 }

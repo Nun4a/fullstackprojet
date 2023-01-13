@@ -49,4 +49,31 @@ export class AjoutCentreComponent implements OnInit {
       return this.centerService.saveCenterToServer(this.newCenter)
     }, 500 )
   }
+
+  changeAddress = (id: number, street: string, zipcode: string, city: string) => {
+    if(this.addressService === undefined) return
+    else {
+      this.newAddress = {
+      street: street,
+      zipcode: zipcode,
+      city: city,
+      id: id,
+    }
+    console.log(this.newAddress)
+    return this.addressService.changeInfo(this.newAddress)
+    }
+  }
+
+  changeCentre = (id: number, name: string, capacity: number) => {
+    setTimeout(() => {
+      this.newCenter = {
+        name: name,
+        capacity: capacity,
+        timetable: '',
+        id: id,
+        address: this.newAddress
+      } 
+      return this.centerService.changeInfo(this.newCenter)
+    }, 500 )
+  }
 }

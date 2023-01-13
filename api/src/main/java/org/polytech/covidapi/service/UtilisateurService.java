@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
+import org.polytech.covidapi.model.Center;
 import org.polytech.covidapi.model.Utilisateur;
 import org.polytech.covidapi.repository.UtilisateurRepository;
 import org.slf4j.Logger;
@@ -105,5 +106,9 @@ public class UtilisateurService implements UserDetailsService{
 
     public List<Utilisateur> getUserByCenterAndRole(String role, int centerId){
         return repository.getUserByCenterAndRole(role, centerId);
+    }
+
+    public void updateUser(String firstname, String lastname, String mail, String role, int userId, Center center){
+        this.repository.updateUser(firstname, lastname, mail, role, userId, center);
     }
 }

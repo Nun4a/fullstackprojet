@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AdminService, CentreService } from 'src/app/service';
+import { AdminService, CentreService, LoginService } from 'src/app/service';
 import { Address, Center, Utilisateur } from 'src/app/Modele';
 import { ActivatedRoute } from '@angular/router';
 
@@ -48,7 +48,7 @@ export class AjoutAdminComponent implements OnInit {
     center:this.choosencenter
   }
  
-  constructor(private centerService: CentreService, private httpClient:HttpClient, private adminService:AdminService, private route:ActivatedRoute) { }
+  constructor(private centerService: CentreService, private httpClient:HttpClient, private loginUser: LoginService, private adminService:AdminService, private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
@@ -63,6 +63,10 @@ export class AjoutAdminComponent implements OnInit {
         alert(error.message);
       }
     );
+
+    this.loginUser.getUtilisateur().subscribe((response: Utilisateur) => {
+      console.log(response);
+    });
   }
 
   onChooseClick(form: Center) {
@@ -80,5 +84,9 @@ export class AjoutAdminComponent implements OnInit {
     console.log(this.maxid)
     newAdmin.id = this.maxid +1;
     return this.adminService.saveAdminToServer(newAdmin)
+  }
+
+  public onChange = (user: Utilisateur): void => {
+    this.adminService.changeInformations(user);
   }
 }

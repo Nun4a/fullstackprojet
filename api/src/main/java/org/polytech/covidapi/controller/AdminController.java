@@ -55,14 +55,14 @@ public class AdminController {
         return userService.findById(id);
     }
 
-    /*@GetMapping("/showcenteradmin/{id}")
-    public Utilisateur getOnecenteradmin(@PathVariable int id){
-            return  userService.findById(id).getCenter();
-    }*/
-
     @PostMapping(path = "/addadmin")
     public Utilisateur save(@RequestBody Utilisateur newuser) {
         return userService.save(newuser);
+    }
+
+    @PostMapping(path = "/changeadmin")
+    public void updateUser(@RequestBody Utilisateur user){
+        this.userService.updateUser(user.getFirstName(), user.getLastName(), user.getMail(), user.getRole(), user.getId(), user.getCenter());
     }
 
     @DeleteMapping("/deleteadmin/{id}")
@@ -71,7 +71,7 @@ public class AdminController {
     }
 
     @GetMapping("/showadminbycenter/{id}")
-    public List<Utilisateur> getUserByCenterAndRole(@PathVariable int id){
-        return userService.getUserByCenterAndRole("Admin",id);
+    public List<Utilisateur> getUserByCenterAndRole(@PathVariable int id) {
+        return userService.getUserByCenterAndRole("Admin", id);
     }
 }

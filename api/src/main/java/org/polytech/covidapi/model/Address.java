@@ -1,13 +1,10 @@
 package org.polytech.covidapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
-@Entity
-//@Table(name = "addresses")
+@Entity(name = "address")
+@Table(name = "address")
 public class Address {
     
     @Id

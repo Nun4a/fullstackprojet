@@ -42,6 +42,23 @@ export class AdminService {
       );
   }
 
+  public changeInformations(user: Utilisateur){
+    this.http.post('api/changeadmin', {
+      id: user.id,
+      firstName: user.firstName,
+      mail: user.mail,
+      role: user.role,
+      center:user.center
+    }).subscribe(
+      () => {
+        console.log('Ok');
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+  }
+
   deleteAdmin(id_user:number){
     return this.http.delete('/api/deleteadmin/'+id_user);
   }
@@ -62,5 +79,4 @@ export class AdminService {
   public getAdminByCenterId(centerId: number){
     return this.http.get<Utilisateur[]>('/api/showadminbycenter/'+centerId);
   }
-
 }

@@ -14,7 +14,9 @@ import { AdminService, CentreService } from 'src/app/service';
 export class FormEditComponent {
 
   @Input()
-  callbackFunction: ((newAdmin:Utilisateur) => void) | undefined;
+  callbackFunctionAdd: ((newAdmin:Utilisateur) => void) | undefined;
+  @Input()
+  callbackFunctionModif: ((newAdmin:Utilisateur) => void) | undefined;
   @Input()
   formType: boolean | undefined;
   @Input()
@@ -134,19 +136,33 @@ export class FormEditComponent {
   onSubmit(post: any) {
     var postData;
     postData = post.value;
-    this.newAdmin.firstName=postData.fname;
-    this.newAdmin.lastName=postData.lname;
-    this.newAdmin.password=postData.password;
-    this.newAdmin.mail=postData.mail;
-    this.newAdmin.role=postData.role;
-    if(this.callbackFunction ===undefined){
-      console.log("callbackFunction du form undefined");
+    this.newAdmin.firstName = postData.fname;
+    this.newAdmin.lastName = postData.lname;
+    this.newAdmin.password = postData.password;
+    this.newAdmin.mail = postData.mail;
+    this.newAdmin.role = postData.role;
+    if(this.callbackFunctionAdd === undefined){
+      console.log("callbackFunctionAdd du form undefined");
       return
     }
-    this.callbackFunction(this.newAdmin);
+    this.callbackFunctionAdd(this.newAdmin);
   }
 
   onSubmitChange(post: any){
-    
+    if(!this.userId) return
+    var postData;
+    postData = post.value;
+    this.newAdmin.id = Number(this.userId);
+    this.newAdmin.firstName = postData.fname;
+    this.newAdmin.lastName = postData.lname;
+    this.newAdmin.password = postData.password;
+    this.newAdmin.mail = postData.mail;
+    this.newAdmin.role = postData.role;
+    console.log(this.newAdmin)
+    if(this.callbackFunctionModif === undefined){
+      console.log("callbackFunctionModif du form undefined");
+      return
+    }
+    this.callbackFunctionModif(this.newAdmin);
   }
 }

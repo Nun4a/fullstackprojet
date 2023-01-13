@@ -30,4 +30,22 @@ export class CentreService {
         }
       );
   }
+
+  public changeInfo(centre: Center){
+    this.http.post('/api/changecenter', {
+      id:centre.id,
+      name:centre.name,
+      capacity:centre.capacity,
+      timetable:centre.timetable,
+      address:centre.address,
+    })
+      .subscribe(
+        () => {
+          console.log('Ok');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
 }

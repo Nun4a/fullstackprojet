@@ -35,4 +35,8 @@ public class AddressService {
     public void delete(int id_user){
         repository.deleteById(id_user);
     }
+
+    public void updateCenter(String street, String zipcode, String city, int addressId){
+        repository.updateCenter(street, zipcode, city, addressId);
+    }
 }

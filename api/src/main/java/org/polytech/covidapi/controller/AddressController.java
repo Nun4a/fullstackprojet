@@ -59,5 +59,8 @@ public class AddressController {
         addressService.delete(id);
     }
 
-
+    @PostMapping("/changeaddress")
+    public void updateAddress(@RequestBody Address address){
+        this.addressService.updateCenter(address.getStreet(), address.getZipcode(), address.getCity(), address.getId());
+    }
 }

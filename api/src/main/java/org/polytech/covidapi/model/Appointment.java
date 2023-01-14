@@ -9,11 +9,11 @@ public class Appointment {
     private int id;
     private String day;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_center")
     private Center center;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_utilisateur")
     private Utilisateur utilisateur;
 

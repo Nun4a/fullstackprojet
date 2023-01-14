@@ -22,15 +22,7 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
-    private Bucket bucket;
-
-    final String remainning = "X-Rate-Limit-Remaining";
-    final String retryAfter = "X-Rate-Limit-Retry-After-Seconds";
-
-    public AppointmentController(AppointmentService appointmentService, Bucket bucket) {
-        this.appointmentService = appointmentService;
-        this.bucket = bucket;
-    }
+    
 
     private Bucket bucket;
 
@@ -53,7 +45,7 @@ public class AppointmentController {
     }
 
     @CrossOrigin(exposedHeaders = {remainning, retryAfter})
-    @GetMapping(value = "/appointments/infos")
+    @GetMapping(value = "/public/appointments/infos")
     public ResponseEntity<Object> infos() {
         HttpHeaders headers = new HttpHeaders();
         ConsumptionProbe probe = bucket.tryConsumeAndReturnRemaining(2);

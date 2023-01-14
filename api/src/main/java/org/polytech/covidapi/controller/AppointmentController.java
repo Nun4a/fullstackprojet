@@ -3,7 +3,6 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 import org.polytech.covidapi.model.Appointment;
-import org.polytech.covidapi.model.Appointment;
 import org.polytech.covidapi.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,17 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import io.github.bucket4j.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.*;
-
-import io.github.bucket4j.*;
-import org.springframework.web.server.ResponseStatusException;
-
-
 @RestController
 @RequestMapping("/api")
 public class AppointmentController {
@@ -33,6 +21,7 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
+    @Autowired
     private Bucket bucket;
 
     final String remainning = "X-Rate-Limit-Remaining";
@@ -43,18 +32,14 @@ public class AppointmentController {
         this.bucket = bucket;
     }
 
-     @GetMapping(value="/public/appointments")
+     @GetMapping(value="/private/appointments")
      public Iterable<Appointment> getAllAppointment(){
-         if(bucket.tryConsume(1)) {
-             return (Iterable<Appointment>) appointmentService.findAll();
-         }
-         else {
-             throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Trop de requêtes");
-         }
+        return (Iterable<Appointment>) appointmentService.findAll();
     }
 
+    //Permet d'obtenir des infos sur le bucket
     @CrossOrigin(exposedHeaders = {remainning, retryAfter})
-    @GetMapping(value = "/appointments/infos")
+    @GetMapping(value = "/public/appointments/infos")
     public ResponseEntity<Object> infos() {
         HttpHeaders headers = new HttpHeaders();
         ConsumptionProbe probe = bucket.tryConsumeAndReturnRemaining(2);
@@ -84,8 +69,18 @@ public class AppointmentController {
     }
 
     @GetMapping("/public/appointmentbycenter/{id}")
-    public List<Appointment> getAppoitementsbyCenter(@PathVariable int id){
-         return appointmentService.getAppointementByCenterId(id);
+    public List<Appointment> getAppointmentsbyCenter(@PathVariable int id){
+        if(bucket.tryConsume(1)) {
+            return appointmentService.getAppointementByCenterId(id);        }
+        else {
+            throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Trop de requêtes");
+        }
+    }
+
+    // On crée une autre route pour les admins qui ne sera pas soumis au rate limite
+    @GetMapping("/private/appointmentbycenter/{id}")
+    public List<Appointment> getAppointmentsbyCenterAdmin(@PathVariable int id){
+        return appointmentService.getAppointementByCenterId(id);
     }
 
     @DeleteMapping("/private/appointment/{id}")

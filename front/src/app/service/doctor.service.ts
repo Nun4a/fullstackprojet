@@ -33,4 +33,31 @@ export class DoctorService{
             })
         }
       }
+
+      public maxId():Observable<number>{
+        return this.http.get<number>('/api/public/max');
+      }
+
+      public saveDocToServer(doctor: Utilisateur) {
+        this.http.post('/api/private/doctor/adddoc' , { id:doctor.id,
+          firstName:doctor.firstName,
+          lastName:doctor.lastName,
+          mail:doctor.mail,
+          password:doctor.password,
+          role:"Doctor",
+          center:doctor.center
+        })
+          .subscribe(
+            () => {
+              console.log('Ok');
+            },
+            (error) => {
+              console.log('Erreur ! : ' + error);
+            }
+          );
+      }
+    
+      deleteAdmin(id_user:number){
+        return this.http.delete('/api/private/doctor/deletedoc/'+id_user);
+      }
 }

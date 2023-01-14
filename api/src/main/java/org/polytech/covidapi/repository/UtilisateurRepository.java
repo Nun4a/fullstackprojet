@@ -3,9 +3,11 @@ package org.polytech.covidapi.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.polytech.covidapi.model.Center;
 import org.polytech.covidapi.model.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -19,7 +21,7 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Intege
     @Query(value = "SELECT MAX(id) FROM utilisateur", nativeQuery = true)
     int findMaxId();
 
-    @Query(value="select * from utilisateur a where a.role= :role and id_center= :centerId", nativeQuery=true)
-    List<Utilisateur> getUserByCenterAndRole(String role, int centerId);
+    @Query(value="SELECT * FROM utilisateur a WHERE a.role= :role and a.id_center= :centerId", nativeQuery=true)
+    List<Utilisateur> getUserByCenterAndRole( @Param("centerId") int id_center, @Param("role")String role);
 
 }

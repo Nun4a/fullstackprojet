@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './component/home';
 import { GestionAdminComponent } from './component/gestion-admin/gestion-admin.component';
-import { AdminService } from 'src/app/service';
+import { AdminService, DoctorService } from 'src/app/service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConnexionComponent } from './component/connexion/connexion.component'
 import { SuperAdminService } from 'src/app/service';
@@ -23,6 +23,7 @@ import { DatagridComponent } from './component/datagrid/datagrid.component';
 import { FormCenterComponent } from './component/form-center';
 import { HeaderInterceptor } from './interceptor/header.interceptor';
 import { PlaningComponent } from './component/planing/planing.component';
+import { AjoutDoctorComponent } from './component/ajout-doctor';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PlaningComponent } from './component/planing/planing.component';
     GestionAdminComponent,
     ConnexionComponent,
     AjoutAdminComponent,
+    AjoutDoctorComponent,
     DatagridComponent,
     AjoutCentreComponent,
     FormCenterComponent,
@@ -50,7 +52,7 @@ import { PlaningComponent } from './component/planing/planing.component';
     Ng2SearchPipeModule,
     HttpClientModule
   ],
-  providers: [AdminService, SuperAdminService, CentreService, AddressService, 
+  providers: [AdminService, SuperAdminService, CentreService, AddressService,DoctorService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HeaderInterceptor,

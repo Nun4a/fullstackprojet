@@ -35,4 +35,10 @@ public class AddressService {
     public void delete(int id_user){
         repository.deleteById(id_user);
     }
+
+    public int max(){
+
+        return repository.findMaxId();
+
+    }
 }

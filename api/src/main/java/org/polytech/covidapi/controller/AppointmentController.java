@@ -3,7 +3,18 @@ package org.polytech.covidapi.controller;
 import java.util.List;
 import java.util.Optional;
 import org.polytech.covidapi.model.Appointment;
+import org.polytech.covidapi.model.Appointment;
 import org.polytech.covidapi.service.AppointmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
+
+import io.github.bucket4j.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpHeaders;
@@ -21,8 +32,6 @@ public class AppointmentController {
     
     @Autowired
     private AppointmentService appointmentService;
-
-    
 
     private Bucket bucket;
 
@@ -45,7 +54,7 @@ public class AppointmentController {
     }
 
     @CrossOrigin(exposedHeaders = {remainning, retryAfter})
-    @GetMapping(value = "/public/appointments/infos")
+    @GetMapping(value = "/appointments/infos")
     public ResponseEntity<Object> infos() {
         HttpHeaders headers = new HttpHeaders();
         ConsumptionProbe probe = bucket.tryConsumeAndReturnRemaining(2);
@@ -80,6 +89,7 @@ public class AppointmentController {
     }
 
     @DeleteMapping("/private/appointment/{id}")
+
     public void delete(@PathVariable int id){
         appointmentService.delete(id);
     }

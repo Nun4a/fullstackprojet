@@ -15,7 +15,7 @@ export class CentreService {
   }
   public saveCenterToServer(centre: Center) {
     console.log(centre)
-    this.http.post('/api/addcenter' , { id:centre.id,
+    this.http.post('/api/private/addcenter' , { id:centre.id,
       name:centre.name,
       capacity:centre.capacity,
       timetable:centre.timetable,
@@ -29,5 +29,9 @@ export class CentreService {
           console.log('Erreur ! : ' + error);
         }
       );
+  }
+
+  public maxId():Observable<number>{
+    return this.http.get<number>('/api/public/maxcenter');
   }
 }

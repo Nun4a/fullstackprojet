@@ -58,6 +58,11 @@ public class CenterController {
         centerService.delete(id);
     }
 
+    @GetMapping(value="/public/maxcenter")
+    public int max(){
+        return centerService.max();
+    }
+
 
 
 

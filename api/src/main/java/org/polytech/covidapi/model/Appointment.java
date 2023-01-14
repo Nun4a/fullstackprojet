@@ -1,9 +1,6 @@
 package org.polytech.covidapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Appointment {
@@ -11,13 +8,23 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String day;
-    private String patientMail;
-    private int centerId;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_center")
+    private Center center;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_utilisateur")
+    private Utilisateur utilisateur;
+
+    private boolean available;
     
-    public Appointment(String day, String patientMail, int centerId){
+    public Appointment(String day, Center center, Utilisateur utilisateur, boolean available){
         this.day = day;
-        this.patientMail = patientMail;
-        this.centerId = centerId;
+        this.center = center;
+        this.utilisateur = utilisateur;
+        this.available = available;
+
     }
 
     public Appointment(){
@@ -31,12 +38,32 @@ public class Appointment {
     public void setDay(String day) {
         this.day = day;
     }
-    
-    public String getPatientMail(){
-        return patientMail;
-    }
 
     public int getCenterId(){
-        return centerId;
+        return center.getId();
+    }
+
+    public Center getCenter() {
+        return center;
+    }
+
+    public void setCenter(Center center) {
+        this.center = center;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

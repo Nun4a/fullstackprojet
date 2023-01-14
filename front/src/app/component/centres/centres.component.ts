@@ -84,4 +84,20 @@ export class CentresComponent implements OnInit {
   onUpdate(post: any) {
     this.post = post;
   }
+
+  changeAdmin(id: number){
+    console.log(id)
+  }
+
+  deleteAdmin(id:number){
+      this.adminService.confDeleteAdmin(id);
+  }
+
+  changeDoc(id: number){
+    console.log(id)
+  }
+
+  deleteDoc(id:number){
+      this.doctorService.confDeleteDoc(id);
+  }
 }

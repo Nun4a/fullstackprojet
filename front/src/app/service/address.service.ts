@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Address } from 'src/app/Modele';
 
 @Injectable({
@@ -11,7 +12,7 @@ export class AddressService {
 
 
   public saveAddressToServer(address: Address) {
-    this.http.post('/api/private/addaddress' , { id:address.id,
+    this.http.post('/api/private/address' , { id:address.id,
       street:address.street,
       zipcode:address.zipcode,
       city:address.city,
@@ -24,5 +25,9 @@ export class AddressService {
           console.log('Erreur ! : ' + error);
         }
       );
+  }
+
+  public maxId():Observable<number>{
+    return this.http.get<number>('/api/public/maxaddress');
   }
 }

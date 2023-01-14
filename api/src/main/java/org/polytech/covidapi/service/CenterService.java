@@ -35,4 +35,10 @@ public class CenterService {
     public void delete(int id_center){
         repository.deleteById(id_center);
     }
+
+    public int max(){
+
+        return repository.findMaxId();
+
+    }
 }

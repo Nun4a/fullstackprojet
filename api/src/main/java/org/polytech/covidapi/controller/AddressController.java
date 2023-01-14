@@ -59,5 +59,10 @@ public class AddressController {
         addressService.delete(id);
     }
 
+    @GetMapping(value="/public/maxaddress")
+    public int max(){
+        return addressService.max();
+    }
+
 
 }

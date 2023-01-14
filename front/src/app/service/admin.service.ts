@@ -58,7 +58,7 @@ export class AdminService {
   }
 
   public getAdminByCenterId(centerId: number){
-    return this.http.get<Utilisateur[]>('/api/showadminbycenter/'+centerId);
+    return this.http.get<Utilisateur[]>('/api/private/showadminbycenter/'+centerId);
   }
 
 }

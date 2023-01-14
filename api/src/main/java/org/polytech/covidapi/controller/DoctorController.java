@@ -67,7 +67,7 @@ public class DoctorController {
         userService.delete(id);
     }
 
-    @GetMapping("/showdocbycenter/{id}")
+    @GetMapping("/private/showdocbycenter/{id}")
     public List<Utilisateur> getUserByCenterAndRole(@PathVariable int id){
         return userService.getUserByCenterAndRole("Doctor",id);
     }

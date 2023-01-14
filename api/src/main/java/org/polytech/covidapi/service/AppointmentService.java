@@ -29,7 +29,7 @@ public class AppointmentService {
     }
 
     public List<Appointment> getAppointementByCenterId(int id){
-        return appointmentRepository.getAppointementByCenterId(id);
+        return appointmentRepository.findByCenterId(id);
     }
     public void delete(int id_appointment){
         appointmentRepository.deleteById(id_appointment);

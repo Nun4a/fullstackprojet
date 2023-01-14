@@ -9,6 +9,6 @@ export class DoctorService{
     constructor(private http: HttpClient){}
 
     public getDoctorByCenterId(centerId: number){
-        return this.http.get<Utilisateur[]>('/api/showdocbycenter/'+centerId)
+        return this.http.get<Utilisateur[]>('/api/private/showdocbycenter/'+centerId)
     }
 }

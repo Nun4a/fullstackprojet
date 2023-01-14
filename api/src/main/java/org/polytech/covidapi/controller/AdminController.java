@@ -70,7 +70,7 @@ public class AdminController {
         userService.delete(id);
     }
 
-    @GetMapping("/showadminbycenter/{id}")
+    @GetMapping("/private/showadminbycenter/{id}")
     public List<Utilisateur> getUserByCenterAndRole(@PathVariable int id){
         return userService.getUserByCenterAndRole("Admin",id);
     }

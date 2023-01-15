@@ -82,3 +82,6 @@ Thumbs.db
 #VIM
 
 *.swp
+
+# édition markdown
+README.md.backup

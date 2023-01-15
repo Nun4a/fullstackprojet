@@ -226,6 +226,5 @@ La frontend a été principalement développé avec l'aide d'Angular, TailwindCC
 TailwindCSS permet de gérer le CSS directement avec l'attribut classe des éléments HTML. Tout un tas de classe sont incorporées dans ce framework ce qui nous permet de gérer l'aspect esthétique plus facilement.
 
 `https://tailwindcss.com/`
->>>>>>> 4fab428897ff498c2139b26de6da4b7124028644
 
 Material est une bibliothèque Angular qui rajoute beaucoup de composant très utile comme des calendriers, de formulaire ou des grilles.

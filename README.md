@@ -189,6 +189,8 @@ Même en s'inspirant grandement de l'exemple du cours, nous ne sommes pas parven
 
 Les champs **IF-NONE-MATCH** ou **IF-MATCH** ne sont pas présents des les en-têtes. 
 
+Notre tentative d'implémentation s'est faite dans la branche **etag_back**
+
 La configuration se fait dans le fichier `api/src/main/java/org/polytech/covidapi/Configuration/CustomEtagFilter`.
 
 ## Authentification

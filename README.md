@@ -76,6 +76,10 @@ Il faut dans un premier temps installer les dépendances :
 ```bash
 cd ./front
 npm install
+``
+On peut ensuite lancer le serveur :
+
+``bash
 ng serve
 ```
 

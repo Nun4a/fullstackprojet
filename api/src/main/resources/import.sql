@@ -47,21 +47,20 @@ INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center)
 --INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('toto6', 'taotoa', 'tot.tot@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Patient','2');
 --INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('totosept', 'taoati', 'tot.tit@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Doctor','3');
 
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (false, 5, '2022:01:23', 15, 19)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:23', 16, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:24', 15, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:24', 16, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:25', 15, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:25', 16, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:26', 15, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:26', 16, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (false, 5, '2022:01:27', 15, 20)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:27', 16, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:28', 15, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:28', 16, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:29', 15, 0)
-INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:29', 16, 0)
-
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (false, 5, '2022:01:23', 15, 17)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:23', 16, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:24', 15, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:24', 16, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:25', 15, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:25', 16, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:26', 15, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:26', 16, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (false, 5, '2022:01:27', 15, 18)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:27', 16, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:28', 15, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:28', 16, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:29', 15, null)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:29', 16, null)
 
 
 

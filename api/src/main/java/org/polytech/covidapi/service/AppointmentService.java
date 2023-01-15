@@ -34,5 +34,11 @@ public class AppointmentService {
     public void delete(int id_appointment){
         appointmentRepository.deleteById(id_appointment);
     }
+
+    public int max(){
+
+        return appointmentRepository.findMaxId();
+
+    }
 }
 

@@ -1,8 +1,10 @@
+import { Utilisateur } from "./Utilisateur"
+
 export interface Appointment {
     id: number
     day: string
     centerId: number
     doctorId:number
-    utilisateurId:number
+    utilisateur : Utilisateur
     available:Boolean
 }

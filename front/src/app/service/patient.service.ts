@@ -26,7 +26,7 @@ export class PatientService {
       lastName:patient.lastName,
       mail:patient.mail,
       password:patient.password,
-      role:"Admin",
+      role:"Patient",
       center:patient.center
     })
       .subscribe(

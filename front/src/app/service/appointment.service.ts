@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 import { Appointment } from 'src/app/Modele';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class AppointmentService {
             day: appointment.day,
             centerId: appointment.centerId,
             doctorId: appointment.doctorId,
-            utilisateurId: appointment.utilisateurId,
+            utilisateur: appointment.utilisateur,
             available: appointment.available,
             
         })
@@ -32,5 +33,9 @@ export class AppointmentService {
 
     public getAppointmentByCenterId(centerId: number) {
       return this.http.get<Appointment[]>('api/public/appointmentbycenter/'+centerId);
+    }
+
+    public maxId():Observable<number>{
+      return this.http.get<number>('/api/public/maxappointment');
     }
 }

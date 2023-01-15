@@ -14,7 +14,7 @@ COPY ./ /api/
 #Do the actual build
 RUN gradle clean build -x test --no-daemon #no test, no daemon
 
-FROM openjdk:17 AS final
+FROM eclipse-temurin:17-jre-alpine AS final
 COPY --from=build /api/build/libs/covid-api-0.0.1-SNAPSHOT.jar /api/
 WORKDIR /api
 EXPOSE 9797

@@ -14,4 +14,8 @@ public interface AddressRepository extends JpaRepository<Address, Integer>{
     @Transactional
     @Query("UPDATE address as a SET a.street = :street, a.zipcode = :zipcode, a.city = :city WHERE a.id = :addressId")
     void updateAddress(String street, String zipcode, String city, int addressId);
+
+    @Query(value = "SELECT MAX(id) FROM address", nativeQuery = true)
+    int findMaxId();
+    
 }

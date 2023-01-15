@@ -35,4 +35,8 @@ public class CenterService {
     public void updateCenter(String name, int capacity, String timetable, int centerId, Address address){
         this.repository.updateCenter(name, capacity, timetable, centerId, address);
     }
+
+    public int max(){
+        return repository.findMaxId();
+    }
 }

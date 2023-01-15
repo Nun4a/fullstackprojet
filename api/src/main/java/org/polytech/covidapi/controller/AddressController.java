@@ -24,7 +24,7 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping("/showaddresspretty")
+    @GetMapping("/public/showaddresspretty")
 
     public String findUsers (Model model) {
 
@@ -38,29 +38,35 @@ public class AddressController {
         return str;
     }
 
-    @GetMapping(value="/showaddress")
+    @GetMapping(value="/public/showaddress")
     public Iterable<Address> getAllUser(){
         Iterable<Address> addressCollections = addressService.findAll();
         return addressCollections;
     }
 
-    @GetMapping("/showaddress/{id}")
+    @GetMapping("/public/showaddress/{id}")
     public Optional<Address> getOneacteur(@PathVariable int id){
             return addressService.findById(id);
     }
 
-    @PostMapping(path = "/address")
+    @PostMapping(path = "/private/address")
     public Address save(@RequestBody Address newaddress) {
         return addressService.save(newaddress);
     }
 
-    @DeleteMapping("/address/{id}")
+    @DeleteMapping("/private/address/{id}")
     public void delete(@PathVariable int id){
         addressService.delete(id);
     }
 
-    @PostMapping("/changeaddress")
+    @PostMapping("/private/changeaddress")
     public void updateAddress(@RequestBody Address address){
         this.addressService.updateAddress(address.getStreet(), address.getZipcode(), address.getCity(), address.getId());
     }
+    @GetMapping(value="/public/maxaddress")
+    public int max(){
+        return addressService.max();
+    }
+
+
 }

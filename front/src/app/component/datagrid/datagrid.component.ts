@@ -2,7 +2,7 @@ import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/cor
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Utilisateur } from 'src/app/Modele';
-import { AdminService } from 'src/app/service';
+import { AdminService, DoctorService } from 'src/app/service';
 import { dataSourceType } from './datagrid.types';
 
 @Component({
@@ -24,7 +24,7 @@ export class DatagridComponent implements OnInit {
 
   dataSource!: MatTableDataSource<dataSourceType>;
 
-  constructor(public adminService: AdminService) { }
+  constructor(public adminService: AdminService, public doctorService: DoctorService) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<dataSourceType>(this.dataSourceArg)

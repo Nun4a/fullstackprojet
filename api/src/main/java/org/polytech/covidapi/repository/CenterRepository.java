@@ -15,4 +15,8 @@ public interface CenterRepository extends JpaRepository<Center, Integer>{
     @Transactional
     @Query("UPDATE center as a SET a.name = :name, a.capacity = :capacity, a.timetable = :timetable, a.address = :address WHERE a.id = :centerId")
     void updateCenter(String name, int capacity, String timetable, int centerId, Address address);
+
+    @Query(value = "SELECT MAX(id) FROM center", nativeQuery = true)
+    int findMaxId();
+    
 }

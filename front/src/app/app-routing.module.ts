@@ -9,6 +9,7 @@ import { AjoutCentreComponent } from './component/ajout-centre/ajout-centre.comp
 import { CentresComponent } from './component/centres';
 import { LoginComponent } from './component/login/login.component';
 import { PlaningComponent } from './component/planing/planing.component';
+import { AjoutDoctorComponent } from './component/ajout-doctor';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'addadmin/:id', component: AjoutAdminComponent},
   {path: 'addadmin', component: AjoutAdminComponent},
   {path: 'addcentre', component: AjoutCentreComponent},
+  {path: 'adddoc', component: AjoutDoctorComponent},
   {path: 'connexion', component: ConnexionComponent},
   {path: 'centre', component: CentresComponent},
   {path: 'login', component: LoginComponent},

@@ -12,19 +12,19 @@ export class AdminService {
   constructor(private http:HttpClient) {}
 
   public getAdminsById(id: string) {
-    return this.http.get<Utilisateur>('/api/showadmin/'+id);
+    return this.http.get<Utilisateur>('/api/private/admin/showadmin/'+id);
   }
 
   public getAdmins(): Observable<Utilisateur[]> {
-    return this.http.get<Utilisateur[]>('/api/showadmin');
+    return this.http.get<Utilisateur[]>('/api/private/admin/showadmin');
   }
 
   public maxId():Observable<number>{
-    return this.http.get<number>('/api/max');
+    return this.http.get<number>('/api/public/max');
   }
 
   public saveAdminToServer(admin: Utilisateur) {
-    this.http.post('/api/addadmin' , { id:admin.id,
+    this.http.post('/api/private/admin/addadmin' , { id:admin.id,
       firstName:admin.firstName,
       lastName:admin.lastName,
       mail:admin.mail,
@@ -43,7 +43,7 @@ export class AdminService {
   }
 
   public changeInformations(user: Utilisateur){
-    this.http.post('api/changeadmin', {
+    this.http.post('api/private/changeadmin', {
       id: user.id,
       firstName: user.firstName,
       mail: user.mail,
@@ -60,7 +60,7 @@ export class AdminService {
   }
 
   deleteAdmin(id_user:number){
-    return this.http.delete('/api/deleteadmin/'+id_user);
+    return this.http.delete('/api/private/admin/deleteadmin/'+id_user);
   }
 
 
@@ -77,6 +77,6 @@ export class AdminService {
   }
 
   public getAdminByCenterId(centerId: number){
-    return this.http.get<Utilisateur[]>('/api/showadminbycenter/'+centerId);
+    return this.http.get<Utilisateur[]>('/api/private/showadminbycenter/'+centerId);
   }
 }

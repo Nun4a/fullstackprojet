@@ -89,7 +89,10 @@ export class FormCenterComponent implements OnInit {
     else {
       this.callbackFunctionChangeCenter( this.centerChoosen?.id ,postData.name, postData.capacity);  
       this.callbackFunctionChangeAddress(this.centerChoosen?.address.id, postData.street, postData.zipcode, postData.city);
-      // location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 500)
+      
     }
   }
 }

@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 
 import org.polytech.covidapi.model.Center;
 import org.polytech.covidapi.model.Utilisateur;
+import org.polytech.covidapi.repository.CenterRepository;
 import org.polytech.covidapi.repository.UtilisateurRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,7 @@ public class UtilisateurService implements UserDetailsService{
     private UtilisateurRepository repository;
     private static Logger log = LoggerFactory.getLogger(UtilisateurService.class);
     private final PasswordEncoder passwordEncoder;
+    private CenterRepository centerRepository;
     
     public List<Utilisateur> findAll() {
 
@@ -105,7 +107,8 @@ public class UtilisateurService implements UserDetailsService{
     }
 
     public List<Utilisateur> getUserByCenterAndRole(String role, int centerId){
-        return repository.getUserByCenterAndRole(role, centerId);
+        //Optional<Center> center = centerRepository.findById(centerId);
+        return repository.getUserByCenterAndRole(centerId , role);
     }
 
     public void updateUser(String firstname, String lastname, String mail, String role, int userId, Center center){

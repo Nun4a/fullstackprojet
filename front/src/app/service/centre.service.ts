@@ -11,11 +11,11 @@ export class CentreService {
   constructor(private http:HttpClient) { }
 
   public getCenters(): Observable<Center[]> {
-    return this.http.get<Center[]>('/api/showcenter');
+    return this.http.get<Center[]>('/api/public/showcenter');
   }
   public saveCenterToServer(centre: Center) {
     console.log(centre)
-    this.http.post('/api/addcenter' , { id:centre.id,
+    this.http.post('/api/private/addcenter' , { id:centre.id,
       name:centre.name,
       capacity:centre.capacity,
       timetable:centre.timetable,
@@ -32,7 +32,7 @@ export class CentreService {
   }
 
   public changeInfo(centre: Center){
-    this.http.post('/api/changecenter', {
+    this.http.post('/api/private/changecenter', {
       id:centre.id,
       name:centre.name,
       capacity:centre.capacity,
@@ -47,5 +47,9 @@ export class CentreService {
           console.log('Erreur ! : ' + error);
         }
       );
+  }
+
+  public maxId():Observable<number>{
+    return this.http.get<number>('/api/public/maxcenter');
   }
 }

@@ -118,4 +118,12 @@ export class CentresComponent implements OnInit {
       return this.centerService.changeInfo(this.changedCenter)
     }, 500 )
   }
+
+  deleteAdmin(id:number){
+      this.adminService.confDeleteAdmin(id);
+  }
+
+  deleteDoc(id:number){
+      this.doctorService.confDeleteDoc(id);
+  }
 }

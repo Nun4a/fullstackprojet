@@ -25,7 +25,7 @@ public class DoctorController {
     
     @Autowired
     private UtilisateurService userService;
-    @GetMapping("/showdocpretty")
+    @GetMapping("/private/doctor/showdocpretty")
     public String findUsers (Model model) {
 
         List<Utilisateur> users = userService.finddoc();
@@ -37,7 +37,7 @@ public class DoctorController {
         return str.toString();
     }
 
-    @GetMapping(value="/showdoc")
+    @GetMapping(value="/private/doctor/showdoc")
     public ResponseEntity<List<Utilisateur>> getAllUser(){
         List<Utilisateur> admins = userService.finddoc();
         return new ResponseEntity<>(admins, HttpStatus.OK);
@@ -47,7 +47,7 @@ public class DoctorController {
 
     
 
-    @GetMapping("/showdoc/{id}")
+    @GetMapping("/private/doctor/showdoc/{id}")
     public Optional<Utilisateur> getOneadmin(@PathVariable int id){
         return userService.findById(id);
     }
@@ -57,17 +57,17 @@ public class DoctorController {
             return  userService.findById(id).getCenter();
     }*/
 
-    @PostMapping(path = "/adddoc")
+    @PostMapping(path = "/private/doctor/adddoc")
     public Utilisateur save(@RequestBody Utilisateur newuser) {
         return userService.save(newuser);
     }
 
-    @DeleteMapping("/deletedoc/{id}")
+    @DeleteMapping("/private/doctor/deletedoc/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);
     }
 
-    @GetMapping("/showdocbycenter/{id}")
+    @GetMapping("/private/showdocbycenter/{id}")
     public List<Utilisateur> getUserByCenterAndRole(@PathVariable int id){
         return userService.getUserByCenterAndRole("Doctor",id);
     }

@@ -13,6 +13,6 @@ export class SuperAdminService {
 
 
   public getSuperAdmins(): Observable<SuperAdmin[]> {
-    return this.http.get<SuperAdmin[]>('/api/showsuperadmin');
+    return this.http.get<SuperAdmin[]>('/api/private/superadmin/showsuperadmin');
   }
 }

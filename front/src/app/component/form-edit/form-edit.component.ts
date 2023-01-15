@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Address, Utilisateur } from 'src/app/Modele';
 import { Center } from 'src/app/Modele/Center.Model';
 import { Location } from '@angular/common';
-import { AdminService, CentreService } from 'src/app/service';
+import { AdminService, CentreService, DoctorService } from 'src/app/service';
 
 @Component({
   selector: 'app-form-edit',
@@ -64,7 +64,7 @@ export class FormEditComponent {
     }
   ]
     
-  constructor(private centerService:CentreService, private adminService:AdminService, private _location: Location) { 
+  constructor(private centerService:CentreService, private adminService:AdminService, private _location: Location, private docService:DoctorService) { 
     
   }
 
@@ -146,6 +146,7 @@ export class FormEditComponent {
       return
     }
     this.callbackFunctionAdd(this.newAdmin);
+    this._location.back();
   }
 
   onSubmitChange(post: any){
@@ -164,5 +165,6 @@ export class FormEditComponent {
       return
     }
     this.callbackFunctionModif(this.newAdmin);
+    this._location.back();
   }
 }

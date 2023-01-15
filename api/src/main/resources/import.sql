@@ -34,6 +34,11 @@ INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center)
 INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('Tristan', 'taoa', 'tot.tit@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Doctor','5');
 INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('Delphine', 'taoa', 'tot.tit@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Doctor','5');
 
+
+--patient
+INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('Jai', 'mal', 'tot.tit@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Patient','5');
+INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('Soignez', 'Moi', 'tot.tit@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Patient','5');
+
 --
 --INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('toto2', 'taoa', 'tot.tot@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Patient','3');
 --INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('toto3', 'taoa', 'tot.tit@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Doctor','4');
@@ -42,19 +47,21 @@ INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center)
 --INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('toto6', 'taotoa', 'tot.tot@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Patient','2');
 --INSERT INTO utilisateur (first_name, last_name, mail, password, role, id_center) VALUES ('totosept', 'taoati', 'tot.tit@gmail.com','$2y$10$l56OKChhthne5p0gZm6YV.899n/naJi8k4k2XFyT64r0ABRLggVgG', 'Doctor','3');
 
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:23', 'axel@wanadoo.fr', '1')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:18', 'alband@hotmail.fr', '1')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:25', 'guillaume@proton.com', '2')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:22', 'yan@gmail.com', '3')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:29', 'alice@live.fr', '3')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:20', 'bob@gmail.com', '4')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:21', 'charles@wanadoo.fr', '4')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:23', 'daniel@gmail.com', '4')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:24', 'ella@hotmail.fr', '4')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:22', 'florence@gmail.com', '4')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:21', 'gregory@wanadoo.fr', '5')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:26', 'henia@gmail.com', '5')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:24', 'isabelle@wanadoo.fr', '5')
-INSERT INTO appointment (day, patient_mail, center_id) VALUES ('2022:01:25', 'jeanne@live.fr', '5')
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (false, 5, '2022:01:23', 15, 19)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:23', 16, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:24', 15, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:24', 16, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:25', 15, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:25', 16, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:26', 15, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:26', 16, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (false, 5, '2022:01:27', 15, 20)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:27', 16, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:28', 15, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:28', 16, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:29', 15, 0)
+INSERT INTO appointment (available, center_id, day, doctor_id, utilisateur_id) VALUES (true, 5, '2022:01:29', 16, 0)
+
+
 
 

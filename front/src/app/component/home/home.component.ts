@@ -90,8 +90,10 @@ export class HomeComponent {
     const bufferData: Appointment = {
       id: 1,
       centerId: this.centerChoosen.id,
-      patientMail: this.mail,
+      available: false,
       day: this.daterdv,
+      doctorId: 0,
+      utilisateurId: 0
     } 
     return this.appointmentService.saveAppointmentToServer(bufferData)
   }

@@ -14,8 +14,11 @@ export class AppointmentService {
         this.http.post('/api/public/appointment', {
             id: appointment.id,
             day: appointment.day,
-            patientMail: appointment.patientMail,
-            centerId: appointment.centerId
+            centerId: appointment.centerId,
+            doctorId: appointment.doctorId,
+            utilisateurId: appointment.utilisateurId,
+            available: appointment.available,
+            
         })
           .subscribe(
             () => {

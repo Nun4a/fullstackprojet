@@ -15,7 +15,11 @@
         <div class="flex flex-col m-2 bg-zinc-400 rounded-md p-1">
           <tr *ngFor="let appointment of appointment" class="flex flex-col m-2 bg-white rounded-md p-1">
             <td>{{appointment.day}}</td>
-            <td>{{appointment.patientMail}}</td>
+            <div *ngIf="appointment.available == true"> Libre </div>
+            <div *ngIf="appointment.available == false"> Réservé <div>
+              <!--<button class="m-2" mat-raised-button color="primary" (click)="getUser(appointment.centerId)">voir</button>
+              Nom du patient : {{patient.firstName}}-->
+            </div></div>
           </tr>
         </div>
       </mat-card>

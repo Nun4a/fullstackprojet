@@ -1,6 +1,8 @@
 export interface Appointment {
     id: number
     day: string
-    patientMail: string 
     centerId: number
+    doctorId:number
+    utilisateurId:number
+    available:Boolean
 }

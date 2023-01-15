@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
 
-    @Query(value="select * from Appointment a where a.center_id = :id", nativeQuery=true)
+    //@Query(value="select * from Appointment a where a.center_id = :id", nativeQuery=true)
     List<Appointment> findByCenterId(int id);
 
     @Query(value = "SELECT MAX(id) FROM appointment", nativeQuery = true)

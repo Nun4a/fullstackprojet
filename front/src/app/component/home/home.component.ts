@@ -7,6 +7,7 @@ import { Center } from 'src/app/Modele/Center.Model';
 import { AppointmentService } from 'src/app/service/appointment.service';
 import { DateFilterFn } from '@angular/material/datepicker';
 import { Appointment, Utilisateur } from 'src/app/Modele';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
@@ -36,7 +37,7 @@ export class HomeComponent {
   public maxidApp = 0
   public appointment: Appointment[] = [];
 
-  constructor(private centerService: CentreService, private appointmentService: AppointmentService, private patientService: PatientService) {
+  constructor(private centerService: CentreService, private appointmentService: AppointmentService, private patientService: PatientService, private router:Router) {
     this.minDate = new Date();
    }
 
@@ -66,6 +67,7 @@ export class HomeComponent {
   }
 
   public getAppointment(centerId: number) {
+    let temps: string | null;
     this.appointmentService.getAppointmentByCenterId(centerId).subscribe(
       (response: Appointment[]) => {
         this.appointmentList = response;
@@ -74,6 +76,10 @@ export class HomeComponent {
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
+        const keys = error.headers.keys();
+        temps = error.headers.get('x-rate-limit-retry-after-seconds')
+        // this.infos =  `Réessayer apres ${temps} secondes`;
+        this.router.navigate(['/waiting', temps]);
       }
     )
   }

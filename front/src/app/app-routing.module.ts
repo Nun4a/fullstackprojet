@@ -10,6 +10,7 @@ import { CentresComponent } from './component/centres';
 import { LoginComponent } from './component/login/login.component';
 import { PlaningComponent } from './component/planing/planing.component';
 import { AjoutDoctorComponent } from './component/ajout-doctor';
+import { WaitingComponent } from './component/waiting/waiting.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'connexion', component: ConnexionComponent},
   {path: 'centre', component: CentresComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'planning', component: PlaningComponent}
+  {path: 'planning', component: PlaningComponent},
+  {path: 'waiting/:temps', component: WaitingComponent}
 ];
 
 @NgModule({

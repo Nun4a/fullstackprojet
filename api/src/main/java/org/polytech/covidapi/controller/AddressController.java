@@ -61,6 +61,6 @@ public class AddressController {
 
     @PostMapping("/changeaddress")
     public void updateAddress(@RequestBody Address address){
-        this.addressService.updateCenter(address.getStreet(), address.getZipcode(), address.getCity(), address.getId());
+        this.addressService.updateAddress(address.getStreet(), address.getZipcode(), address.getCity(), address.getId());
     }
 }

@@ -30,7 +30,7 @@
 
         <!-- Edit centre -->
         <div class="flex justify-center item-center"*ngIf="centerEdit">
-            <app-form-center [centerChoosen]="centerChoosen"></app-form-center>
+            <app-form-center [callbackFunctionChangeAddress]="changeAddress" [callbackFunctionChangeCenter]="changeCentre" [centerChoosen]="centerChoosen"></app-form-center>
         </div>
 
         <div *ngIf="equipEdit">

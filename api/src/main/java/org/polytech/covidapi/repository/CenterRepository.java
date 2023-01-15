@@ -14,5 +14,5 @@ public interface CenterRepository extends JpaRepository<Center, Integer>{
     @Modifying
     @Transactional
     @Query("UPDATE center as a SET a.name = :name, a.capacity = :capacity, a.timetable = :timetable, a.address = :address WHERE a.id = :centerId")
-    public void updateCenter(String name, int capacity, String timetable, int centerId, Address address);
+    void updateCenter(String name, int capacity, String timetable, int centerId, Address address);
 }

@@ -16,7 +16,7 @@
           <tr *ngFor="let appointment of appointment" class="flex flex-col m-2 bg-white rounded-md p-1">
             <td>{{appointment.day}}</td>
             <div *ngIf="appointment.available == true"> Libre </div>
-            <div *ngIf="appointment.available == false"> Réservé <!--{{appointment.utilisateur.firstName}}--></div>
+            <div *ngIf="appointment.available == false"> Réservé <!--{{appointment.utilisateur.firstName}}            ### problème quand on affiche le nom de l'utilisateur, ca casse toute la mise en forme   ###--></div>
           </tr>
         </div>
       </mat-card>

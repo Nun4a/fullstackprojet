@@ -113,7 +113,7 @@ export class HomeComponent {
     this.saveUser()
     this.SaveAppointement();
   }
-
+  // enregistrement du nouveau patient en BDD
   saveUser = () => {
     this.max()
     this.user = {
@@ -127,7 +127,7 @@ export class HomeComponent {
     } 
     this.patientService.savePatientToServer(this.user)
   }
-
+  // enregistrement du RDV en BDD
   SaveAppointement= () => {
     this.maxbis()
     this.newAppointment= {
@@ -149,7 +149,7 @@ export class HomeComponent {
     return this.appointmentService.saveAppointmentToServer(this.newAppointment)
 
   }
-
+  // permet de recuperer tout les RDV pour voir lesquels sont dispo ou non
   public getAppointment = (e: any) => {
     this.appointmentService.getAppointmentByCenterId(e.value).subscribe(
       (response: Appointment[]) => {

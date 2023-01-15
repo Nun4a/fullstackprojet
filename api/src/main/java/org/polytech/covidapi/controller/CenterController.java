@@ -59,7 +59,7 @@ public class CenterController {
     }
 
     @PostMapping(path = "/changecenter")
-    public void updateCenter(Center center){
+    public void updateCenter(@RequestBody Center center){
         this.centerService.updateCenter(center.getName(), center.getCapacity(), center.getTimetable(), center.getId(), center.getAddress());
     }
 

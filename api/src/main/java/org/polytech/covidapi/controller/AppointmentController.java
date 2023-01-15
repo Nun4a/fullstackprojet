@@ -10,9 +10,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
-
 import io.github.bucket4j.*;
 import org.springframework.web.server.ResponseStatusException;
+import io.micrometer.core.annotation.Timed;
 
 @RestController
 @RequestMapping("/api")
@@ -63,6 +63,7 @@ public class AppointmentController {
         return appointmentService.findById(id);
     }
 
+    @Timed(value = "saveAppointment.time", description = "Time taken to save an appointment")
     @PostMapping(path = "/public/appointment")
     public Appointment save(@RequestBody Appointment newappointment) {
         return appointmentService.save(newappointment);

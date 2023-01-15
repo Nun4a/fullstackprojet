@@ -89,4 +89,9 @@ public class AppointmentController {
     public void delete(@PathVariable int id){
         appointmentService.delete(id);
     }
+
+    @GetMapping(value="/public/maxappointment")
+    public int max(){
+        return appointmentService.max();
+    }
 }

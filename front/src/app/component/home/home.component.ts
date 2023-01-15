@@ -1,15 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { CentreService } from 'src/app/service';
+import { CentreService, PatientService } from 'src/app/service';
 import { Center } from 'src/app/Modele/Center.Model';
-import { centerType } from './home.types';
-import { reserveDataToSend } from './home.types';
 import { AppointmentService } from 'src/app/service/appointment.service';
-import { Appointment } from 'src/app/Modele';
-import { DatePipe } from '@angular/common';
 import { DateFilterFn } from '@angular/material/datepicker';
+import { Appointment, Utilisateur } from 'src/app/Modele';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
@@ -34,8 +31,12 @@ export class HomeComponent {
 
   public centers: Center[] = [];
   public adminSubscription: Subscription = new Subscription;
+  public user!: Utilisateur
+  public maxidUser = 0
+  public maxidApp = 0
+  public appointment: Appointment[] = [];
 
-  constructor(private centerService: CentreService, private appointmentService: AppointmentService) {
+  constructor(private centerService: CentreService, private appointmentService: AppointmentService, private patientService: PatientService) {
     this.minDate = new Date();
    }
 
@@ -47,6 +48,9 @@ export class HomeComponent {
         this.centers = center;
       }
     );
+    this.getCenter();
+    this.max();
+    this.maxbis();
   }
 
   public getCenter(): void{
@@ -116,22 +120,84 @@ export class HomeComponent {
       }
   }
 
+  max(){
+    this.patientService.maxId().subscribe((response: number) => {
+      this.maxidUser = response;
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  );
+  }
+
+  maxbis(){
+    this.appointmentService.maxId().subscribe((response: number) => {
+      this.maxidApp = response;
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  );
+  }
+
   onReserveClick(form: NgForm){
     this.fname = form.value.fname;
     this.lname = form.value.lname;
     this.mail = form.value.mail;
     this.daterdv = form.value.daterdv;
     this.reserveOk = !this.reserveOk;
-    this.sendData()
+    this.saveUser()
+    this.SaveAppointement();
   }
 
-  sendData = () => {
-    const bufferData: Appointment = {
-      id: 1,
-      centerId: this.centerChoosen.id,
-      patientMail: this.mail,
-      day: this.daterdv,
+  // enregistrement du nouveau patient en BDD
+  saveUser = () => {
+    this.max()
+    this.user = {
+      id: this.maxidUser + 1,
+      firstName: this.fname,
+      lastName: this.lname,
+      password: '',
+      mail: this.mail,
+      role: 'Patient',
+      center: this.centerChoosen
     } 
-    return this.appointmentService.saveAppointmentToServer(bufferData)
+    this.patientService.savePatientToServer(this.user)
   }
+  // enregistrement du RDV en BDD
+  SaveAppointement= () => {
+    this.maxbis()
+    this.newAppointment= {
+      id: this.maxidApp +1,
+      centerId: this.centerChoosen.id,
+      day: this.daterdv,
+      doctorId: Math.random() * 18,
+      utilisateur: {
+        id: this.maxidUser + 1,
+        firstName: this.fname,
+        lastName: this.lname,
+        password: '',
+        mail: this.mail,
+        role: 'Patient',
+        center: this.centerChoosen
+      } 
+    } 
+    return this.appointmentService.saveAppointmentToServer(this.newAppointment)
+
+  }
+  // permet de recuperer tout les RDV pour voir lesquels sont dispo ou non
+  // public getAppointment = (e: any) => {
+  //   this.appointmentService.getAppointmentByCenterId(e.value).subscribe(
+  //     (response: Appointment[]) => {
+  //       this.appointment = response;
+  //       console.log(response)
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   );
+  // }
+
+    
 }
+

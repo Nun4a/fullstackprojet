@@ -14,8 +14,9 @@
         </form>
         <div class="flex flex-col m-2 bg-zinc-400 rounded-md p-1">
           <tr *ngFor="let appointment of appointment" class="flex flex-col m-2 bg-white rounded-md p-1">
-            <td>{{appointment.day}}</td>
-            <td>{{appointment.patientMail}}</td>
+            <td>Date : {{appointment.day}}</td>
+            <td>Patient : {{appointment.utilisateur.firstName}} {{appointment.utilisateur.lastName}}</td>
+            <td>Médecin : {{findDoctorById(appointment.doctorId)}}</td>
           </tr>
         </div>
       </mat-card>

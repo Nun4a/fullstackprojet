@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 import { Appointment } from 'src/app/Modele';
 
 @Injectable({
@@ -14,8 +15,9 @@ export class AppointmentService {
         this.http.post('/api/public/appointment', {
             id: appointment.id,
             day: appointment.day,
-            patientMail: appointment.patientMail,
-            centerId: appointment.centerId
+            centerId: appointment.centerId,
+            doctorId: appointment.doctorId,
+            utilisateur: appointment.utilisateur            
         })
           .subscribe(
             () => {
@@ -29,5 +31,9 @@ export class AppointmentService {
 
     public getAppointmentByCenterId(centerId: number) {
       return this.http.get<Appointment[]>('api/public/appointmentbycenter/'+centerId);
+    }
+
+    public maxId():Observable<number>{
+      return this.http.get<number>('/api/public/maxappointment');
     }
 }

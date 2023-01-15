@@ -24,6 +24,7 @@ import { FormCenterComponent } from './component/form-center';
 import { HeaderInterceptor } from './interceptor/header.interceptor';
 import { PlaningComponent } from './component/planing/planing.component';
 import { AjoutDoctorComponent } from './component/ajout-doctor';
+import { WaitingComponent } from './waiting/waiting.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AjoutDoctorComponent } from './component/ajout-doctor';
     DatagridComponent,
     AjoutCentreComponent,
     FormCenterComponent,
-    PlaningComponent
+    PlaningComponent,
+    WaitingComponent
   ],
   imports: [
     BrowserModule,

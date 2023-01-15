@@ -24,7 +24,7 @@ import { FormCenterComponent } from './component/form-center';
 import { HeaderInterceptor } from './interceptor/header.interceptor';
 import { PlaningComponent } from './component/planing/planing.component';
 import { AjoutDoctorComponent } from './component/ajout-doctor';
-import { WaitingComponent } from './waiting/waiting.component';
+import { WaitingComponent } from './component/waiting/waiting.component';
 
 @NgModule({
   declarations: [

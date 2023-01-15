@@ -11,29 +11,13 @@ export class LoginService {
 
   private isLoggedSubject: Subject<boolean> = new Subject();
 
-
   private password?: string;
   private username?: string;
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }
 
-  /*connect(username: string, password: string): Observable<any> {
-    let token = this.createToken(username, password);
-    let options = {
-      headers: {
-        'Authorization': token
-      }
-    };
-    return this.httpClient.get<string>('/api/login', options).pipe(map(value => {
-      this.password = password;
-      this.username = username;
-      console.log("Connected")
-    }))
-  }*/
-
   private createToken(username?: string, password?: string) {
-    console.log(username);
     let token = `Basic ` + btoa(`${username}:${password}`);
     return token;
   }
@@ -63,6 +47,6 @@ export class LoginService {
   }
 
   getUtilisateur(): Observable<Utilisateur> {
-    return this.httpClient.get<Utilisateur>('/api/user', {});
+    return this.httpClient.get<Utilisateur>('/api/private/admin/showadmin', {});
   }
 }

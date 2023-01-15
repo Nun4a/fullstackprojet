@@ -46,11 +46,6 @@ public class SuperAdminController {
     }
 
 
-
-
-
-    
-
     @GetMapping("/private/superadmin/showsuperadmin/{id}")
     public Optional<Utilisateur> getOneadmin(@PathVariable int id){
             Optional<Utilisateur> user = userService.findById(id);

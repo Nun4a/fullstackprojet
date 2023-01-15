@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { Appointment, Center } from 'src/app/Modele';
-import { CentreService } from 'src/app/service';
+import { Observable, Subscription } from 'rxjs';
+import { Appointment, Center, Utilisateur } from 'src/app/Modele';
+import { CentreService, DoctorService, PatientService } from 'src/app/service';
 import { AppointmentService } from 'src/app/service/appointment.service';
 
 @Component({
@@ -17,17 +17,27 @@ export class PlaningComponent implements OnInit {
   public appointmentSubscription: Subscription = new Subscription
   public appointment: Appointment[] = [];
   public centers: Center[] = [];
+  public patient!: Utilisateur;
   public centerChoosen!: Center;
+  public doctorList: Utilisateur[] = [];
 
-  constructor(private formBuilder: FormBuilder, private appointmentService: AppointmentService, private centerService: CentreService) {}
+  constructor(private formBuilder: FormBuilder, private appointmentService: AppointmentService, private centerService: CentreService, private patientService:PatientService, private doctorService: DoctorService) {}
 
   ngOnInit(): void {
-    this.centerSubscription = this.centerService.getCenters().subscribe(
-      (centers: Center[]) => {
-        this.centers = centers;
-      }
-    );
     this.getCenters();
+    this.getDoctors();
+  }
+
+  getDoctors = () => {
+    this.doctorService.getDoc().subscribe(
+      (response: Utilisateur[]) => {
+        this.doctorList = response
+        console.log(this.doctorList)
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
   }
 
   public getCenters(): void{
@@ -39,6 +49,16 @@ export class PlaningComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  public getUser(id:any): void{
+     this.patientService.getPatientById(id).subscribe((response: Utilisateur) => {
+      this.patient = response;
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  );
   }
 
   public getAppointment = (e: any) => {
@@ -56,4 +76,8 @@ export class PlaningComponent implements OnInit {
   centerForm = this.formBuilder.group({
     center: [null, Validators.required]
   })
+
+  findDoctorById = (id: number) : string => {
+    return this.doctorList.find(elem => elem.id === id)?.firstName + " " + this.doctorList.find(elem => elem.id === id)?.lastName;
+  }
 }

@@ -33,6 +33,7 @@ export class LoginService {
   }*/
 
   private createToken(username?: string, password?: string) {
+    console.log(username);
     let token = `Basic ` + btoa(`${username}:${password}`);
     return token;
   }

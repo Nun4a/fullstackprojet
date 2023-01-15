@@ -59,6 +59,10 @@ public class AddressController {
         addressService.delete(id);
     }
 
+    @PostMapping("/private/changeaddress")
+    public void updateAddress(@RequestBody Address address){
+        this.addressService.updateAddress(address.getStreet(), address.getZipcode(), address.getCity(), address.getId());
+    }
     @GetMapping(value="/public/maxaddress")
     public int max(){
         return addressService.max();

@@ -8,6 +8,8 @@ import { centerType } from './home.types';
 import { reserveDataToSend } from './home.types';
 import { AppointmentService } from 'src/app/service/appointment.service';
 import { Appointment } from 'src/app/Modele';
+import { DatePipe } from '@angular/common';
+import { DateFilterFn } from '@angular/material/datepicker';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
@@ -24,13 +26,18 @@ export class HomeComponent {
   lname!: string;
   mail!: string;
   daterdv!: string;
+  minDate!: Date;
 
   newAppointment!: Appointment;
+  appointmentList: Appointment[] = [];
+  appointmentDateFilter: Date[] = [];
 
   public centers: Center[] = [];
   public adminSubscription: Subscription = new Subscription;
 
-  constructor(private centerService: CentreService, private appointmentService: AppointmentService) { }
+  constructor(private centerService: CentreService, private appointmentService: AppointmentService) {
+    this.minDate = new Date();
+   }
 
   //Charger les données des centres là dedans
 
@@ -40,7 +47,6 @@ export class HomeComponent {
         this.centers = center;
       }
     );
-    this.getCenter();
   }
 
   public getCenter(): void{
@@ -55,9 +61,42 @@ export class HomeComponent {
     );
   }
 
+  public getAppointment(centerId: number) {
+    this.appointmentService.getAppointmentByCenterId(centerId).subscribe(
+      (response: Appointment[]) => {
+        this.appointmentList = response;
+        console.log(this.appointmentList);
+        this.dateTabFill(response);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
   onChooseClick(form: Center) {
-    this.secondForm = !this.secondForm
-    this.centerChoosen = form  
+    this.secondForm = !this.secondForm;
+    this.centerChoosen = form;
+    this.getAppointment(form.id);
+  }
+
+  dateTabFill = (appointment: Appointment[]) => {
+    for(let value of appointment){
+      this.appointmentDateFilter.push(this.stringToDate(value.day));
+    }
+    // console.log(this.appointmentDateFilter)
+  }
+
+  stringToDate(date: string): Date{
+    let dateFormat = new Date(date);
+    return dateFormat;
+  }
+
+  dateFilter: DateFilterFn<Date|null> = (date: Date | null) => {
+    if(date === null) return false
+    const day = date?.getDay();
+    const blockedDate = this.appointmentDateFilter.map(date => date.getTime());
+    return (!blockedDate.includes(date.getTime()));
   }
 
   onBackClick(){

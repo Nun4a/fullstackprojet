@@ -36,9 +36,11 @@ public class AddressService {
         repository.deleteById(id_user);
     }
 
+    public void updateAddress(String street, String zipcode, String city, int addressId){
+        this.repository.updateAddress(street, zipcode, city, addressId);
+    }
+    
     public int max(){
-
         return repository.findMaxId();
-
     }
 }

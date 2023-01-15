@@ -1,9 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Directive, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Admin, Center, Utilisateur } from 'src/app/Modele';
-import { AdminService, CentreService } from 'src/app/service';
+import { Address, Admin, Center, Utilisateur } from 'src/app/Modele';
+import { AddressService, AdminService, CentreService } from 'src/app/service';
 import { DoctorService } from 'src/app/service/doctor.service';
 
 @Component({
@@ -23,6 +24,8 @@ export class CentresComponent implements OnInit {
   titleAlert: string = 'This field is required';
   post: any = '';
   searchText: string = '';
+  changedAddress!: Address;
+  changedCenter!: Center;
 
   centerEdit: boolean = false;
   equipEdit: boolean = false;
@@ -31,7 +34,7 @@ export class CentresComponent implements OnInit {
   centerChoosen!: Center;
 
 
-  constructor(private centerService: CentreService,private doctorService: DoctorService, private adminService: AdminService) { 
+  constructor(private centerService: CentreService, private doctorService: DoctorService, private adminService: AdminService, private router:Router, private addressService: AddressService) { 
   }
 
   ngOnInit(): void {
@@ -85,16 +88,39 @@ export class CentresComponent implements OnInit {
     this.post = post;
   }
 
-  changeAdmin(id: number){
-    console.log(id)
+  changeAdmin = (id: number) => {
+    this.router.navigateByUrl('/addadmin/'+id);
+  }
+
+  changeAddress = (id: number, street: string, zipcode: string, city: string) => {
+    if(this.addressService === undefined) return
+    else {
+      this.changedAddress = {
+      street: street,
+        zipcode: zipcode,
+        city: city,
+        id: id,
+      }
+      console.log(this.changedAddress)
+      return this.addressService.changeInfo(this.changedAddress)
+    }
+  }
+
+  changeCentre = (id: number, name: string, capacity: number) => {
+    setTimeout(() => {
+      this.changedCenter = {
+        name: name,
+        capacity: capacity,
+        timetable: '',
+        id: id,
+        address: this.changedAddress
+      } 
+      return this.centerService.changeInfo(this.changedCenter)
+    }, 500 )
   }
 
   deleteAdmin(id:number){
       this.adminService.confDeleteAdmin(id);
-  }
-
-  changeDoc(id: number){
-    console.log(id)
   }
 
   deleteDoc(id:number){

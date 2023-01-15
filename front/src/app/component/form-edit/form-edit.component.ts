@@ -14,16 +14,21 @@ import { AdminService, CentreService, DoctorService } from 'src/app/service';
 export class FormEditComponent {
 
   @Input()
-  callbackFunction: ((newAdmin:Utilisateur) => void) | undefined;
+  callbackFunctionAdd: ((newAdmin:Utilisateur) => void) | undefined;
+  @Input()
+  callbackFunctionModif: ((newAdmin:Utilisateur) => void) | undefined;
   @Input()
   formType: boolean | undefined;
   @Input()
   centerList: Center[] | undefined;
+  @Input()
+  userId: string | null | undefined;
 
   form!: FormGroup;
   post: any = '';
   checkPassword: any;
   checkInUseEmail: any;
+  modifiedUser: Utilisateur | undefined;
 
   public choosenaddress: Address ={
     id: 0,
@@ -65,9 +70,25 @@ export class FormEditComponent {
 
   ngOnInit() {
     this.getcenters();
-    this.createForm();
+    this.getModifiedUser();
+    this.createForm(this.modifiedUser);
   }
 
+  public getModifiedUser(){
+    if(this.userId === undefined) return
+    if(this.userId === null) return
+    else{
+      this.adminService.getAdminsById(this.userId).subscribe((response: Utilisateur) =>{
+          this.modifiedUser = response;
+          this.createForm(response);
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
+  }
+  
   public getcenters(): void{
     this.centerService.getCenters().subscribe(
       (response: Center[]) => {
@@ -85,7 +106,18 @@ export class FormEditComponent {
     else this.newAdmin.center = e.value;
   }
 
-  createForm() {
+  createForm(user: Utilisateur|undefined) {
+    if(user){
+      this.form = new FormGroup({
+        lname: new FormControl(user.lastName),
+        fname: new FormControl(user.firstName),
+        password: new FormControl(user.password),
+        mail: new FormControl(user.mail),
+        role: new FormControl(user.role),
+        centre: new FormControl(user.center)
+      });
+    }
+    else{
       this.form = new FormGroup({
         lname: new FormControl(''),
         fname: new FormControl(''),
@@ -94,6 +126,7 @@ export class FormEditComponent {
         role: new FormControl(''),
         centre: new FormControl('')
       });
+    }
   }
 
   backClicked = () => {
@@ -103,15 +136,35 @@ export class FormEditComponent {
   onSubmit(post: any) {
     var postData;
     postData = post.value;
-    this.newAdmin.firstName=postData.fname;
-    this.newAdmin.lastName=postData.lname;
-    this.newAdmin.password=postData.password;
-    this.newAdmin.mail=postData.mail;
-    this.newAdmin.role=postData.role;
-    if(this.callbackFunction ===undefined){
-      console.log("callbackFunction du form undefined");
+    this.newAdmin.firstName = postData.fname;
+    this.newAdmin.lastName = postData.lname;
+    this.newAdmin.password = postData.password;
+    this.newAdmin.mail = postData.mail;
+    this.newAdmin.role = postData.role;
+    if(this.callbackFunctionAdd === undefined){
+      console.log("callbackFunctionAdd du form undefined");
       return
     }
-    this.callbackFunction(this.newAdmin);
+    this.callbackFunctionAdd(this.newAdmin);
+    this._location.back();
+  }
+
+  onSubmitChange(post: any){
+    if(!this.userId) return
+    var postData;
+    postData = post.value;
+    this.newAdmin.id = Number(this.userId);
+    this.newAdmin.firstName = postData.fname;
+    this.newAdmin.lastName = postData.lname;
+    this.newAdmin.password = postData.password;
+    this.newAdmin.mail = postData.mail;
+    this.newAdmin.role = postData.role;
+    console.log(this.newAdmin)
+    if(this.callbackFunctionModif === undefined){
+      console.log("callbackFunctionModif du form undefined");
+      return
+    }
+    this.callbackFunctionModif(this.newAdmin);
+    this._location.back();
   }
 }

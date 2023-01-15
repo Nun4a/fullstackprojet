@@ -31,6 +31,24 @@ export class CentreService {
       );
   }
 
+  public changeInfo(centre: Center){
+    this.http.post('/api/private/changecenter', {
+      id:centre.id,
+      name:centre.name,
+      capacity:centre.capacity,
+      timetable:centre.timetable,
+      address:centre.address,
+    })
+      .subscribe(
+        () => {
+          console.log('Ok');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+
   public maxId():Observable<number>{
     return this.http.get<number>('/api/public/maxcenter');
   }

@@ -58,6 +58,10 @@ public class CenterController {
         centerService.delete(id);
     }
 
+    @PostMapping(path = "/private/changecenter")
+    public void updateCenter(@RequestBody Center center){
+        this.centerService.updateCenter(center.getName(), center.getCapacity(), center.getTimetable(), center.getId(), center.getAddress());
+    }
     @GetMapping(value="/public/maxcenter")
     public int max(){
         return centerService.max();

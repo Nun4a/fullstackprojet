@@ -4,6 +4,7 @@ import { Utilisateur } from 'src/app/Modele';
 import { AdminService } from 'src/app/service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { dataSourceType } from 'src/app/component/datagrid';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-gestion-admin',
@@ -15,7 +16,8 @@ export class GestionAdminComponent implements OnInit {
   public admins: Utilisateur[] = [];
   public adminSubscription: Subscription = new Subscription;
   public eventemitter: EventEmitter<any> = new EventEmitter();
-  constructor(public adminService: AdminService) { }
+
+  constructor(private adminService: AdminService, private router:Router) { }
 
   ngOnInit() {
     this.adminSubscription = this.adminService.getAdmins().subscribe(
@@ -38,8 +40,8 @@ export class GestionAdminComponent implements OnInit {
     );
   }
 
-  changeAdmin(id: number){
-    console.log(id)
+  changeAdmin = (id: number) => {
+    this.router.navigateByUrl('/addadmin/'+id);
   }
 
   deleteAdmin(id:number){

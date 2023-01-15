@@ -65,6 +65,11 @@ public class AdminController {
         return userService.save(newuser);
     }
 
+    @PostMapping(path = "/private/changeadmin")
+    public void updateUser(@RequestBody Utilisateur user){
+        this.userService.updateUser(user.getFirstName(), user.getLastName(), user.getMail(), user.getRole(), user.getId(), user.getCenter());
+    }
+
     @DeleteMapping("/private/admin/deleteadmin/{id}")
     public void delete(@PathVariable int id){
         userService.delete(id);

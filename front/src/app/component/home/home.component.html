@@ -16,7 +16,7 @@
   </div>
 
   <!--        Deuxieme formulaire, données de l'utilisateur          -->
-  <div *ngIf="!secondForm && reserveOk" class="bg-zinc-500 rounded-md p-2">
+  <div *ngIf="!secondForm && reserveOk" class="bg-zinc-500 w-fit rounded-md p-2">
     <div class="flex flex-row justify-evenly">
       <button class='bg-sky-600 rounded-md hover:bg-cyan-800 p-1' (click)="onBackClick()">Retour</button>
       <p>Prise de rendez-vous</p>
@@ -38,7 +38,13 @@
           <label>Mail :</label>
           <input class="m-1" type="email" id="email" [(ngModel)]="mail" name="mail">
           <label>Date :</label>
-          <input class="m-1" type="date" [(ngModel)]="daterdv" name="daterdv">
+          <!-- <input class="m-1" type="date" [(ngModel)]="daterdv" name="daterdv"> -->
+          <mat-form-field appearance="fill">
+            <mat-label>Choisissez une date</mat-label>
+            <input matInput [min]="minDate" [matDatepickerFilter]="dateFilter" [matDatepicker]="picker" [(ngModel)]="daterdv" name="daterdv">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </div>
       </div>
     </form>

@@ -110,4 +110,8 @@ public class UtilisateurService implements UserDetailsService{
         //Optional<Center> center = centerRepository.findById(centerId);
         return repository.getUserByCenterAndRole(centerId , role);
     }
+
+    public void updateUser(String firstname, String lastname, String mail, String role, int userId, Center center){
+        this.repository.updateUser(firstname, lastname, mail, role, userId, center);
+    }
 }

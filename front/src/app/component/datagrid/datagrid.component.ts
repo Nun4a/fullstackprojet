@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Utilisateur } from 'src/app/Modele';
 import { AdminService, DoctorService } from 'src/app/service';
 import { dataSourceType } from './datagrid.types';
 
@@ -17,7 +18,7 @@ export class DatagridComponent implements OnInit {
   @Input()
   public callbackFunctionDeleteUser!: ((id: number) => void);
   @Input()
-  callbackFunctionChangeUser: ((id: number) => void) | undefined;
+  public callbackFunctionChangeUser: ((id: number) => void) | undefined;
 
   displayedColumns: string[] = ['id', 'name', 'Supp.', 'Add'];
 
@@ -34,14 +35,12 @@ export class DatagridComponent implements OnInit {
     this.dataSource = new MatTableDataSource<dataSourceType>(this.dataSourceArg)
   }
 
-  deleteUser = (id: number) => {
-    console.log(this.callbackFunctionDeleteUser);
-    console.log(id);
-    this.callbackFunctionDeleteUser(id);
+  deleteUser = (user: Utilisateur) => {
+    this.callbackFunctionDeleteUser(user.id);
   }
 
-  changeUser = (id: number) => {
-    if(this.callbackFunctionChangeUser) this.callbackFunctionChangeUser(id);
+  changeUser = (user: Utilisateur) => {
+    if(this.callbackFunctionChangeUser) this.callbackFunctionChangeUser(user.id);
   }
 
 }

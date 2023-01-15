@@ -11,7 +11,9 @@ export class AdminService {
     
   constructor(private http:HttpClient) {}
 
-
+  public getAdminsById(id: string) {
+    return this.http.get<Utilisateur>('/api/private/admin/showadmin/'+id);
+  }
 
   public getAdmins(): Observable<Utilisateur[]> {
     return this.http.get<Utilisateur[]>('/api/private/admin/showadmin');
@@ -40,6 +42,23 @@ export class AdminService {
       );
   }
 
+  public changeInformations(user: Utilisateur){
+    this.http.post('api/private/changeadmin', {
+      id: user.id,
+      firstName: user.firstName,
+      mail: user.mail,
+      role: user.role,
+      center:user.center
+    }).subscribe(
+      () => {
+        console.log('Ok');
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+  }
+
   deleteAdmin(id_user:number){
     return this.http.delete('/api/private/admin/deleteadmin/'+id_user);
   }
@@ -60,5 +79,4 @@ export class AdminService {
   public getAdminByCenterId(centerId: number){
     return this.http.get<Utilisateur[]>('/api/private/showadminbycenter/'+centerId);
   }
-
 }

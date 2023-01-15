@@ -1,15 +1,9 @@
 package org.polytech.covidapi.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
-@Entity
-//@Table(name = "centers")
+@Entity(name = "center")
+@Table(name = "center")
 public class Center {
     
     @Id

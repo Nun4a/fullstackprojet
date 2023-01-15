@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
-import { Center } from 'src/app/Modele';
+import { Address, Center } from 'src/app/Modele';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Component({
@@ -11,12 +12,19 @@ import { Center } from 'src/app/Modele';
 export class FormCenterComponent implements OnInit {
 
   @Input()
-  callbackCenterFunction: ((name: string, capacity: number) => void) | undefined;
+  callbackFunctionAddCenter: ((name: string, capacity: number) => void) | undefined;
   @Input()
-  callbackAddressFunction:((street: string, zipcode: string, city: string) => void) | undefined;
+  callbackFunctionAddAddress:((street: string, zipcode: string, city: string) => void) | undefined;
+  @Input()
+  callbackFunctionChangeCenter: ((id: number, name: string, capacity: number) => void) | undefined;
+  @Input()
+  callbackFunctionChangeAddress:((id: number, street: string, zipcode: string, city: string) => void) | undefined;
   @Input()
   centerChoosen : Center | undefined;
   
+  public center!: Center;
+  public address!: Address;
+
   constructor(private _location: Location) {this.ngOnInit()}
 
   form!: FormGroup;
@@ -58,13 +66,33 @@ export class FormCenterComponent implements OnInit {
   onSubmit(post: any) {
     var postData;
     postData = post.value;
-    if(this.callbackCenterFunction ===undefined || this.callbackAddressFunction === undefined){
+    
+    if(this.callbackFunctionAddCenter ===undefined || this.callbackFunctionAddAddress === undefined){
       console.log("callbackFunction du form undefined");
       return
     }
     else {
-      this.callbackCenterFunction(postData.name, postData.capacity);  
-      this.callbackAddressFunction(postData.street, postData.zipcode, postData.city);
+      this.callbackFunctionAddCenter(postData.name, postData.capacity);  
+      this.callbackFunctionAddAddress(postData.street, postData.zipcode, postData.city);
+      this._location.back();
+    }
+  }
+
+  onSubmitChange(post: any){
+    var postData;
+    postData = post.value;
+    if(this.centerChoosen === undefined) return;
+    if(this.callbackFunctionChangeCenter ===undefined || this.callbackFunctionChangeAddress === undefined){
+      console.log("callbackFunction du form undefined");
+      return
+    }
+    else {
+      this.callbackFunctionChangeCenter( this.centerChoosen?.id ,postData.name, postData.capacity);  
+      this.callbackFunctionChangeAddress(this.centerChoosen?.address.id, postData.street, postData.zipcode, postData.city);
+      setTimeout(() => {
+        location.reload();
+      }, 500)
+      
     }
   }
 }
